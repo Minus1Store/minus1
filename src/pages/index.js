@@ -216,12 +216,13 @@
 //   }
 // `
 
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Layout from '../layouts/index'
 import HomeLinks from '../components/HomeLinks/index'
 import Background from '../components/Background/index'
 import Social from '../components/Social/index'
 import PageTransition from 'gatsby-plugin-page-transitions';
+import {useSpring, animated} from 'react-spring'
 
 import backgroundImage from '../img/test/6.gif'
 import Header from '../components/Header/index'
@@ -229,9 +230,24 @@ import TimeString from '../components/TimeString/index'
 import styles from './index.module.scss'
 
 function Index(){
+
+  const [startAnimation, setStartAnimation] = useState(false)
+
+  const loadAnimation = useSpring({
+    to:{
+      opacity: startAnimation ? 1 : 0
+    }
+  })
+
+  useEffect(() => {
+    setTimeout(() => {
+      setStartAnimation(true)
+    }, 500)
+  }, [])
+
   return(
       <React.Fragment>
-        <div className={styles.pageWrapper}>
+        <animated.div style={loadAnimation} className={styles.pageWrapper}>
           <div className={styles.headerGroup}>
             <Header/>
             <TimeString className={styles.homeTimeString}/>
@@ -239,7 +255,7 @@ function Index(){
           <HomeLinks/>
           <Background image={backgroundImage}/>
           <Social/>  
-        </div>
+        </animated.div>
       </React.Fragment>
   )
 }
