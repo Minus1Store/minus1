@@ -7,6 +7,7 @@ import Header from '../../components/Header/index'
 import TimeString from '../../components/TimeString/index'
 import styles from './news.module.scss'
 import FadeImageSlider from '../../components/FadeImageSlider/index'
+import {useSpring, animated} from 'react-spring'
 
 import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
@@ -36,6 +37,19 @@ const News = () => {
         heading:'Test2',
         images:[slideImage3, slideImage2, slideImage1]
     }])
+    const [startAnimation, setStartAnimation] = useState(false)
+
+    const loadAnimation = useSpring({
+        to:{
+        opacity: startAnimation ? 1 : 0
+        }
+    })
+
+    useEffect(() => {
+        setTimeout(() => {
+        setStartAnimation(true)
+        }, 500)
+    }, [])
     
     const archiveButtonHandler = () => {
         setArchiveOpened(prevState => !prevState)
@@ -44,59 +58,59 @@ const News = () => {
  
     return (
             <React.Fragment>
-                <div className={styles.headerGroup}>
-                    <Header/>
-                    <TimeString/>
-                </div>
-                <div className={styles.wrapper}>
-                    <div className={styles.overlay}>
-
+                    <div className={styles.headerGroup}>
+                        <Header/>
+                        <TimeString/>
                     </div>
-                    <Swiper
-                        slidesPerView={'auto'}
-                        centeredSlides={true}
-                        spaceBetween={30}
-                        allowTouchMove={false}
-                        scrollbar={{
-                            draggable: true,
-                            el:`.${styles.scrollbar}`
-                        }}
-                    >
-                        {
-                            [{
-                                heading:'Supreme®/Nike®',
-                                images:[slideImage1, slideImage2, slideImage3]
-                            },
+                    <animated.div style={loadAnimation} className={styles.wrapper}>
+                        <div className={styles.overlay}>
+
+                        </div>
+                        <Swiper
+                            slidesPerView={'auto'}
+                            centeredSlides={true}
+                            spaceBetween={30}
+                            allowTouchMove={false}
+                            scrollbar={{
+                                draggable: true,
+                                el:`.${styles.scrollbar}`
+                            }}
+                        >
                             {
-                                heading:'Test',
-                                images:[slideImage2, slideImage3, slideImage1]
-                            },
-                            {
-                                heading:'Test2',
-                                images:[slideImage3, slideImage2, slideImage1]
-                            }].map((item, index) => {
-                                if(index == 0){
-                                    return <SwiperSlide key={index} className={`${styles.slide}`}>
+                                [{
+                                    heading:'Supreme®/Nike®',
+                                    images:[slideImage1, slideImage2, slideImage3]
+                                },
+                                {
+                                    heading:'Test',
+                                    images:[slideImage2, slideImage3, slideImage1]
+                                },
+                                {
+                                    heading:'Test2',
+                                    images:[slideImage3, slideImage2, slideImage1]
+                                }].map((item, index) => {
+                                    if(index == 0){
+                                        return <SwiperSlide key={index} className={`${styles.slide}`}>
+                                            <div key={index}>
+                                        <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
+
+                                            </div>
+                                    </SwiperSlide>
+                                    }else{
+                                        return <SwiperSlide key={index} className={`${styles.slide}  ${!archiveOpened && styles.notVisible}`}>
                                         <div key={index}>
-                                    <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
+                                        <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
 
                                         </div>
-                                </SwiperSlide>
-                                }else{
-                                    return <SwiperSlide key={index} className={`${styles.slide}  ${!archiveOpened && styles.notVisible}`}>
-                                    <div key={index}>
-                                    <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
-
-                                    </div>
-                                </SwiperSlide>
-                                }
-                            })
-                        }
-                    </Swiper>
-                    <div className={`${styles.scrollbar} ${!archiveOpened && styles.notVisible}`}></div>
-                </div>
-                <NavFooterMobile/>
-                <NavFooterDesktop/>
+                                    </SwiperSlide>
+                                    }
+                                })
+                            }
+                        </Swiper>
+                        <div className={`${styles.scrollbar} ${!archiveOpened && styles.notVisible}`}></div>
+                    </animated.div>
+                    <NavFooterMobile/>
+                    <NavFooterDesktop/>
             </React.Fragment>
     )
 }
