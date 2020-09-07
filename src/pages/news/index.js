@@ -11,7 +11,9 @@ import FadeImageSlider from '../../components/FadeImageSlider/index'
 import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 import NewsArticle from '../../components/NewsArticle'
-import 'swiper/components/scrollbar/scrollbar.scss';
+import scrollbarStyle from 'swiper/components/scrollbar/scrollbar.scss';
+
+console.log(scrollbarStyle)
 
 SwiperCore.use([Scrollbar]);
 
