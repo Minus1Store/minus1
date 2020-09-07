@@ -1,0 +1,57 @@
+@import '../../styles/breakpoints.scss';
+
+.slide-image{
+    height:100%;
+    opacity:0;
+    
+    transition:0.5s;
+}
+
+.slider{
+    height:100%;
+    width:100%;
+}
+
+.slide{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.active-slide-image{
+    opacity:1;
+    
+    transition:0.5s 0.5s;
+}
+
+
+.fade-image-container{
+    height:100%;
+}
+
+.navigation-status{
+    margin:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size:0.6875rem;
+    margin-top:10px;
+    @include breakpoint(lg){
+        margin-top:30px;
+    }
+}
+
+.swiper-prev-el{
+    transform:rotate(180deg);
+    margin-right:10px;
+    cursor:pointer;
+}
+
+.swiper-next-el{
+    margin-left:10px;
+    cursor:pointer;
+}
+
+.invisible{
+    opacity:0;
+}

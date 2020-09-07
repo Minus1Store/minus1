@@ -1,0 +1,21 @@
+@import '../../styles/breakpoints.scss';
+
+.social{
+    display:flex;
+    margin-left:30vw;
+    margin-bottom:7.5vh;
+    @include breakpoint(lg){
+        margin-left:calc(50vw - 78px);
+        margin-bottom:10vh;
+    }
+}
+
+.social > a > img{
+    height:20px;
+    margin-right:7.5px;
+    opacity:0.6;
+}
+
+.social > a > img:hover{
+    opacity:1; 
+}

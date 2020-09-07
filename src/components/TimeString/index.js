@@ -1,0 +1,26 @@
+import React, {useState, useEffect} from 'react'
+import moment from 'moment'
+
+import styles from './time-string.module.scss'
+
+const TimeString = ({className}) => {
+
+        
+    const [currentTime, setCurrentTime] = useState(undefined)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentTime(moment().locale('rs').format('L LT'))
+        }, 100
+        )
+        return () => {clearInterval(interval)}
+    }, [])
+
+    return (           
+        <p className={`${styles.time} ${currentTime && styles.appear} ${className}`}>
+            {currentTime} <span className={styles.city}>BG</span>
+        </p>
+    )
+}
+
+export default TimeString

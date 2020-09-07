@@ -1,0 +1,37 @@
+@import '../../styles/breakpoints.scss';
+
+.nav-footer{
+    background:black;
+    margin-top:60px;
+    padding:5px 15px 0;
+    @include breakpoint(lg){
+        display:none;
+    }
+}
+
+.nav-footer > nav{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.nav-list{
+    padding-left:0;
+    list-style-type: none;
+}
+
+.nav-list li{
+    margin-bottom:15px;
+}
+
+.nav-list a{
+    color:white;
+    text-decoration: none;
+    font-size:0.8rem;
+    text-transform: lowercase;
+    padding:1px;
+}
+
+.nav-list a:hover{
+    background:red;
+}

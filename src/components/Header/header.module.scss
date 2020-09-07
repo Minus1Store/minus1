@@ -1,0 +1,16 @@
+@import '../../styles/breakpoints.scss';
+
+.header{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo{
+    width:40vw;
+    margin-bottom:15px;
+    @include breakpoint(lg){
+        width:150px;
+    }
+}
+

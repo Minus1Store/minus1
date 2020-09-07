@@ -1,0 +1,29 @@
+@import '../../styles/breakpoints.scss';
+
+.home-links a{
+    text-transform: lowercase;
+    text-decoration:none;
+    color:white;
+    font-size:0.6875rem;
+    line-height:1.65rem;
+    padding:1px;
+}
+
+.home-links a:hover{
+    background:red;
+}
+
+.home-links ul{
+    margin:0;   
+    margin-bottom:25px;
+    margin-left:29.7vw;
+    list-style-type: none;
+    padding-left:0;
+    @include breakpoint(lg){
+        margin-left:calc(50vw - 78px);
+    }
+}
+
+.home-links li{
+    margin-bottom:0;
+}

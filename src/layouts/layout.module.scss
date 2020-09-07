@@ -1,0 +1,15 @@
+@import '../styles/breakpoints.scss';
+
+.layout{
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    height:100vh;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    width:100vw;
+    position:relative;
+    @include breakpoint(lg){
+        overflow: hidden;
+    }
+}

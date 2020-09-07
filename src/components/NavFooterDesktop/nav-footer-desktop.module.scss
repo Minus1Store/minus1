@@ -1,0 +1,56 @@
+@import '../../styles/breakpoints.scss';
+
+.nav-footer{
+    margin-top:45px;
+    margin-bottom:8vh;
+    padding:5px 15px 0;
+    display:none;
+    @include breakpoint(lg){
+        display:block;
+    }
+}
+
+.nav-footer > nav{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.nav-list{
+    padding-left:0;
+    list-style-type: none;
+    margin-right:120px;
+}
+
+.nav-list li{
+    display: inline-block;
+    margin-right:15px;
+    position: relative;
+}
+
+.nav-list li a:nth-child(2){
+    display:none;
+}
+
+.nav-list li:hover a:nth-child(2){
+    display:inline-block;
+    position:absolute;
+    top:1.2rem;
+    left:0;
+    width:200px;
+    max-width: max-content;
+}
+
+.nav-list a{
+    color:white;
+    text-decoration: none;
+    font-size:0.65rem;
+    text-transform: lowercase;
+    padding:1px;
+    color:black;
+}
+
+.nav-list a:hover{
+    background:red;
+    color:white
+}

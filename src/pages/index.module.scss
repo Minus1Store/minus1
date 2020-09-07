@@ -1,0 +1,22 @@
+@import '../styles/breakpoints.scss';
+
+.header-group{
+    margin-bottom:50px;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height:30vh;
+    @include breakpoint(lg){
+        height:40vh;
+    }
+}
+
+.home-time-string{
+    color:white;
+}
+
+.page-wrapper{
+    overflow-y:hidden;
+    height:100vh;
+}
