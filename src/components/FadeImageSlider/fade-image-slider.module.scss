@@ -27,6 +27,7 @@
 
 .fade-image-container{
     height:100%;
+    margin-bottom:35px;
 }
 
 .navigation-status{
@@ -50,6 +51,7 @@
 .swiper-next-el{
     margin-left:10px;
     cursor:pointer;
+    transform:rotate(360deg);
 }
 
 .invisible{
