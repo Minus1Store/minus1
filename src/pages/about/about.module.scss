@@ -2,10 +2,15 @@
 
 .about-container{
     width:100%;
-    > p {
-        font-size:0.6875rem;
-    }
+    min-height: 80vh;
+     > p {
+         font-size: 0.85rem;
+     }
     @include breakpoint(lg){
+        > p {
+            font-size:0.6875rem;
+        }
+        min-height: unset;
         width:385px;
         margin:auto;
         margin-bottom:11vh;
