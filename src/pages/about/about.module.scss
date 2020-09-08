@@ -1,0 +1,13 @@
+@import '../../styles/breakpoints.scss';
+
+.about-container{
+    width:100%;
+    > p {
+        font-size:0.6875rem;
+    }
+    @include breakpoint(lg){
+        width:385px;
+        margin:auto;
+        margin-bottom:11vh;
+    }
+}

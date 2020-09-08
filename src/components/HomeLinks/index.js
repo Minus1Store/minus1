@@ -33,7 +33,7 @@ const HomeLinks = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/news'}>
+                    <Link to={'/about'}>
                         About
                     </Link>
                 </li>

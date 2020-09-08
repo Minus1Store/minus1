@@ -13,6 +13,7 @@ import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 import NewsArticle from '../../components/NewsArticle'
 import scrollbarStyle from 'swiper/components/scrollbar/scrollbar.scss';
+import PageLayout from '../../components/PageLayout'
 
 console.log(scrollbarStyle)
 
@@ -58,11 +59,7 @@ const News = () => {
  
     return (
             <React.Fragment>
-                    <div className={styles.headerGroup}>
-                        <Header/>
-                        <TimeString/>
-                    </div>
-                    <animated.div style={loadAnimation} className={styles.wrapper}>
+                    <PageLayout>
                         <div className={styles.overlay}>
 
                         </div>
@@ -108,9 +105,7 @@ const News = () => {
                             }
                         </Swiper>
                         <div className={`${styles.scrollbar} ${!archiveOpened && styles.notVisible}`}></div>
-                    </animated.div>
-                    <NavFooterMobile/>
-                    <NavFooterDesktop/>
+                    </PageLayout>
             </React.Fragment>
     )
 }
