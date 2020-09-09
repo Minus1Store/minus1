@@ -10,7 +10,9 @@ const Stores = () => {
         <PageLayout>
             <div className={styles.pageWrapper}>
                 <div className={styles.storesContainer}>
-                    <StoreItem/>
+                    {typeof window !== 'undefined' &&
+                        <StoreItem/>
+                    }
                 </div>
             </div>
         </PageLayout>
