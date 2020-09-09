@@ -79,7 +79,7 @@
     height:5px;
     background:#D6D6D6;
     position:absolute;
-    width:100vw;
+    width:100%;
     bottom:-40px;
     > div{
         background:#B5B5B5;
@@ -98,6 +98,7 @@
 }
 
 .overlay{
+    display:none;
     pointer-events: none;
     width:100%;
     height:100%;
@@ -105,6 +106,17 @@
     top:0;
     left:0;
     z-index:2;
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0) 15%, rgba(255,255,255,0) 85%, rgba(255,255,255,1) 100%);
+    background: rgb(0,0,0);
+    background: radial-gradient(circle, rgba(0,0,0,0) 37%, rgba(255,255,255,1) 100%);
+    @include breakpoint(lg){
+        display:block;
+    }
+}
+
+.page-wrapper{
+    width:100%;
+    position:relative;
+    @include breakpoint(lg){
+        margin-top:100px;
+    }
 }

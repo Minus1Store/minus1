@@ -60,51 +60,54 @@ const News = () => {
     return (
             <React.Fragment>
                     <PageLayout>
-                        <div className={styles.overlay}>
+                        <div className={styles.pageWrapper}>
 
-                        </div>
-                        <Swiper
-                            slidesPerView={'auto'}
-                            centeredSlides={true}
-                            spaceBetween={30}
-                            allowTouchMove={false}
-                            scrollbar={{
-                                draggable: true,
-                                el:`.${styles.scrollbar}`
-                            }}
-                        >
-                            {
-                                [{
-                                    heading:'Supreme®/Nike®',
-                                    images:[slideImage1, slideImage2, slideImage3]
-                                },
+                            <div className={styles.overlay}>
+
+                            </div>
+                            <Swiper
+                                slidesPerView={'auto'}
+                                centeredSlides={true}
+                                spaceBetween={30}
+                                allowTouchMove={false}
+                                scrollbar={{
+                                    draggable: true,
+                                    el:`.${styles.scrollbar}`
+                                }}
+                            >
                                 {
-                                    heading:'Test',
-                                    images:[slideImage2, slideImage3, slideImage1]
-                                },
-                                {
-                                    heading:'Test2',
-                                    images:[slideImage3, slideImage2, slideImage1]
-                                }].map((item, index) => {
-                                    if(index == 0){
-                                        return <SwiperSlide key={index} className={`${styles.slide}`}>
+                                    [{
+                                        heading:'Supreme®/Nike®',
+                                        images:[slideImage1, slideImage2, slideImage3]
+                                    },
+                                    {
+                                        heading:'Test',
+                                        images:[slideImage2, slideImage3, slideImage1]
+                                    },
+                                    {
+                                        heading:'Test2',
+                                        images:[slideImage3, slideImage2, slideImage1]
+                                    }].map((item, index) => {
+                                        if(index == 0){
+                                            return <SwiperSlide key={index} className={`${styles.slide}`}>
+                                                <div key={index}>
+                                            <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
+
+                                                </div>
+                                        </SwiperSlide>
+                                        }else{
+                                            return <SwiperSlide key={index} className={`${styles.slide}  ${!archiveOpened && styles.notVisible}`}>
                                             <div key={index}>
-                                        <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
+                                            <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
 
                                             </div>
-                                    </SwiperSlide>
-                                    }else{
-                                        return <SwiperSlide key={index} className={`${styles.slide}  ${!archiveOpened && styles.notVisible}`}>
-                                        <div key={index}>
-                                        <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
-
-                                        </div>
-                                    </SwiperSlide>
-                                    }
-                                })
-                            }
-                        </Swiper>
-                        <div className={`${styles.scrollbar} ${!archiveOpened && styles.notVisible}`}></div>
+                                        </SwiperSlide>
+                                        }
+                                    })
+                                }
+                            </Swiper>
+                            <div className={`${styles.scrollbar} ${!archiveOpened && styles.notVisible}`}></div>
+                        </div>
                     </PageLayout>
             </React.Fragment>
     )

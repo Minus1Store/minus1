@@ -8,8 +8,10 @@ const Stores = () => {
 
     return (
         <PageLayout>
-            <div className={styles.storesContainer}>
-                <StoreItem/>
+            <div className={styles.pageWrapper}>
+                <div className={styles.storesContainer}>
+                    <StoreItem/>
+                </div>
             </div>
         </PageLayout>
     )

@@ -13,3 +13,11 @@
     }
 }
 
+.page-wrapper{
+    width:100%;
+    position:relative;
+    @include breakpoint(lg){
+        margin-top:75px;
+    }
+}
+

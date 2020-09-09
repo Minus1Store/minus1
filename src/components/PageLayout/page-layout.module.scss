@@ -2,6 +2,7 @@
 
 .wrapper{
     padding:0 15px;
+    width:100%;
     position:relative;
 }
 
@@ -11,10 +12,19 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    height:12vh;
-    min-height:100px;
+    margin-top: 20px;
     @include breakpoint(lg){
-        height:30vh;
-        margin-bottom:105px;
+        margin-bottom:unset;
+    }
+}
+
+.centered-items{
+    height:100%;
+    width:100%;
+    @include breakpoint(lg){
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }

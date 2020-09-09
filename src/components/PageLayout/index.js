@@ -29,6 +29,7 @@ const PageLayout = ({children}) => {
  
     return (
             <React.Fragment>
+                <div className={styles.centeredItems}>
                     <div className={styles.headerGroup}>
                         <Header/>
                         <TimeString/>
@@ -38,6 +39,7 @@ const PageLayout = ({children}) => {
                     </animated.div>
                     <NavFooterMobile/>
                     <NavFooterDesktop/>
+                </div>
             </React.Fragment>
     )
 }

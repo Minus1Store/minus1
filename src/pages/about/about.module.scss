@@ -30,3 +30,11 @@
 .about-container::-webkit-scrollbar-thumb:hover{
     background:#A1A1A1;
 }
+
+.page-wrapper{
+    width:100%;
+    position:relative;
+    @include breakpoint(lg){
+        margin-top:105px;
+    }
+}
