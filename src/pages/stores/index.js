@@ -6,17 +6,15 @@ import StoreItem from '../../components/StoreItem'
 
 const Stores = () => {
 
-    return (
-        <PageLayout>
+     return (
+     <PageLayout>
             <div className={styles.pageWrapper}>
                 <div className={styles.storesContainer}>
-                    {typeof window !== 'undefined' &&
-                        <StoreItem/>
-                    }
+                    <StoreItem/>
                 </div>
             </div>
         </PageLayout>
-    )
+     )
 }
 
 export default Stores

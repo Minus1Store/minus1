@@ -32,6 +32,12 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-layout',
     'gatsby-plugin-page-transitions',
+    {
+      resolve: 'gatsby-plugin-react-leaflet',
+      options: {
+        linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
+      }
+    },
     // {
     //   resolve: 'gatsby-source-prismic',
     //   options: {
