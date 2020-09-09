@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+
 import {Map, TileLayer} from 'react-leaflet'
 import {useTransition, animated} from 'react-spring'
 
@@ -59,7 +60,7 @@ const StoreItem = () => {
                     </div>
                     <img src={shop1} alt=''/>
                     <div className={styles.map}>
-                        {window &&
+                        {window !== undefined &&
                             <Map animate={true} center={[51.505, -0.09]} zoom={13}>
                                 <TileLayer
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
