@@ -1,14 +1,21 @@
 import React, {useState} from 'react'
+import {Map, TileLayer} from 'react-leaflet'
+import {useTransition, animated} from 'react-spring'
 
 import styles from './store-item.module.scss'
 import shop1 from '../../img/test/shop1.jpg'
-import {Map, TileLayer} from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css';
 
 const StoreItem = () => {
 
     const [storeClicked, setStoreClicked] = useState(false)
+
+    const popupTransition = useTransition(storeClicked, null, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+    })
 
     return (
     <div className={styles.store} onClick={() => {setStoreClicked(true)}}>
@@ -34,8 +41,9 @@ const StoreItem = () => {
             <a onClick={e => e.stopPropagation()} className={styles.storeMail} href={'mailto:info@minus1.com'}>email Belgrade store</a>
         </div>
         {
-            storeClicked && 
-            <div className={styles.informationBox}>
+            popupTransition.map(({item, key, props}) => 
+                item && 
+            <animated.div key={key} style={props} className={styles.informationBox}>
                 <div className={styles.informationBoxBackground} onClick={(e) => {e.stopPropagation();setStoreClicked(false)}} ></div>
                 <div className={styles.informationBoxContent}>
                     <div class={styles.informationBoxText}>
@@ -59,7 +67,8 @@ const StoreItem = () => {
                         </Map>
                     </div>
                 </div>
-            </div>
+            </animated.div>
+            )
         }
     </div>
     )
