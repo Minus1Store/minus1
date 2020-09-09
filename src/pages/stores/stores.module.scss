@@ -1,0 +1,15 @@
+@import '../../styles/breakpoints.scss';
+
+.stores-container{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 80vh;
+    padding:0 25px 0;
+    @include breakpoint(lg){
+        padding:0;
+        min-height: unset;
+        flex-direction: row;
+    }
+}
+

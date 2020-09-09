@@ -23,12 +23,12 @@ const HomeLinks = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/news'}>
+                    <Link to={'/shop'}>
                         Shop
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/news'}>
+                    <Link to={'/random'}>
                         Random
                     </Link>
                 </li>
@@ -38,17 +38,17 @@ const HomeLinks = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/news'}>
+                    <Link to={'/stores'}>
                         Stores
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/news'}>
+                    <Link to={'/contact'}>
                         Contact
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/news'}>
+                    <Link to={'/mailinglist'}>
                         MAILINGLIST
                     </Link>
                 </li>

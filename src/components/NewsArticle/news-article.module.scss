@@ -21,9 +21,22 @@
 .body{
     @include breakpoint(lg){
         max-height:240px;
-        overflow-y:scroll;
+        overflow-y:auto;
         width:250px;
     }
+}
+
+.body::-webkit-scrollbar{
+    background: #D6D6D6;
+    width:5px;
+}
+
+.body::-webkit-scrollbar-thumb{
+    background: #B5B5B5;
+}
+
+.body::-webkit-scrollbar-thumb:hover{
+    background:#A1A1A1;
 }
 
 .body > p{

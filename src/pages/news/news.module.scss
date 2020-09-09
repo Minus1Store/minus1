@@ -77,10 +77,16 @@
 
 .scrollbar{
     height:5px;
-    background:#cdcdcd;
+    background:#D6D6D6;
     position:absolute;
     width:100vw;
     bottom:-40px;
+    > div{
+        background:#B5B5B5;
+    }
+    > div:hover{
+        background:#A1A1A1;
+    }
 }
 
 .changed-style{
