@@ -4,6 +4,9 @@
     background:black;
     margin-top:60px;
     padding:5px 15px 0;
+    width:100vw;
+    position: relative;
+    left:-15px;
     @include breakpoint(lg){
         display:none;
     }

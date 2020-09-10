@@ -2,7 +2,6 @@
 
 .nav-footer{
     margin-top:45px;
-    padding:5px 15px 0;
     display:none;
     @include breakpoint(lg){
         display:block;
@@ -18,12 +17,11 @@
 .nav-list{
     padding-left:0;
     list-style-type: none;
-    margin-right:120px;
 }
 
 .nav-list li{
     display: inline-block;
-    margin-right:15px;
+    margin-left:15px;
     position: relative;
 }
 
@@ -34,7 +32,7 @@
 .nav-list li:hover a:nth-child(2){
     display:inline-block;
     position:absolute;
-    top:1.2rem;
+    top:1rem;
     left:0;
     width:200px;
     max-width: max-content;
@@ -47,6 +45,9 @@
     text-transform: lowercase;
     padding:1px;
     color:black;
+    @include breakpoint(lg){
+        font-size:0.85rem;
+    }
 }
 
 .nav-list a:hover{

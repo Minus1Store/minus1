@@ -224,7 +224,7 @@ import Social from '../components/Social/index'
 import PageTransition from 'gatsby-plugin-page-transitions';
 import {useSpring, animated} from 'react-spring'
 
-import backgroundImage from '../img/test/6.gif'
+import backgroundImage from '../img/test/6.jpg'
 import Header from '../components/Header/index'
 import TimeString from '../components/TimeString/index'
 import styles from './index.module.scss'

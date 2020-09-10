@@ -2,6 +2,8 @@ import React from 'react'
 
 import PageLayout from '../../components/PageLayout'
 import styles from './about.module.scss'
+import NavFooterMobile from '../../components/NavFooterMobile/index'
+import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 
 const AboutPage = () => {
     return(
@@ -13,6 +15,11 @@ const AboutPage = () => {
                     <p>While it developed into a downtown institution, Supreme established itself as a brand known for its quality, style, and authenticity. </p>
                     <p>Over 25 years, Supreme has expanded from its New York City origins into a global community; working with generations of artists, photographers, designers, musicians, filmmakers, and writers who defied conventions and contributed to its unique identity and attitude.</p>
                 </div>
+            </div>
+            
+            <NavFooterMobile/>
+            <div className={styles.navFooterContainer}>
+                <NavFooterDesktop/>
             </div>
         </PageLayout>
     )

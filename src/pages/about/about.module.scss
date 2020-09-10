@@ -7,9 +7,6 @@
          font-size: 0.85rem;
      }
     @include breakpoint(lg){
-        > p {
-            font-size:0.6875rem;
-        }
         min-height: unset;
         width:385px;
         height:330px;
@@ -37,4 +34,8 @@
     @include breakpoint(lg){
         margin-top:105px;
     }
+}
+
+.nav-footer-container{
+    margin-right:200px;
 }

@@ -6,8 +6,6 @@ import TimeString from '../../components/TimeString/index'
 import styles from './page-layout.module.scss'
 import {useSpring, animated} from 'react-spring'
 
-import NavFooterMobile from '../../components/NavFooterMobile/index'
-import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 
 
 const PageLayout = ({children}) => {
@@ -37,8 +35,6 @@ const PageLayout = ({children}) => {
                     <animated.div style={loadAnimation} className={styles.wrapper}>
                         {children}
                     </animated.div>
-                    <NavFooterMobile/>
-                    <NavFooterDesktop/>
                 </div>
             </React.Fragment>
     )

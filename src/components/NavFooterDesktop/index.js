@@ -3,54 +3,92 @@ import {Link} from 'gatsby'
 
 import styles from './nav-footer-desktop.module.scss'
 
-const NavFooterDesktop = () => {
+const NavFooterDesktop = ({linksArray}) => {
+
+    let links = linksArray || [
+        {
+            link:[
+                {
+                    text:'home',
+                    href:'/'
+                }
+            ]
+        },
+        {
+            link:[
+                {
+                    text:'shop',
+                    href:'/shop'
+                }
+            ]
+        },
+        {
+            link:[
+                {
+                    text:'news',
+                    href:'/news'
+                }
+            ]
+        },
+        {
+            link:[
+                {
+                    text:'fall/winter 2020 preview',
+                    href:'/preview'
+                },
+                {
+                    text:'spring/summer 2020 preview',
+                    href:'/preview'
+                }
+            ]
+        },
+        {
+            link:[
+                {
+                    text:'lookbook',
+                    href:'/lookbook'
+                }
+            ]
+        },
+        {
+            link:[
+                {
+                    text:'random',
+                    href:'/random'
+                }
+            ]
+        },
+        {
+            link:[
+                {
+                    text:'about',
+                    href:'/about'
+                }
+            ]
+        },
+        {
+            link:[
+                {
+                    text:'stores',
+                    href:'/stores'
+                }
+            ]
+        }
+    ]
+
     return (
         <footer className={styles.navFooter}>
             <nav>
                 <ul className={styles.navList}>
-                    <li>
-                        <Link to={'/'}>
-                            home
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/shop'}>
-                            Shop
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/news'}>
-                            news
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/preview'}>
-                            fall/winter 2020 preview
-                        </Link>
-                        <Link to={'/preview'}>
-                            spring/summer 2020 preview
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/lookbook'}>
-                            lookbook
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/random'}>
-                            Random
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/about'}>
-                            about
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={'/stores'}>
-                            stores
-                        </Link>
-                    </li>
+                    {links.map(({link}) => {
+                        return <li>
+                            {link.map(link => {
+                                return <Link to={link.href}>
+                                    {link.text}
+                                </Link>
+                            })}
+                        </li>
+                    })}
                 </ul>
             </nav>
         </footer>

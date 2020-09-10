@@ -1,9 +1,14 @@
+@import '../../styles/breakpoints.scss';
+
 .time{
     font-size:0.75rem;
     text-transform: lowercase;
     margin:0;
     transition:0.5s;
     opacity:0;
+    @include breakpoint(lg){
+        font-size:0.85rem;
+    }
 }
 
 .city{

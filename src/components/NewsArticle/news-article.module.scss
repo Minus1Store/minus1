@@ -12,10 +12,16 @@
 
 .date{
     font-size:0.6875rem;
+    @include breakpoint(lg){
+        font-size:0.75rem;
+    }
 }
 
 .heading{
     font-size:0.8rem;
+    @include breakpoint(lg){
+        font-size:0.9rem;
+    }
 }
 
 .body{
@@ -44,6 +50,7 @@
     line-height:1.1rem;
     @include breakpoint(lg){
         line-height:0.9rem;
+        font-size:0.85rem;
     }
 }
 
@@ -76,7 +83,7 @@
         color:black;
         font-size:0.75rem;
         @include breakpoint(lg){
-            font-size:0.65rem;
+            font-size:0.85rem;
         }
     }
     > div > a:hover, > div > button:hover {
