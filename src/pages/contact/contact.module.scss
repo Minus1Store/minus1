@@ -1,0 +1,51 @@
+@import '../../styles/breakpoints.scss';
+
+.page-wrapper{
+    display:flex;
+    align-items: flex-start;
+    flex-direction:column;
+    min-height:70vh;
+    @include breakpoint(lg){
+        flex-direction: row;
+        min-height: unset;
+        width:556px;
+        height:310px;
+        margin:auto;
+        margin-top:125px;
+    }
+}
+
+.heading{
+    width:100%;
+    font-size:0.7rem;
+    margin:0;
+    margin-bottom:30px;
+    @include breakpoint(lg){
+        margin-bottom:0;
+        width:20%;
+    }
+}
+
+.credit{
+    width:100%;
+    font-size:0.7rem;
+    align-self:flex-end;
+    order:3;
+    margin-top:50px;
+    > a{
+        color:red;
+        font-weight: bold;
+        text-decoration:none;
+        display:inline-block;
+        padding:1px;
+    }
+    > a:hover{
+        background:red;
+        color:white;
+    }
+    @include breakpoint(lg){
+        margin-top:unset;
+        width:35%;
+        order: unset;
+    }
+}

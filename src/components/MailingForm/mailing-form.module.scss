@@ -26,15 +26,15 @@
     @include breakpoint(lg){
         width:calc(50% + 50px);
     }
-}
-
-input[type=email]{
-    width:100%;
-    padding:5px;
-    @include breakpoint(lg){
-        width:calc(100% - 100px);
+    input[type=email]{
+        width:100%;
+        padding:5px;
+        @include breakpoint(lg){
+            width:calc(100% - 100px);
+        }
     }
 }
+
 
 .input-label{
     width:100%;
