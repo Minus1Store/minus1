@@ -1,0 +1,103 @@
+@import '../../styles/breakpoints.scss';
+
+.mailing-form{
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+}
+
+.inputs-section > div{
+    display:flex;
+    align-items: center;
+    margin-bottom:10px;
+    flex-direction: column;
+    @include breakpoint(lg){
+        flex-direction: row;
+    }
+}
+
+.input{
+    width:100%;
+    > input { 
+        border:1px solid #CDCDCD;
+        margin:0;
+        border-radius: 5px;
+    }
+    @include breakpoint(lg){
+        width:calc(50% + 50px);
+    }
+}
+
+input[type=email]{
+    width:100%;
+    padding:5px;
+    @include breakpoint(lg){
+        width:calc(100% - 100px);
+    }
+}
+
+.input-label{
+    width:100%;
+    color:#757575;
+    margin-bottom:10px;
+    @include breakpoint(lg){
+        margin-bottom:unset;
+        width:calc(50% - 50px);
+        font-size:0.85rem;
+    }
+}
+
+.information-text{
+    width:100%;
+    margin:0;
+    margin-bottom:20px;
+    margin-top:-5px;
+    color:#959595;
+    padding-right:20px;
+    @include breakpoint(lg){
+        width:calc(50% - 50px);
+        font-size:0.8rem;
+    }
+}
+
+.action-buttons{
+    display:flex;
+    align-items: center;
+    margin-top:40px;
+    > div{
+        margin-right:10px;
+        margin-bottom:10px;
+        @include breakpoint(lg){
+            margin-right: 0;
+            width:100%;
+            display:flex;
+            justify-content: center;
+        }
+    }
+    @include breakpoint(lg){
+        flex-wrap: wrap;
+    }
+}
+
+.mailing-form > .checkbox-group{
+    display:flex;
+    flex-direction: row;
+    > label {
+        flex-grow: 1;
+    }
+    > .input {
+        flex-basis:0;
+        
+    }
+    @include breakpoint(lg){
+        display:flex;
+        flex-direction: row;
+        > label {
+            flex-grow: unset;
+        }
+        > .input {
+            flex-basis:unset;
+            
+        }
+    }
+}

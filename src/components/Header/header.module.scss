@@ -7,10 +7,12 @@
 }
 
 .logo{
-    width:40vw;
+    width:30vw;
+    min-width:100px;
     margin-bottom:15px;
     @include breakpoint(lg){
         width:100px;
+        min-width: unset;
     }
 }
 
