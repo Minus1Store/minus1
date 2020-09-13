@@ -1,6 +1,7 @@
 import React, {useState, useRef} from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import SwiperCore, {EffectFade, Navigation} from 'swiper'
+import Image from 'gatsby-image'
 import 'swiper/swiper.scss';
 import 'swiper/components/effect-fade/effect-fade.scss';
 import 'swiper/components/navigation/navigation.scss';
@@ -15,6 +16,8 @@ const FadeImageSlider = ({images}) => {
 
     const [currentSlide, setCurrentSlide] = useState(0)
 
+    console.log(images)
+
     return (
         <div className={styles.fadeImageContainer}>
             <Swiper
@@ -25,9 +28,11 @@ const FadeImageSlider = ({images}) => {
                 onInit={swiper => setSwiper(swiper)}
                 onSlideChangeTransitionStart={(swiper) => setCurrentSlide(swiper.activeIndex)}
             >
-                {images.map((image, index) => {
+                {images.map(({image}, index) => {
                     return <SwiperSlide key={index} className={styles.slide}>
-                        <img className={`${styles.slideImage} ${currentSlide === index && styles.activeSlideImage}`} src={image} alt=''/>
+                        <div className={`${styles.slideImage} ${currentSlide === index && styles.activeSlideImage}`}>
+                            <Image fluid={image.localFile.childImageSharp.fluid} alt={image.alt}/>
+                        </div>
                     </SwiperSlide>
                 })}
             </Swiper>

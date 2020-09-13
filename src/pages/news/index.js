@@ -2,13 +2,10 @@ import React, {useState, useEffect} from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import SwiperCore, {Scrollbar} from 'swiper'
 import 'swiper/swiper.scss';
+import {useStaticQuery, graphql} from 'gatsby'
 
-import Header from '../../components/Header/index'
-import TimeString from '../../components/TimeString/index'
+
 import styles from './news.module.scss'
-import FadeImageSlider from '../../components/FadeImageSlider/index'
-import {useSpring, animated} from 'react-spring'
-
 import NewsArticle from '../../components/NewsArticle'
 import scrollbarStyle from 'swiper/components/scrollbar/scrollbar.scss';
 import PageLayout from '../../components/PageLayout'
@@ -31,37 +28,45 @@ import slideImage9 from '../../img/test/19.jpg'
 import slideImage10 from '../../img/test/20.jpg'
 
 const News = () => {
-    
-    const [archiveOpened, setArchiveOpened] = useState(false)
-    const [dummyNews, setDummyNews] = useState([{
-        heading:'Supreme®/Nike®',
-        images:[slideImage1, slideImage2]
-    },
-    {
-        heading:'Test',
-        images:[slideImage3, slideImage4, slideImage5, slideImage6, slideImage7]
-    },
-    {
-        heading:'Test2',
-        images:[slideImage8, slideImage9, slideImage10]
-    }])
-    const [startAnimation, setStartAnimation] = useState(false)
 
-    const loadAnimation = useSpring({
-        to:{
-        opacity: startAnimation ? 1 : 0
+    const data = useStaticQuery(graphql`
+    query NewsArticlesQuery {
+        newsArticles:allPrismicNewsArticle {
+          edges {
+            node {
+              data {
+                images {
+                  image {
+                    alt
+                    localFile{
+                        childImageSharp{
+                            fluid(maxWidth:280, quality:100){
+                                ...GatsbyImageSharpFluid
+                            }
+                        }
+                    }
+                  }
+                }
+                date(formatString: "DD[/]MM[/]YYYY")
+                title
+                body {
+                  html
+                }
+              }
+            }
+          }
         }
-    })
+      }
+      
+    `)
 
-    useEffect(() => {
-        setTimeout(() => {
-        setStartAnimation(true)
-        }, 500)
-    }, [])
+    const [archiveOpened, setArchiveOpened] = useState(false)
     
     const archiveButtonHandler = () => {
         setArchiveOpened(prevState => !prevState)
     }
+
+    console.log(data)
     
  
     return (
@@ -83,29 +88,21 @@ const News = () => {
                                 }}
                             >
                                 {
-                                    [{
-                                        heading:'Supreme®/Nike®',
-                                        images:[slideImage1, slideImage2]
-                                    },
-                                    {
-                                        heading:'Test',
-                                        images:[slideImage3, slideImage4, slideImage5, slideImage6, slideImage7]
-                                    },
-                                    {
-                                        heading:'Test2',
-                                        images:[slideImage8, slideImage9, slideImage10]
-                                    }].map((item, index) => {
+                                    data.newsArticles.edges.map(({node}, index) => {
+                                        
+                                        let item = node.data;
+
                                         if(index == 0){
                                             return <SwiperSlide key={index} className={`${styles.slide}`}>
                                                 <div key={index}>
-                                            <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
+                                            <NewsArticle images={item.images} heading={item.title} date={item.date} body={item.body.html} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
 
                                                 </div>
                                         </SwiperSlide>
                                         }else{
                                             return <SwiperSlide key={index} className={`${styles.slide}  ${!archiveOpened && styles.notVisible}`}>
                                             <div key={index}>
-                                            <NewsArticle images={item.images} heading={item.heading} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
+                                            <NewsArticle images={item.images} heading={item.title} date={item.date} body={item.body.html} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
 
                                             </div>
                                         </SwiperSlide>
