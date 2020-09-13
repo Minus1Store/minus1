@@ -1,15 +1,42 @@
 import React from 'react'
-import {Link} from 'gatsby'
+import {Link, useStaticQuery, graphql} from 'gatsby'
+import Image from 'gatsby-image'
 
 import styles from './header.module.scss'
 import logo from '../../img/test/logo.png'
 
 const Header = ({className}) => {
 
+    const data = useStaticQuery(graphql`
+    query LogoQuery {
+        logo:allPrismicLogo {
+          edges {
+            node {
+              data {
+                logo {
+                  alt
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth:250){
+                          ...GatsbyImageSharpFluid
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+    `)
+
     return(
         <header className={`${styles.header} ${className}`}>
             <Link to={'/'}>
-                <img src={logo} alt='' className={styles.logo}/>
+                <div className={styles.logo}>
+                    <Image fluid={data.logo.edges[0].node.data.logo.localFile.childImageSharp.fluid} alt={data.logo.edges[0].node.data.logo.alt}/>
+                </div>
             </Link>
         </header>
     )

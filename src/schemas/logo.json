@@ -1,0 +1,22 @@
+{
+    "Main" : {
+      "title" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Document Title",
+          "useAsTitle" : true
+        }
+      },
+      "logo" : {
+        "type" : "Image",
+        "config" : {
+          "constraint" : {
+            "width" : 250,
+            "height" : 250
+          },
+          "thumbnails" : [ ],
+          "label" : "Logo"
+        }
+      }
+    }
+  }

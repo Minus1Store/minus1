@@ -38,22 +38,27 @@ module.exports = {
         linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
       }
     },
-    // {
-    //   resolve: 'gatsby-source-prismic',
-    //   options: {
-    //     repositoryName: 'mladenovic',
-    //     accessToken: `${process.env.API_KEY}`,
-    //     // Get the correct URLs in blog posts
-    //     linkResolver: () => (post) => `/${post.uid}`,
-    //     // PrismJS highlighting for labels and slices
-    //     htmlSerializer: () => prismicHtmlSerializer,
-    //     // Remove this config option if you only have one language in your Prismic repository
-    //     lang: 'en-gb',
-    //   },
-    // },
-    'gatsby-plugin-lodash',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp', 
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: 'mladenovic',
+        accessToken: `${process.env.PRISMIC_API_KEY}`,
+        schemas: {
+          'home_page': require('./src/schemas/home_page.json'),
+          'logo': require('./src/schemas/logo.json')
+        },
+        shouldDownloadImage: ({ node, key, value }) => {
+          return true
+        },
+        // Get the correct URLs in blog posts
+        linkResolver: () => (post) => `/${post.uid}`,
+        // PrismJS highlighting for labels and slices
+        htmlSerializer: () => prismicHtmlSerializer
+      },
+    },
+    'gatsby-plugin-lodash',
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {

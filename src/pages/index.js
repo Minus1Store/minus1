@@ -223,11 +223,13 @@ import Background from '../components/Background/index'
 import Social from '../components/Social/index'
 import PageTransition from 'gatsby-plugin-page-transitions';
 import {useSpring, animated} from 'react-spring'
+import {useStaticQuery, graphql} from 'gatsby'
 
 import backgroundImage from '../img/test/6.jpg'
 import Header from '../components/Header/index'
 import TimeString from '../components/TimeString/index'
 import styles from './index.module.scss'
+import { fromPairs } from 'lodash'
 
 function Index(){
 
@@ -245,6 +247,29 @@ function Index(){
     }, 500)
   }, [])
 
+  const data = useStaticQuery(graphql`
+  query HomeBackground {
+    background:allPrismicHomePage {
+      edges {
+        node {
+          data {
+            background_image {
+              url
+              localFile{
+                childImageSharp{
+                  fluid(maxWidth:1920, quality: 64){
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  `)
+
   return(
       <React.Fragment>
         <animated.div style={loadAnimation} className={styles.pageWrapper}>
@@ -253,7 +278,7 @@ function Index(){
             <TimeString className={styles.homeTimeString}/>
           </div>
           <HomeLinks/>
-          <Background image={backgroundImage}/>
+          <Background image={data.background.edges[0].node.data.background_image.localFile.childImageSharp.fluid}/>
           <Social/>  
         </animated.div>
       </React.Fragment>

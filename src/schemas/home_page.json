@@ -1,0 +1,49 @@
+{
+    "Background" : {
+      "title" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Document Title",
+          "useAsTitle" : true
+        }
+      },
+      "background_image" : {
+        "type" : "Image",
+        "config" : {
+          "constraint" : {
+            "width" : 1920,
+            "height" : 1080
+          },
+          "thumbnails" : [ ],
+          "label" : "Background Image"
+        }
+      }
+    },
+    "Social Networks" : {
+      "social_networks" : {
+        "type" : "Group",
+        "config" : {
+          "fields" : {
+            "social_network_icon" : {
+              "type" : "Image",
+              "config" : {
+                "constraint" : {
+                  "width" : 40,
+                  "height" : 40
+                },
+                "thumbnails" : [ ],
+                "label" : "Social Network Icon"
+              }
+            },
+            "social_network_link" : {
+              "type" : "Link",
+              "config" : {
+                "label" : "Social Network Link"
+              }
+            }
+          },
+          "label" : "Social Networks"
+        }
+      }
+    }
+  }
