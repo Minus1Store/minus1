@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
-
 import {Map, TileLayer} from 'react-leaflet'
 import {useTransition, animated} from 'react-spring'
+import Image from 'gatsby-image'
+
 
 import styles from './store-item.module.scss'
 import shop1 from '../../img/test/shop1.jpg'
 
 import 'leaflet/dist/leaflet.css';
 
-const StoreItem = () => {
+const StoreItem = ({data}) => {
 
     const [storeClicked, setStoreClicked] = useState(false)
 
@@ -21,25 +22,25 @@ const StoreItem = () => {
     return (
     <div className={styles.store} onClick={() => {setStoreClicked(true)}}>
         <div className={styles.storeVisuals}>
-            <img src={shop1} className={styles.storeImage} alt=''/>
+            <div className={styles.storeImage}>
+                <Image fluid={data.store_cover.localFile.childImageSharp.fluid} alt={data.store_cover.alt} />
+            </div>
             <div className={styles.overlay}></div>
         </div>
         <div className={styles.storeInformation}>
             <h2 className={styles.storeTitle}>
-                Supreme Los Angeles
+                {data.title}
             </h2>
             <p className={styles.storeAddress}>
-                439 North Fairfax Ave LA 90036
+                {data.address}
             </p>
-            <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={'https://www.google.com/maps'}>View Map</a>
+            <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={data.view_map_button[0].button_link}>{data.view_map_button[0].button_text}</a>
             <p className={styles.storeTelNumber}>
-                Tel 323-655-6205
+                {data.telephone_information}
             </p>
-            <div className={styles.workingHours}>
-                <p>Open 11 - 7 (MON-SAT)</p>
-                <p>12 - 6 (SUN)</p>
+            <div className={styles.workingHours} dangerouslySetInnerHTML={{__html:data.working_hours.html}}>
             </div>
-            <a onClick={e => e.stopPropagation()} className={styles.storeMail} href={'mailto:info@minus1.com'}>email Belgrade store</a>
+            <a onClick={e => e.stopPropagation()} className={styles.storeMail} href={data.email_button[0].button_link}>{data.email_button[0].button_text}</a>
         </div>
         {
             popupTransition.map(({item, key, props}) => 
@@ -48,20 +49,20 @@ const StoreItem = () => {
                 <div className={styles.informationBoxBackground} onClick={(e) => {e.stopPropagation();setStoreClicked(false)}} ></div>
                 <div className={styles.informationBoxContent}>
                     <div class={styles.informationBoxText}>
-                        <h2>Supreme Los Angeles</h2>
-                        <p>439 North Fairfax Ave LA 90036</p>
-                        <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={'https://www.google.com/maps'}>View Map</a>
-                        <p>Tel 323-655-6205</p>
-                        <div>
-                            <p>Open 11 - 7 (MON-SAT)</p>
-                            <p>12 - 6 (SUN)</p>
+                        <h2>{data.title}</h2>
+                        <p>{data.address}</p>
+                        <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={data.view_map_button[0].button_link}>{data.view_map_button[0].button_text}</a>
+                        <p>{data.telephone_information}</p>
+                        <div dangerouslySetInnerHTML={{__html:data.working_hours.html}}>
                         </div>
-                        <a onClick={e => e.stopPropagation()} className={styles.storeMail} href={'mailto:info@minus1.com'}>email Belgrade store</a>
+                        <a onClick={e => e.stopPropagation()} className={styles.storeMail} href={data.email_button[0].button_link}>{data.email_button[0].button_text}</a>
                     </div>
-                    <img src={shop1} alt=''/>
+                    <div className={styles.informationBoxImage}>
+                        <Image fluid={data.store_cover.localFile.childImageSharp.fluid} alt={data.store_cover.alt} />
+                    </div>
                     <div className={styles.map}>
                         {typeof window !== 'undefined' &&
-                            <Map animate={true} center={[51.505, -0.09]} zoom={13}>
+                            <Map animate={true} center={[data.map_geolocation.latitude,data.map_geolocation.longitude]} zoom={13}>
                                 <TileLayer
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                     attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

@@ -1,0 +1,86 @@
+{
+    "Main": {
+      "store_cover": {
+        "type": "Image",
+        "config": {
+          "constraint": {
+            "width": 600,
+            "height": 600
+          },
+          "thumbnails": [],
+          "label": "Store Cover"
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title"
+        }
+      },
+      "address": {
+        "type": "Text",
+        "config": {
+          "label": "Address"
+        }
+      },
+      "view_map_button": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "button_text": {
+              "type": "Text",
+              "config": {
+                "label": "Button Text"
+              }
+            },
+            "button_link": {
+              "type": "Link",
+              "config": {
+                "label": "Button Link"
+              }
+            }
+          },
+          "label": "View Map Button"
+        }
+      },
+      "telephone_information": {
+        "type": "Text",
+        "config": {
+          "label": "Telephone Information"
+        }
+      },
+      "working_hours": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
+          "label": "Working Hours"
+        }
+      },
+      "email_button": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "button_text": {
+              "type": "Text",
+              "config": {
+                "label": "Button Text"
+              }
+            },
+            "button_link": {
+              "type": "Text",
+              "config": {
+                "label": "Button Link"
+              }
+            }
+          },
+          "label": "Email Button"
+        }
+      },
+      "map_geolocation": {
+        "type": "GeoPoint",
+        "config": {
+          "label": "Map Geolocation"
+        }
+      }
+    }
+  }
