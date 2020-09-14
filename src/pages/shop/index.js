@@ -7,32 +7,50 @@ import PageLayout from '../../components/PageLayout'
 import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 
-import slideImage1 from '../../img/test/11.jpg'
-
 const Shop = () => {
 
     const data = useStaticQuery(graphql`
         query ShopQuery {
-            products:allPrismicProduct {
-            edges {
-                node {
-                data {
-                    images {
-                    image {
-                        alt
-                        localFile{
-                            childImageSharp{
-                                fluid(maxWidth:450){
-                                    ...GatsbyImageSharpFluid
-                                }
+            products: allPrismicProduct {
+                edges {
+                  node {
+                    data {
+                      images {
+                        image {
+                          alt
+                          localFile {
+                            childImageSharp {
+                              fluid(maxWidth: 450) {
+                                ...GatsbyImageSharpFluid
+                              }
                             }
+                          }
                         }
+                      }
+                      product_family {
+                        document {
+                          ... on PrismicProductFamily {
+                            id
+                            data {
+                              product_category {
+                                document {
+                                  ... on PrismicProductCategory {
+                                    id
+                                    data {
+                                      product_category
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
-                    }
+                    uid
+                  }
                 }
-                }
-            }
-            }
+              }
             productCategories:allPrismicProductCategory {
                 edges {
                   node {
@@ -64,16 +82,13 @@ const Shop = () => {
                     <div className={styles.products}>
                         {data.products.edges.map(({node}) => {
                             return <div className={styles.product}>
-                                <div className={styles.productImage}>
-                                    <Image fluid={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt}/>
-                                </div>
+                                <Link to={`/shop/${node.data.product_family.document.data.product_category.document.data.product_category.toLowerCase()}/${node.uid}`}>
+                                    <div className={styles.productImage}>
+                                        <Image fluid={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt}/>
+                                    </div>
+                                </Link>
                             </div>
                         })}
-                        <div className={styles.product}>
-                            <div className={styles.productImage}>
-                                <img src={slideImage1} alt=''/>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
