@@ -1,10 +1,18 @@
 {
-    "Main" : {
-      "title" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Title"
-        }
+  "Main" : {
+    "title" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Title"
+      }
+    }
+  },
+  "Other" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "UID"
       }
     }
   }
+}

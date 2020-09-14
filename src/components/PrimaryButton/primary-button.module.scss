@@ -5,4 +5,9 @@
     color:white;
     padding:5px;
     cursor:pointer;
+    transition:background 200ms;
+}
+
+.primary-button:hover{
+    background:darken($color: red, $amount: 10)
 }

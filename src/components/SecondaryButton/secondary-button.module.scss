@@ -5,4 +5,9 @@
     color:white;
     padding:5px;
     cursor: pointer;
+    transition:background 200ms;
+}
+
+.secondary-button:hover{
+    background:lighten($color: #999999, $amount: 10)
 }

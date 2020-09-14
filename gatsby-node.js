@@ -12,7 +12,7 @@ const wrapper = (promise) =>
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const productTemplate = require.resolve('./src/templates/product.js')
+  const productTemplate = require.resolve('./src/templates/product/index.js')
 
   const result = await wrapper(
     graphql(`

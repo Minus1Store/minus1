@@ -1,0 +1,77 @@
+@import "../../styles/breakpoints.scss";
+
+.page-wrapper{
+    width:820px;
+    margin:auto;
+    display:flex;
+    flex-direction: row;
+    margin-top:50px;
+}
+
+.nav-footer-container{
+    display:flex;
+    margin:auto;
+    width:670px;
+    justify-content: space-between;
+}
+
+.site-tree{
+    display:none;
+    margin-top:62px;
+    > a{
+        color:white;
+        text-decoration: none;
+        font-size:0.65rem;
+        text-transform: lowercase;
+        padding:1px;
+        margin:5px;
+        color:black;
+        @include breakpoint(lg){
+            font-size:0.85rem;
+        }
+    }
+    > a:hover{
+        background:red;
+        color:white
+    }
+    @include breakpoint(lg){
+        display:inline-block;
+    }
+}
+
+.main-image-container{
+    width:450px;
+    margin-right:10px;
+}
+
+.information-container{
+    width:350px;
+}
+
+.action-buttons{
+    display:flex;
+    > div{
+        >button{
+            font-weight: 600;
+        }
+        margin-right:10px;
+    }
+}
+
+.sizes{
+    margin-bottom:10px;
+}
+
+.price{
+    margin-bottom:20px;
+}
+
+.color{
+    margin-top:0 0 10px;
+    font-size:0.85rem;
+    font-weight: 700;
+}
+
+.description{
+    font-size:0.75rem;
+}

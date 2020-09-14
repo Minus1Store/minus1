@@ -35,7 +35,7 @@ const Shop = () => {
                               product_category {
                                 document {
                                   ... on PrismicProductCategory {
-                                    id
+                                    uid
                                     data {
                                       product_category
                                     }
@@ -54,6 +54,7 @@ const Shop = () => {
             productCategories:allPrismicProductCategory {
                 edges {
                   node {
+                    uid
                     data {
                       product_category
                     }
@@ -74,7 +75,7 @@ const Shop = () => {
                             all
                         </Link>
                         {data.productCategories.edges.map(({node}) => {
-                            return <Link to={'#'}>
+                            return <Link to={`/shop/${node.uid}`}>
                                 {node.data.product_category}
                             </Link>
                         })}
@@ -82,7 +83,7 @@ const Shop = () => {
                     <div className={styles.products}>
                         {data.products.edges.map(({node}) => {
                             return <div className={styles.product}>
-                                <Link to={`/shop/${node.data.product_family.document.data.product_category.document.data.product_category.toLowerCase()}/${node.uid}`}>
+                                <Link to={`/shop/${node.data.product_family.document.data.product_category.document.uid}/${node.uid}`}>
                                     <div className={styles.productImage}>
                                         <Image fluid={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt}/>
                                     </div>
