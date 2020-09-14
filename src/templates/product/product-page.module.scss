@@ -1,11 +1,15 @@
 @import "../../styles/breakpoints.scss";
 
 .page-wrapper{
-    width:820px;
     margin:auto;
     display:flex;
     flex-direction: row;
     margin-top:50px;
+    min-height:70vh;
+    @include breakpoint(lg){
+        min-height:unset;
+        width:820px;
+    }
 }
 
 .nav-footer-container{
@@ -40,12 +44,24 @@
 }
 
 .main-image-container{
+    position:absolute;
+    top:0;
+    left:30%;
     width:450px;
     margin-right:10px;
+    @include breakpoint(lg){
+        position:relative;
+        top:0;
+        left:0;
+    }
 }
 
 .information-container{
-    width:350px;
+    width:100%;
+    z-index:1;
+    @include breakpoint(lg){
+        width:350px;
+    }
 }
 
 .action-buttons{
@@ -74,4 +90,9 @@
 
 .description{
     font-size:0.75rem;
+    font-weight: 500;
+    width:75%;
+    @include breakpoint(lg){
+        width:100%;
+    }
 }
