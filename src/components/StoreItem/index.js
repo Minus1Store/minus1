@@ -5,7 +5,6 @@ import Image from 'gatsby-image'
 
 
 import styles from './store-item.module.scss'
-import shop1 from '../../img/test/shop1.jpg'
 
 import 'leaflet/dist/leaflet.css';
 

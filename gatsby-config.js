@@ -31,7 +31,6 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
     'gatsby-plugin-layout',
-    'gatsby-plugin-page-transitions',
     {
       resolve: 'gatsby-plugin-react-leaflet',
       options: {
@@ -50,7 +49,11 @@ module.exports = {
           'about_page': require('./src/schemas/about_page.json'),
           'news_article': require('./src/schemas/news_article.json'),
           'store': require('./src/schemas/store.json'),
-          'logo': require('./src/schemas/logo.json')
+          'logo': require('./src/schemas/logo.json'),
+          'product_family': require('./src/schemas/product_family.json'),
+          'product': require('./src/schemas/product.json'),
+          'size': require('./src/schemas/size.json'),
+          'product_category': require('./src/schemas/product_category.json'),
         },
         shouldDownloadImage: ({ node, key, value }) => {
           return true

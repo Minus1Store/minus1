@@ -1,0 +1,10 @@
+{
+    "Main": {
+      "product_category": {
+        "type": "Text",
+        "config": {
+          "label": "Product Category"
+        }
+      }
+    }
+  }

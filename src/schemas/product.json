@@ -1,0 +1,79 @@
+{
+    "Main" : {
+      "title" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Title"
+        }
+      },
+      "description" : {
+        "type" : "StructuredText",
+        "config" : {
+          "single" : "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
+          "allowTargetBlank" : true,
+          "label" : "Description"
+        }
+      },
+      "color_name" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Color Name"
+        }
+      },
+      "price" : {
+        "type" : "Number",
+        "config" : {
+          "label" : "Price"
+        }
+      }
+    },
+    "Category" : {
+      "product_family" : {
+        "type" : "Link",
+        "config" : {
+          "select" : "document",
+          "customtypes" : [ "product_family" ],
+          "label" : "Product Family"
+        }
+      }
+    },
+    "Sizes" : {
+      "sizes" : {
+        "type" : "Group",
+        "config" : {
+          "fields" : {
+            "size" : {
+              "type" : "Link",
+              "config" : {
+                "select" : "document",
+                "customtypes" : [ "size" ],
+                "label" : "Size"
+              }
+            }
+          },
+          "label" : "Sizes"
+        }
+      }
+    },
+    "Images" : {
+      "images" : {
+        "type" : "Group",
+        "config" : {
+          "fields" : {
+            "image" : {
+              "type" : "Image",
+              "config" : {
+                "constraint" : {
+                  "width" : 450,
+                  "height" : 450
+                },
+                "thumbnails" : [ ],
+                "label" : "Image"
+              }
+            }
+          },
+          "label" : "Images"
+        }
+      }
+    }
+  }

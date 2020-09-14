@@ -221,7 +221,6 @@ import Layout from '../layouts/index'
 import HomeLinks from '../components/HomeLinks/index'
 import Background from '../components/Background/index'
 import Social from '../components/Social/index'
-import PageTransition from 'gatsby-plugin-page-transitions';
 import {useSpring, animated} from 'react-spring'
 import {useStaticQuery, graphql} from 'gatsby'
 
