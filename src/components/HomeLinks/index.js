@@ -13,23 +13,18 @@ const HomeLinks = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/news'}>
+                    <Link to={'/previews/fallwinter2020'}>
                         fall/winter 2020 preview
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/news'}>
+                    <Link to={'/lookbooks/fallwinter2020'}>
                         fall/winter 2020 lookbook
                     </Link>
                 </li>
                 <li>
                     <Link to={'/shop'}>
                         Shop
-                    </Link>
-                </li>
-                <li>
-                    <Link to={'/random'}>
-                        Random
                     </Link>
                 </li>
                 <li>
