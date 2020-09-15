@@ -1,0 +1,56 @@
+@import '../../../styles/breakpoints.scss';
+
+.page-wrapper{
+    display:flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width:665px;
+    margin:auto;
+    margin-top:25px;
+    align-items: flex-start;
+    min-height: 70vh;
+    @include breakpoint(lg){
+        justify-content: space-between;
+        min-height: unset;
+        margin-top:105px;
+        flex-direction: row;
+    }
+}
+
+.news-container{
+    height:auto;
+    overflow-y:auto;
+    width:100%;
+    @include breakpoint(lg){
+        width:50%;
+        height:370px;
+    }
+}
+
+.article{
+    font-size:0.85rem;
+    line-height: 1rem;
+    margin:0;
+    > a{
+        color:inherit;
+        text-decoration: none;
+        display: inline-block;
+        padding:1px;
+    }
+    > a:hover{
+        background:red;
+        color:white;
+    }
+}
+
+.section-title{
+    margin:0;
+    font-size:0.85rem;
+    line-height: 0.85rem;
+    font-weight: 500;
+    margin-bottom:25px;
+}
+
+.nav-footer-container{
+    margin-left:-76px;
+}

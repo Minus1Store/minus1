@@ -16,22 +16,11 @@ console.log(scrollbarStyle)
 
 SwiperCore.use([Scrollbar]);
 
-import slideImage1 from '../../img/test/11.jpg'
-import slideImage2 from '../../img/test/12.jpg'
-import slideImage3 from '../../img/test/13.jpg'
-import slideImage4 from '../../img/test/14.jpg'
-import slideImage5 from '../../img/test/15.jpg'
-import slideImage6 from '../../img/test/16.jpg'
-import slideImage7 from '../../img/test/17.jpg'
-import slideImage8 from '../../img/test/18.jpg'
-import slideImage9 from '../../img/test/19.jpg'
-import slideImage10 from '../../img/test/20.jpg'
-
 const News = () => {
 
     const data = useStaticQuery(graphql`
     query NewsArticlesQuery {
-        newsArticles:allPrismicNewsArticle {
+        newsArticles:allPrismicNewsArticle(sort:{fields:[data___date], order:DESC}) {
           edges {
             node {
               data {
@@ -57,7 +46,6 @@ const News = () => {
           }
         }
       }
-      
     `)
 
     const [archiveOpened, setArchiveOpened] = useState(false)

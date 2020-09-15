@@ -4,8 +4,6 @@ import styles from './news-article.module.scss'
 import FadeImageSlider from '../../components/FadeImageSlider/index'
 import {Link} from 'gatsby'
 
-
-
 const NewsArticle = ({showArchive, archiveButtonHandler, heading, images, date, body}) => {
     return(
         <div className={styles.articleContainer}>
@@ -22,7 +20,7 @@ const NewsArticle = ({showArchive, archiveButtonHandler, heading, images, date, 
                 {
                     showArchive &&
                 <React.Fragment>
-                    <Link to={'/archive'}>
+                    <Link to={'/news/archive'}>
                         archive
                     </Link>
                     <button onClick={() => archiveButtonHandler()}>

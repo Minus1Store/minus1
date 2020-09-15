@@ -13,6 +13,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const productTemplate = require.resolve('./src/templates/product/index.js')
+  const newsArticleTemplate = require.resolve('./src/templates/newsArticle/index.js')
 
   const result = await wrapper(
     graphql(`
@@ -46,6 +47,13 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
+        newsArticles: allPrismicNewsArticle {
+          edges {
+            node {
+              uid
+            }
+          }
+        }
       }
     `)
   )
@@ -70,6 +78,19 @@ exports.createPages = async ({ graphql, actions }) => {
           // Pass the unique ID (uid) through context so the template can filter by it
           uid: edge.node.uid,
           family_uid: edge.node.data.product_family.document.uid
+        },
+      })
+    })
+
+    let newsArticlesList = result.data.newsArticles.edges
+
+    newsArticlesList.forEach((edge) => {
+      createPage({
+        path: `/news/${edge.node.uid}`,
+        component: newsArticleTemplate,
+        context: {
+          // Pass the unique ID (uid) through context so the template can filter by it
+          uid: edge.node.uid
         },
       })
     })
