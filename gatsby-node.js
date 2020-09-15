@@ -26,6 +26,7 @@ exports.createPages = async ({ graphql, actions }) => {
                   document {
                     ... on PrismicProductFamily {
                       id
+                      uid
                       data {
                         product_category {
                           document {
@@ -68,6 +69,7 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {
           // Pass the unique ID (uid) through context so the template can filter by it
           uid: edge.node.uid,
+          family_uid: edge.node.data.product_family.document.uid
         },
       })
     })

@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Image from 'gatsby-image'
 import {graphql, Link} from 'gatsby'
+import queryString from 'query-string'
+import {useSpring, animated} from 'react-spring'
 
 import PageLayout from '../../components/PageLayout'
 import styles from './product-page.module.scss'
@@ -8,16 +10,33 @@ import NavFooterMobile from '../../components/NavFooterMobile'
 import NavFooterDesktop from '../../components/NavFooterDesktop'
 import PrimaryButton from '../../components/PrimaryButton'
 import SecondaryButton from '../../components/SecondaryButton'
+import ShopThumbnails from '../../components/ShopThumbnails'
 
-const ProductPage = ({data}) => {
+const ProductPage = ({data, location}) => {
 
-    console.log(data)
+    const [mainImageNum, setMainImageNum] = useState(0)
+    const [parsedQuery, setParsedQuery] = useState(queryString.parse(location.search))
+
+    useEffect(() => {
+      if(!parsedQuery.img){
+        setMainImageNum(0)
+      }else{
+        setMainImageNum(parsedQuery.img)
+      }
+    }, [parsedQuery])
+
+    useEffect(() => {
+      setParsedQuery(queryString.parse(location.search))
+    }, [location.search])
+
 
     return(
         <PageLayout>
             <div className={styles.pageWrapper}>
               <div className={styles.mainImageContainer}>
-                <Image fluid={data.product.data.images[0].image.localFile.childImageSharp.fluid} alt={data.product.data.images[0].image.alt}/>
+                {data.product.data.images.map(({image}, index) => {
+                  return <Image key={index} className={`${styles.mainImage} ${index == mainImageNum && styles.activeImage}`} fluid={image.localFile.childImageSharp.fluid} alt={image.alt}/>
+                })}
               </div>
               <div className={styles.informationContainer}>
                 <div className={styles.title}>
@@ -27,6 +46,9 @@ const ProductPage = ({data}) => {
                   {data.product.data.color_name}
                 </div>
                 <div className={styles.description} dangerouslySetInnerHTML={{__html:data.product.data.description.html}}></div>
+                <div className={styles.productThumbnails}>
+                  <ShopThumbnails data={data} location={location} mainImageHandler/>
+                </div>
                 <div className={styles.price}>
                   €{data.product.data.price}
                 </div>
@@ -121,7 +143,7 @@ const ProductPage = ({data}) => {
 }
 
 export const pageQuery = graphql`
-  query ProductBySlug($uid: String!) {
+  query ProductBySlug($uid: String!, $family_uid: String!) {
     product:prismicProduct(uid: { eq: $uid }) {
         data {
             color_name
@@ -155,6 +177,45 @@ export const pageQuery = graphql`
             }
             title
           }
+    }
+    allFamilyProducts: allPrismicProduct(filter: {data: {product_family: {uid: {eq: $family_uid}}}}) {
+      edges {
+        node {
+          uid
+          data {
+            images {
+              image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 150) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+            }
+            product_family {
+              document {
+                ... on PrismicProductFamily {
+                  id
+                  data {
+                    product_category {
+                      document {
+                        ... on PrismicProductCategory {
+                          uid
+                          data {
+                            product_category
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
 }
 `

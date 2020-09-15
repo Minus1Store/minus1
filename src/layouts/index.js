@@ -5,7 +5,6 @@ import {
   } from "react-transition-group"
 
 import styles from './layout.module.scss'
-import Header from '../components/Header/index'
 
 const timeout = 450
 const getTransitionStyles = {

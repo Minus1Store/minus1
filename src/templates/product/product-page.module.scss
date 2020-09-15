@@ -96,3 +96,13 @@
         width:100%;
     }
 }
+
+.main-image{
+    display:none;
+    opacity:0;
+}
+
+.active-image{
+    display:block;
+    opacity:1;
+}

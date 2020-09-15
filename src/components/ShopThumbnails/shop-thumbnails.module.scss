@@ -1,0 +1,23 @@
+.active-link{
+    border:1px solid black;
+    display: inline-block;
+    width:10px;
+}
+
+.product-thumbnail{
+    width:40px;
+    margin-right:5px;
+}
+
+.all-product-thumbnails{
+    display:flex;
+    flex-direction:column;
+    max-height:170px;
+    margin-bottom:10px;
+    overflow-y:auto;
+}
+
+.shop-thumbnails-container{
+    display: flex;
+    flex-direction: row;
+}
