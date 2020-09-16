@@ -28,6 +28,16 @@
     }
   },
   "Category": {
+    "product_category": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": [
+          "product_category"
+        ],
+        "label": "Product Category"
+      }
+    },
     "product_family": {
       "type": "Link",
       "config": {

@@ -79,7 +79,7 @@ const ProductPage = ({data, location}) => {
                       home
                   </Link>
                   &gt;
-                  <Link to={'/shop'}>
+                  <Link to={'/shop/all'}>
                       shop
                   </Link>
               </div>
@@ -90,7 +90,7 @@ const ProductPage = ({data, location}) => {
                               link:[
                                   {
                                       text:'view all',
-                                      href:'/shop'
+                                      href:'/shop/all'
                                   }
                               ]
                           },

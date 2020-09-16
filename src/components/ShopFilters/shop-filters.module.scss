@@ -1,0 +1,28 @@
+@import '../../styles/breakpoints.scss';
+
+.filters-container{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    > a{
+        color:white;
+        text-decoration: none;
+        font-size:0.65rem;
+        text-transform: lowercase;
+        padding:1px;
+        line-height: 0.85rem;
+        color:black;
+        @include breakpoint(lg){
+            font-size:0.85rem;
+        }
+    }
+    > a:hover{
+        background:red;
+        color:white
+    }
+}
+
+.active-link{
+    font-weight: 900;
+}

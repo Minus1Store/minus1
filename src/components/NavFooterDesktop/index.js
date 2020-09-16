@@ -53,14 +53,6 @@ const NavFooterDesktop = ({linksArray}) => {
         {
             link:[
                 {
-                    text:'random',
-                    href:'/random'
-                }
-            ]
-        },
-        {
-            link:[
-                {
                     text:'about',
                     href:'/about'
                 }

@@ -10,7 +10,7 @@ const TimeString = ({className}) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentTime(moment().locale('rs').format('L LT'))
+            setCurrentTime(moment().locale('rs').format('DD/MM/YYYY hh:mm a'))
         }, 100
         )
         return () => {clearInterval(interval)}

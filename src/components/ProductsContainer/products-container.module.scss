@@ -1,0 +1,21 @@
+@import '../../styles/breakpoints.scss';
+
+.products-container{
+    width:100%;
+    height:auto;
+    margin:auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: column;
+    align-content: flex-end;
+    @include breakpoint(lg){
+        width:670px;
+        align-items: flex-start;
+        align-content:flex-start;
+        overflow-y: auto;
+        height:390px;
+        flex-direction: row;
+    }
+}

@@ -1,4 +1,4 @@
-@import '../../styles/breakpoints.scss';
+@import '../../../styles/breakpoints.scss';
 
 .nav-footer-container{
     display:flex;
@@ -43,53 +43,13 @@
 }
 
 .filters{
-    display:flex;
-    flex-direction: column;
-    align-items: flex-end;
     position:absolute;
-    text-align: right;
     width:100px;
     left:calc(50vw - 130px - 10px);
     top:0;
-    > a{
-        color:white;
-        text-decoration: none;
-        font-size:0.65rem;
-        text-transform: lowercase;
-        padding:1px;
-        line-height: 0.85rem;
-        color:black;
-        @include breakpoint(lg){
-            font-size:0.85rem;
-        }
-    }
-    > a:hover{
-        background:red;
-        color:white
-    }
     @include breakpoint(lg){
         width:200px;
         left:calc(50% - 335px - 200px - 10px);
-    }
-}
-
-.products{
-    width:100%;
-    height:auto;
-    margin:auto;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-end;
-    flex-direction: column;
-    align-content: flex-end;
-    @include breakpoint(lg){
-        width:670px;
-        align-items: flex-start;
-        align-content:flex-start;
-        overflow-y: auto;
-        height:390px;
-        flex-direction: row;
     }
 }
 
@@ -109,23 +69,20 @@
 .product{
     width:50vw;
     margin-bottom:5px;
-    border:1px solid transparent;
     height:50vw;
+    > a > div{
+        border:1px solid transparent;
+    }
     @include breakpoint(lg){
         height:87.5px;
         width:87.5px;
         margin-right: 5px;
-
     }
 }
 
 .product:hover{
-    border:1px solid #D6D6D6;
-}
-
-.product-image{
-    >img{
-        width:100%;
+    >a > div{
+        border:1px solid #D6D6D6;
     }
 }
 

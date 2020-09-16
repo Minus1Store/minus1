@@ -23,7 +23,7 @@ const HomeLinks = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/shop'}>
+                    <Link to={'/shop/all'}>
                         Shop
                     </Link>
                 </li>

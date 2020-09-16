@@ -14,6 +14,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const productTemplate = require.resolve('./src/templates/product/index.js')
   const newsArticleTemplate = require.resolve('./src/templates/newsArticle/index.js')
+  const productCategoryTemplate = require.resolve('./src/templates/productCategory/index.js')
 
   const result = await wrapper(
     graphql(`
@@ -50,6 +51,13 @@ exports.createPages = async ({ graphql, actions }) => {
         newsArticles: allPrismicNewsArticle {
           edges {
             node {
+              uid
+            }
+          }
+        }
+        productCategories: allPrismicProductCategory{
+          edges{
+            node{
               uid
             }
           }
@@ -92,6 +100,18 @@ exports.createPages = async ({ graphql, actions }) => {
           // Pass the unique ID (uid) through context so the template can filter by it
           uid: edge.node.uid
         },
+      })
+    })
+
+    const productCategoriesList = result.data.productCategories.edges
+
+    productCategoriesList.forEach(edge => {
+      createPage({
+        path:`/shop/${edge.node.uid}`,
+        component: productCategoryTemplate,
+        context:{
+          category_uid: edge.node.uid
+        }
       })
     })
     // The uid you assigned in Prismic is the slug!
