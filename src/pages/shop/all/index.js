@@ -63,7 +63,10 @@ const Shop = () => {
             <div className={styles.pageWrapper}>
                 <div className={styles.productContainer}>
                     <div className={styles.filters}>
-                        <ShopFilters location={location}/>
+                      {
+                        typeof location != 'undefined' &&
+                          <ShopFilters location={location}/>
+                      }
                     </div>
                     <ProductsContainer>
                         {data.products.edges.map(({node}) => {
