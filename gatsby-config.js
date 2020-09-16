@@ -55,6 +55,7 @@ module.exports = {
           'size': require('./src/schemas/size.json'),
           'product_category': require('./src/schemas/product_category.json'),
           'shop_terms': require('./src/schemas/shop_terms.json'),
+          'shop_privacy': require('./src/schemas/shop_privacy.json'),
         },
         shouldDownloadImage: ({ node, key, value }) => {
           return true
