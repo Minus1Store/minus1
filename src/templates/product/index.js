@@ -11,6 +11,7 @@ import NavFooterDesktop from '../../components/NavFooterDesktop'
 import PrimaryButton from '../../components/PrimaryButton'
 import SecondaryButton from '../../components/SecondaryButton'
 import ShopThumbnails from '../../components/ShopThumbnails'
+import SiteTree from '../../components/SiteTree'
 
 const ProductPage = ({data, location}) => {
 
@@ -74,15 +75,7 @@ const ProductPage = ({data, location}) => {
             </div>
             <NavFooterMobile/>
             <div className={styles.navFooterContainer}>
-              <div className={styles.siteTree}>
-                  <Link to={'/'}>
-                      home
-                  </Link>
-                  &gt;
-                  <Link to={'/shop/all'}>
-                      shop
-                  </Link>
-              </div>
+              <SiteTree links={[{text: 'home',link:'/'}, {text: 'shop', link:'/shop/all'}]}/>
               <NavFooterDesktop
                   linksArray={
                       [

@@ -18,7 +18,7 @@ const NavFooterDesktop = ({linksArray}) => {
             link:[
                 {
                     text:'shop',
-                    href:'/shop'
+                    href:'/shop/all'
                 }
             ]
         },

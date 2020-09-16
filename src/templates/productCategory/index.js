@@ -9,6 +9,7 @@ import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 import ShopFilters from '../../components/ShopFilters'
 import ProductsContainer from '../../components/ProductsContainer'
 import ProductThumbnail from '../../components/ProductThumbnail'
+import SiteTree from '../../components/SiteTree'
 
 const ProductCategoryPage = ({location, data}) => {
     return (
@@ -41,15 +42,7 @@ const ProductCategoryPage = ({location, data}) => {
             </div>
             <NavFooterMobile/>
             <div className={styles.navFooterContainer}>
-            <div className={styles.siteTree}>
-                <Link to={'/'}>
-                    home
-                </Link>
-                &gt;
-                <Link to={'/shop'}>
-                    shop
-                </Link>
-            </div>
+            <SiteTree links={[{text: 'home',link:'/'}, {text: 'shop', link:'/shop/all'}]}/>
             <NavFooterDesktop
                 linksArray={
                     [
