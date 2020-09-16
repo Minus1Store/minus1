@@ -37,7 +37,7 @@ const TermsPage = () => {
                                 link:[
                                     {
                                         text:'view all',
-                                        href:'/shop'
+                                        href:'/shop/all'
                                     }
                                 ]
                             },
