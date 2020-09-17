@@ -1,9 +1,26 @@
 import React from 'react'
-import {Link} from 'gatsby'
+import {Link, useStaticQuery, graphql} from 'gatsby'
 import styles from './home-links.module.scss'
 
 
 const HomeLinks = () => {
+
+    const data = useStaticQuery(graphql`
+        query HomeLinksQuery{
+            lookbooks: allPrismicLookbook(sort: {order: DESC, fields: data___lookbook_date}, limit: 1){
+                edges{
+                  node{
+                    uid
+                    data{
+                        title
+                        lookbook_date
+                    }
+                  }
+                }
+            }
+        }
+    `)
+
     return(
         <nav className={styles.homeLinks}>
             <ul>
@@ -18,8 +35,8 @@ const HomeLinks = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/lookbooks/fallwinter2020'}>
-                        fall/winter 2020 lookbook
+                    <Link to={`/lookbooks/${data.lookbooks.edges[0].node.uid}`}>
+                        {data.lookbooks.edges[0].node.data.title} lookbook
                     </Link>
                 </li>
                 <li>

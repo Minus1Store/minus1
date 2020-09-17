@@ -1,0 +1,97 @@
+@import '../../styles/breakpoints.scss';
+
+.page-wrapper{
+    width:800px;
+    margin:auto;
+}
+
+.look-book-header{
+    display:flex;
+    justify-content: space-between;
+    > div{
+        display:flex;
+        align-items: flex-start;
+    }
+}
+
+.look-book-item-information{
+    width:400px;
+    margin-left:82px;
+}
+
+.look-book-title{
+    font-size:0.85rem;
+    margin:0;
+}
+
+.look-book-body{
+    p{
+        margin:0;
+        font-size:0.85rem;
+    }
+    a{
+        text-decoration:none;
+        padding:1px;
+        color:black;
+    }
+    a:hover{
+        background:red;
+        color:white;
+    }
+}
+
+.drop-down-menu{
+    list-style-type: none;
+    padding:0;
+    margin:0;
+    position:relative;
+    font-size:0.85rem;
+    user-select: none;
+    ul{
+        display:none;
+        width:max-content;
+        list-style-type:none;
+        position:absolute;
+        right:0;
+        top:0.85rem;
+        padding-top:5px;
+    }
+    li{
+        text-align: right;
+    }
+    a{
+        text-decoration:none;
+        padding:1px;
+        color:black;
+    }
+    a:hover{
+        background:red;
+        color:white;
+    }
+}
+
+.drop-down-menu:hover{
+    ul{
+        display:block;
+    }
+}
+
+.navigation-button{
+    margin-left:15px;
+    font-size:0.85rem;
+    a{
+        background: black;
+        padding:4px 5.5px;
+        color:white;
+        text-decoration: none;
+    }
+    a:hover{
+        background:red;
+    }
+}
+
+.look-book-main-image{
+    width:335px;
+    margin-left:182px;
+    margin-bottom:50px;
+}

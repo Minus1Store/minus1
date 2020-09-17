@@ -8,7 +8,7 @@ import {useSpring, animated} from 'react-spring'
 
 
 
-const PageLayout = ({children}) => {
+const PageLayout = ({children, showHeader}) => {
 
     const [startAnimation, setStartAnimation] = useState(false)
 
@@ -28,10 +28,12 @@ const PageLayout = ({children}) => {
     return (
             <React.Fragment>
                 <div className={styles.centeredItems}>
-                    <div className={styles.headerGroup}>
-                        <Header/>
-                        <TimeString/>
-                    </div>
+                    {showHeader != false &&
+                        <div className={styles.headerGroup}>
+                            <Header/>
+                            <TimeString/>
+                        </div>
+                    }
                     <animated.div style={loadAnimation} className={styles.wrapper}>
                         {children}
                     </animated.div>

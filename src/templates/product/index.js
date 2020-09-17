@@ -48,7 +48,7 @@ const ProductPage = ({data, location}) => {
                 </div>
                 <div className={styles.description} dangerouslySetInnerHTML={{__html:data.product.data.description.html}}></div>
                 <div className={styles.productThumbnails}>
-                  <ShopThumbnails data={data} location={location} mainImageHandler/>
+                  <ShopThumbnails data={data} location={location}/>
                 </div>
                 <div className={styles.price}>
                   €{data.product.data.price}

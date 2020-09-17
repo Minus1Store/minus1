@@ -58,12 +58,26 @@ module.exports = {
           'shop_privacy': require('./src/schemas/shop_privacy.json'),
           'shop_faq': require('./src/schemas/shop_faq.json'),
           'shop_shipping': require('./src/schemas/shop_shipping.json'),
+          'lookbook': require('./src/schemas/lookbook.json'),
+          'lookbook_product': require('./src/schemas/lookbook_product.json'),
         },
         shouldDownloadImage: ({ node, key, value }) => {
           return true
         },
         // Get the correct URLs in blog posts
-        linkResolver: () => (post) => `/${post.uid}`,
+        linkResolver: () => (doc) => {
+          if(doc.type == 'product'){
+            console.log(doc)
+            if(doc.data){
+              return `/shop/${doc.data.product_category.uid}/${doc.uid}`
+            }
+          }else{
+            return `/${doc.uid}`
+          }
+        },
+        fetchLinks: [
+          'product.product_category'
+        ],
         // PrismJS highlighting for labels and slices
         htmlSerializer: () => prismicHtmlSerializer
       },

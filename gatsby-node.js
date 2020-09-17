@@ -15,6 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const productTemplate = require.resolve('./src/templates/product/index.js')
   const newsArticleTemplate = require.resolve('./src/templates/newsArticle/index.js')
   const productCategoryTemplate = require.resolve('./src/templates/productCategory/index.js')
+  const lookbookTemplate = require.resolve('./src/templates/lookbook/index.js')
 
   const result = await wrapper(
     graphql(`
@@ -56,6 +57,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
         productCategories: allPrismicProductCategory{
+          edges{
+            node{
+              uid
+            }
+          }
+        }
+        lookbooks: allPrismicLookbook{
           edges{
             node{
               uid
@@ -111,6 +119,18 @@ exports.createPages = async ({ graphql, actions }) => {
         component: productCategoryTemplate,
         context:{
           category_uid: edge.node.uid
+        }
+      })
+    })
+
+    const lookbookList = result.data.lookbooks.edges
+
+    lookbookList.forEach(edge => {
+      createPage({
+        path:`/lookbooks/${edge.node.uid}`,
+        component: lookbookTemplate,
+        context:{
+          uid: edge.node.uid
         }
       })
     })

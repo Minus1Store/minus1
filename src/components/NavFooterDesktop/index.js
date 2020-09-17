@@ -1,9 +1,25 @@
 import React from 'react'
-import {Link} from 'gatsby'
+import {Link, useStaticQuery, graphql} from 'gatsby'
 
 import styles from './nav-footer-desktop.module.scss'
 
 const NavFooterDesktop = ({linksArray}) => {
+
+    const data = useStaticQuery(graphql`
+        query NavFooterDesktopQuery{
+            lookbooks: allPrismicLookbook(sort: {order: DESC, fields: data___lookbook_date}, limit: 1){
+                edges{
+                  node{
+                    uid
+                    data{
+                        title
+                        lookbook_date
+                    }
+                  }
+                }
+            }
+        }
+    `)
 
     let links = linksArray || [
         {
@@ -46,7 +62,7 @@ const NavFooterDesktop = ({linksArray}) => {
             link:[
                 {
                     text:'lookbook',
-                    href:'/lookbook'
+                    href:`/lookbooks/${data.lookbooks.edges[0].node.uid}`
                 }
             ]
         },
