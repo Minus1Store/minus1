@@ -3,6 +3,7 @@
 .page-wrapper{
     width:800px;
     margin:auto;
+    margin-top:50px;
 }
 
 .look-book-header{
@@ -16,7 +17,7 @@
 
 .look-book-item-information{
     width:400px;
-    margin-left:82px;
+    margin-left:122px;
 }
 
 .look-book-title{
@@ -91,7 +92,65 @@
 }
 
 .look-book-main-image{
-    width:335px;
-    margin-left:182px;
+    margin-left:214.5px;
     margin-bottom:50px;
+    width:350px;
+    cursor: pointer;
+    > div > div > div > div > div{
+        width:335px;
+    }
+}
+
+.look-book-images{
+    display:flex;
+    justify-content: space-between;
+}
+
+.look-book-thumbnails{
+    width:180px;
+    list-style-type: none;
+    padding:0;
+    margin-top:30px;
+    display:flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height:405px;
+    overflow: auto;
+}
+
+.look-book-thumbnails::-webkit-scrollbar{
+    background: #D6D6D6;
+    width:5px;
+}
+
+.look-book-thumbnails::-webkit-scrollbar-thumb{
+    background: #B5B5B5;
+}
+
+.look-book-thumbnails::-webkit-scrollbar-thumb:hover{
+    background:#A1A1A1;
+}
+
+.thumbnail{
+    width:calc(25% - 2.5px);
+    margin-right:2.5px;
+    > button{
+        display:inline-block;
+        width:100%;
+        background:none;
+        border:1px solid transparent;
+        padding:0;
+        cursor: pointer;
+    }
+    > button:hover{
+        border:1px solid red;
+    }
+}
+
+.pagination{
+    margin:0;
+    font-size:0.85rem;
+    > span{
+        color:red;
+    }
 }

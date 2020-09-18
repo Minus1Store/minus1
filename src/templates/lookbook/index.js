@@ -1,30 +1,70 @@
 import { graphql, Link } from 'gatsby'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Image from 'gatsby-image'
 
 import PageLayout from '../../components/PageLayout'
 import styles from './lookbook.module.scss'
 import Header from '../../components/Header/index'
+import FadeImageSlider from '../../components/FadeImageSlider'
+import SliderPopUp from '../../components/SliderPopUp'
 
 const LookbookPage = ({data}) => {
+
+    const [swiperInstance, setSwiperInstance] = useState(null)
+    const [clickedThumbnail, setClickedThumbnail] = useState(0)
+    const [hoveredThumbnail, setHoveredThumbnail] = useState(undefined)
+    const [imageClicked, setImageClicked] = useState(false)
+
+    useEffect(() => {
+        if(swiperInstance){
+            swiperInstance.slideTo(clickedThumbnail)
+        }
+    }, [clickedThumbnail])
+
     return(
         <PageLayout showHeader={false}>
             <div className={styles.pageWrapper}>
-                <div className={styles.lookBookMainImage}>
-                    <Image fluid={data.lookbookProducts.edges[0].node.data.product_image.localFile.childImageSharp.fluid} alt={data.lookbookProducts.edges[0].node.data.product_image.alt}/>
-                    {data.lookbook}
+                <div className={styles.lookBookImages}>
+                    <div className={styles.lookBookMainImage} onClick={() => setImageClicked(true)}>
+                        <FadeImageSlider images={data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} showNavigation={false} setSwiperInstance={setSwiperInstance}/>
+                    </div>
+                    <div>
+                        <p className={styles.pagination}>
+                            {
+                                hoveredThumbnail !== undefined ?
+                                <React.Fragment>
+                                    <span>{hoveredThumbnail + 1}</span> / {data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
+                                </React.Fragment>
+                                :
+                                <React.Fragment>
+                                    {clickedThumbnail + 1} / {data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
+                                </React.Fragment>
+                            }
+                        </p>
+                        <ul className={styles.lookBookThumbnails}>
+                            {data.lookbookProducts.edges.map(({node}, index) => {
+                                return <li onClick={() => {setClickedThumbnail(index)}} onPointerOver={() => setHoveredThumbnail(index)} onPointerOut={() => setHoveredThumbnail(undefined)} className={styles.thumbnail} key={index}>
+                                    <button>
+                                        <Image fluid={node.data.image.localFile.childImageSharp.fluid} alt={node.data.image.alt}/>
+                                    </button>
+                                </li>
+                            })}
+                        </ul>
+                    </div>
                 </div>
                 <div className={styles.lookBookHeader}>
                     <div>
                         <Header/>
                         <div className={styles.lookBookItemInformation}>
-                            {data.lookbookProducts.edges.map(({node}) => {
-                                return <React.Fragment>
-                                    <h2 className={styles.lookBookTitle}>
-                                        {data.currentLookBook.data.title}
-                                    </h2>
-                                    <div className={styles.lookBookBody} dangerouslySetInnerHTML={{__html:node.data.description.html}}></div>
-                                </React.Fragment>
+                            {data.lookbookProducts.edges.map(({node}, index) => {
+                                if(index == clickedThumbnail){
+                                    return <React.Fragment>
+                                        <h2 className={styles.lookBookTitle}>
+                                            {data.currentLookBook.data.title}
+                                        </h2>
+                                        <div className={styles.lookBookBody} dangerouslySetInnerHTML={{__html:node.data.description.html}}></div>
+                                    </React.Fragment>
+                                }
                             })}
                         </div>
                     </div>
@@ -50,6 +90,10 @@ const LookbookPage = ({data}) => {
                     </div>
                 </div>
             </div>
+            {
+                imageClicked &&
+                <SliderPopUp images={data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} clickedThumbnail={clickedThumbnail} setClickedThumbnail={setClickedThumbnail} setImageClicked={setImageClicked} />
+            }
         </PageLayout>
     )
 }
@@ -63,7 +107,7 @@ export const pageQuery = graphql`
                   description {
                     html
                   }
-                  product_image{
+                  image:product_image{
                       alt
                       localFile{
                           childImageSharp{
@@ -85,6 +129,7 @@ export const pageQuery = graphql`
         lookBooks: allPrismicLookbook(filter: {uid: {ne: $uid}}, sort: {order: DESC, fields: data___lookbook_date}) {
             edges {
               node {
+                uid
                 data {
                   title
                 }

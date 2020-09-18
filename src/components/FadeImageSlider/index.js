@@ -11,12 +11,10 @@ SwiperCore.use([EffectFade, Navigation]);
 import styles from './fade-image-slider.module.scss'
 import swiperArrow from '../../img/test/right-arrow.svg'
 
-const FadeImageSlider = ({images}) => {
+const FadeImageSlider = ({images, showNavigation, setSwiperInstance}) => {
     let [swiper, setSwiper] = useState()
 
     const [currentSlide, setCurrentSlide] = useState(0)
-
-    console.log(images)
 
     return (
         <div className={styles.fadeImageContainer}>
@@ -25,7 +23,7 @@ const FadeImageSlider = ({images}) => {
                 slidesPerView={1}
                 className={styles.slider}
                 effect="fade"
-                onInit={swiper => setSwiper(swiper)}
+                onInit={swiper => {setSwiper(swiper); setSwiperInstance && setSwiperInstance(swiper)}}
                 onSlideChangeTransitionStart={(swiper) => setCurrentSlide(swiper.activeIndex)}
             >
                 {images.map(({image}, index) => {
@@ -36,11 +34,14 @@ const FadeImageSlider = ({images}) => {
                     </SwiperSlide>
                 })}
             </Swiper>
-            <div className={styles.navigationStatus}>
-                <img onClick={() => swiper.slidePrev()} className={`${styles.swiperPrevEl} ${currentSlide == 0 && styles.invisible}`} src={swiperArrow} alt='prev slide' />
-                {currentSlide + 1} of {images.length}
-                <img onClick={() => swiper.slideNext()} className={`${styles.swiperNextEl} ${currentSlide == images.length - 1 && styles.invisible}`} src={swiperArrow} alt='next slide'/>
-            </div>
+            {
+                showNavigation !== false &&
+                <div className={styles.navigationStatus}>
+                    <img onClick={() => swiper.slidePrev()} className={`${styles.swiperPrevEl} ${currentSlide == 0 && styles.invisible}`} src={swiperArrow} alt='prev slide' />
+                    {currentSlide + 1} of {images.length}
+                    <img onClick={() => swiper.slideNext()} className={`${styles.swiperNextEl} ${currentSlide == images.length - 1 && styles.invisible}`} src={swiperArrow} alt='next slide'/>
+                </div>
+            }
         </div>
     )
 }
