@@ -1,0 +1,70 @@
+{
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "useAsTitle": true
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "single": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
+          "allowTargetBlank": true,
+          "label": "Description"
+        }
+      }
+    },
+    "Category": {
+      "product_category": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "preview_product_category"
+          ],
+          "label": "Product Category"
+        }
+      },
+      "product_family": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "preview_product_family"
+          ],
+          "label": "Product Family"
+        }
+      }
+    },
+    "Images": {
+      "images": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "constraint": {
+                  "width": 450,
+                  "height": 450
+                },
+                "thumbnails": [],
+                "label": "Image"
+              }
+            }
+          },
+          "label": "Images"
+        }
+      }
+    },
+    "Other": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      }
+    }
+  }

@@ -18,6 +18,17 @@ const HomeLinks = () => {
                   }
                 }
             }
+            previews: allPrismicPreview(sort: {order: DESC, fields: data___preview_date}, limit: 1){
+                edges{
+                  node{
+                    uid
+                    data{
+                        title
+                        preview_date
+                    }
+                  }
+                }
+            }
         }
     `)
 
@@ -30,8 +41,8 @@ const HomeLinks = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/previews/fallwinter2020'}>
-                        fall/winter 2020 preview
+                    <Link to={`/previews/${data.previews.edges[0].node.uid}`}>
+                        {data.previews.edges[0].node.data.title} preview
                     </Link>
                 </li>
                 <li>

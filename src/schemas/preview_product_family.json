@@ -1,0 +1,51 @@
+{
+  "Main": {
+    "family_name": {
+      "type": "Text",
+      "config": {
+        "label": "Family Name"
+      }
+    },
+    "preview": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": [
+          "preview"
+        ],
+        "label": "Preview"
+      }
+    },
+    "product_category": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": [
+          "preview_product_category"
+        ],
+        "label": "Product Category"
+      }
+    }
+  },
+  "Images": {
+    "family_main_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 200,
+          "height": 140
+        },
+        "thumbnails": [],
+        "label": "Family Main Image"
+      }
+    }
+  },
+  "Other": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID"
+      }
+    }
+  }
+}

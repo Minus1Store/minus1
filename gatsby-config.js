@@ -60,6 +60,10 @@ module.exports = {
           'shop_shipping': require('./src/schemas/shop_shipping.json'),
           'lookbook': require('./src/schemas/lookbook.json'),
           'lookbook_product': require('./src/schemas/lookbook_product.json'),
+          'preview': require('./src/schemas/preview.json'),
+          'preview_product_category': require('./src/schemas/preview_product_category.json'),
+          'preview_product_family': require('./src/schemas/preview_product_family.json'),
+          'preview_product': require('./src/schemas/preview_product.json'),
         },
         shouldDownloadImage: ({ node, key, value }) => {
           return true

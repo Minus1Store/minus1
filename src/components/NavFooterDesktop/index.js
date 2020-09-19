@@ -18,6 +18,17 @@ const NavFooterDesktop = ({linksArray}) => {
                   }
                 }
             }
+            previews: allPrismicPreview(sort: {order: DESC, fields: data___preview_date}, limit: 2){
+                edges{
+                  node{
+                    uid
+                    data{
+                        title
+                        preview_date
+                    }
+                  }
+                }
+            }
         }
     `)
 
@@ -47,16 +58,23 @@ const NavFooterDesktop = ({linksArray}) => {
             ]
         },
         {
-            link:[
-                {
-                    text:'fall/winter 2020 preview',
-                    href:'/preview'
-                },
-                {
-                    text:'spring/summer 2020 preview',
-                    href:'/preview'
+            link:data.previews.edges.map(({node}) => {
+                return {
+                    text:node.data.title + ' preview',
+                    href:`/previews/${node.uid}`
                 }
-            ]
+            })
+            // [
+                
+            //     {
+            //         text:'fall/winter 2020 preview',
+            //         href:'/preview'
+            //     },
+            //     {
+            //         text:'spring/summer 2020 preview',
+            //         href:'/preview'
+            //     }
+            // ]
         },
         {
             link:[
