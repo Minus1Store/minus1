@@ -15,7 +15,7 @@ const PreviewPage = ({data}) => {
                 <ul className={styles.familyThumbnails}>
                     {data.previewFamilies.edges.map(({node}, index) => { 
                         return <li key={index} className={styles.thumbnail}>
-                            <Link to={node.uid}>
+                            <Link to={`/previews/${node.data.preview.uid}/${node.data.product_category.uid}/${node.uid}`}>
                                 <Image fluid={node.data.family_main_image.localFile.childImageSharp.fluid} alt={node.data.family_main_image.alt}/>
                             </Link>
                         </li>
@@ -47,6 +47,12 @@ const PreviewPage = ({data}) => {
                 node {
                   uid
                   data {
+                    preview{
+                        uid
+                    }
+                    product_category{
+                        uid
+                    }
                     family_main_image {
                       alt
                       localFile {

@@ -1,3 +1,4 @@
+const { create } = require('lodash')
 const _ = require('lodash')
 
 // graphql function doesn't throw an error so we have to check to check for the result.errors to throw manually
@@ -17,6 +18,9 @@ exports.createPages = async ({ graphql, actions }) => {
   const productCategoryTemplate = require.resolve('./src/templates/productCategory/index.js')
   const lookbookTemplate = require.resolve('./src/templates/lookbook/index.js')
   const previewTemplate = require.resolve('./src/templates/preview/index.js')
+  const previewAllTemplate = require.resolve('./src/templates/previewAll/index.js')
+  const previewCategoryTemplate = require.resolve('./src/templates/previewCategory/index.js')
+  const previewProductFamilyTemplate = require.resolve('./src/templates/previewProductFamily/index.js')
 
   const result = await wrapper(
     graphql(`
@@ -75,6 +79,33 @@ exports.createPages = async ({ graphql, actions }) => {
           edges{
             node{
               uid
+            }
+          }
+        }
+        previewCategories: allPrismicPreviewProductCategory{
+          edges{
+            node{
+              uid
+              data{
+                preview {
+                  uid
+                }
+              }
+            }
+          }
+        }
+        previewFamilies: allPrismicPreviewProductFamily{
+          edges{
+            node{
+              uid
+              data{
+                preview{
+                  uid
+                }
+                product_category{
+                  uid
+                }
+              }
             }
           }
         }
@@ -144,7 +175,7 @@ exports.createPages = async ({ graphql, actions }) => {
     })
 
     const previewList = result.data.previews.edges
-
+    
     previewList.forEach(edge => {
       createPage({
         path:`/previews/${edge.node.uid}`,
@@ -153,7 +184,41 @@ exports.createPages = async ({ graphql, actions }) => {
           uid: edge.node.uid
         }
       })
+      
+      createPage({
+        path:`/previews/${edge.node.uid}/all`,
+        component: previewAllTemplate,
+        context:{
+          uid:edge.node.uid
+        }
+      })
     })
+
+    const previewCategoriesList = result.data.previewCategories.edges
+
+    previewCategoriesList.forEach(edge => {
+      createPage({
+        path:`/previews/${edge.node.data.preview.uid}/${edge.node.uid}`,
+        component:previewCategoryTemplate,
+        context:{
+          uid:edge.node.uid,
+          preview_uid:edge.node.data.preview.uid
+        }
+      })
+    })
+
+    const previewProductFamilyList = result.data.previewFamilies.edges
+
+    previewProductFamilyList.forEach(edge => {
+      createPage({
+        path:`/previews/${edge.node.data.preview.uid}/${edge.node.data.product_category.uid}/${edge.node.uid}`,
+        component:previewProductFamilyTemplate,
+        context:{
+          uid:edge.node.uid
+        }
+      })
+    })
+
     // The uid you assigned in Prismic is the slug!
     // const categoryList = Array.from(categorySet)
   

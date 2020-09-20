@@ -1,0 +1,108 @@
+@import '../../styles/breakpoints.scss';
+
+.page-wrapper{
+    margin-top:50px;
+}
+
+
+.look-book-header{
+    width:800px;
+    margin:auto;
+    display:flex;
+    margin-top:20px;
+    justify-content: space-between;
+    > div{
+        display:flex;
+        align-items: flex-start;
+    }
+}
+
+.look-book-item-information{
+    width:400px;
+    margin-left:122px;
+}
+
+.look-book-title{
+    font-size:0.85rem;
+    margin:0;
+}
+
+.look-book-body{
+    p{
+        margin:0;
+        font-size:0.85rem;
+    }
+    a{
+        text-decoration:none;
+        padding:1px;
+        color:black;
+    }
+    a:hover{
+        background:red;
+        color:white;
+    }
+}
+
+.navigation-button{
+    margin-left:15px;
+    font-size:0.85rem;
+    a{
+        background: black;
+        padding:4px 5.5px;
+        color:white;
+        text-decoration: none;
+    }
+    a:hover{
+        background:red;
+    }
+}
+
+.slider{
+    height:500px;
+    > div > div:nth-of-type(2){
+        width:500px;
+    }
+}
+
+.navigation-status{
+    margin:0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size:0.6875rem;
+    @include breakpoint(lg){
+        font-size:0.85rem;
+    }
+}
+
+.swiper-prev-el{
+    transform:rotate(180deg);
+    margin-right:10px;
+    cursor:pointer;
+}
+
+.swiper-next-el{
+    margin-left:10px;
+    cursor:pointer;
+    transform:rotate(360deg);
+}
+
+.invisible{
+    opacity:0;
+}
+
+.image-pop-up{
+    position:fixed;
+    top:0;
+    width:100%;
+    left:0;
+    z-index:1;
+    background: white;
+}
+
+.image{
+    margin:auto;
+    height:100%;
+    width:100vh;
+    cursor: pointer;
+}

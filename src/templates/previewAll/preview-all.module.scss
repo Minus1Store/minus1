@@ -1,0 +1,85 @@
+@import '../../styles/breakpoints.scss';
+
+.nav-footer-container{
+    width:655px;
+    display:flex;
+    justify-content: space-between;
+    margin:auto;
+    position:relative;
+    left:-15px;
+    > footer{
+        margin-top:20px;
+    }
+}
+
+.other-links{
+    padding:0;
+    list-style: none;
+    margin:0;
+    margin-top:36px;
+    a{
+        text-decoration: none;
+        color:black;
+        padding:1px;
+        font-size:0.85rem;
+    }
+    a:hover{
+        background:red;
+        color:white;
+    }
+}
+
+.page-wrapper{
+    margin-top:30px;   
+}
+
+.product-container{
+    position:relative;
+    @include breakpoint(lg){
+        max-height:60vh;
+    }
+}
+
+.filters{
+    position:absolute;
+    width:100px;
+    left:calc(50vw - 130px - 10px);
+    top:0;
+    @include breakpoint(lg){
+        width:200px;
+        left:calc(50% - 335px - 200px - 10px);
+    }
+}
+
+.products::-webkit-scrollbar{
+    background: #D6D6D6;
+    width:5px;
+}
+
+.products::-webkit-scrollbar-thumb{
+    background: #B5B5B5;
+}
+
+.products::-webkit-scrollbar-thumb:hover{
+    background:#A1A1A1;
+}
+
+.product{
+    width:50vw;
+    margin-bottom:5px;
+    height:50vw;
+    > a > div{
+        border:1px solid transparent;
+    }
+    @include breakpoint(lg){
+        height:auto;
+        width:84px;
+        margin-right: 5px;
+    }
+}
+
+.product:hover{
+    >a > div{
+        border:1px solid #D6D6D6;
+    }
+}
