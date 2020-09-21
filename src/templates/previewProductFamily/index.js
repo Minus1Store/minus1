@@ -107,10 +107,8 @@ const PreviewProductPage = ({data, location}) => {
                                 }
                             }} className={`${styles.swiperNextEl} ${clickedThumbnail == productImages().length - 1 && styles.invisible}`} src={swiperArrow} alt='next slide'/>
                         </div>
-                        <div className={styles.navigationButton}>
-                            <Link to={`/previews/${data.previewProducts.edges[0].node.data.preview.uid}/${data.previewProducts.edges[0].node.data.product_category.uid}`}>
-                                back
-                            </Link>
+                        <div className={styles.navigationButton} onClick={() => window && window.history.back()}>
+                            back
                         </div>
                     </div>
                 </div>

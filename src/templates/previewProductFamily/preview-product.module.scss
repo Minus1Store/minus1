@@ -46,15 +46,15 @@
 .navigation-button{
     margin-left:15px;
     font-size:0.85rem;
-    a{
-        background: black;
-        padding:4px 5.5px;
-        color:white;
-        text-decoration: none;
-    }
-    a:hover{
-        background:red;
-    }
+    background: black;
+    padding:4px 5.5px;
+    color:white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navigation-button:hover{
+    background:red;
 }
 
 .slider{

@@ -1,0 +1,22 @@
+.cart-header-item{
+    border:1px dotted #959595;
+    flex-grow: 1;
+    text-align: center;
+    padding:10px;
+    font-size:0.85rem;
+}
+
+.is-active{
+    background:black;
+    color:white;
+    background:#626262;
+}
+
+.is-disabled{
+    color:rgba(0, 0, 0, 0.35);
+}
+
+.is-hovered:hover{
+    background:black;
+    color:white;
+}
