@@ -22,3 +22,25 @@
     text-align: left;
     margin:0;
 }
+
+.cart-body{
+    overflow-y:auto;
+    height:280px;
+}
+
+.products{
+    border-collapse: collapse;
+    width:100%;
+    tr{
+        border:1px dotted #959595;
+        height:auto;
+    }
+    td{
+        padding:0;
+        padding:10px;
+        
+    }
+    p{
+        font-size:0.85rem;
+    }
+}

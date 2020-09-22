@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {useStaticQuery, graphql, Link} from 'gatsby'
 import Image from 'gatsby-image'
 
@@ -12,6 +12,8 @@ import ProductThumbnail from '../../../components/ProductThumbnail'
 import SiteTree from '../../../components/SiteTree'
 
 const Shop = () => {
+
+    const [cart, setCart] = useState([])
 
     const data = useStaticQuery(graphql`
         query ShopQuery {
@@ -57,6 +59,12 @@ const Shop = () => {
               }
         }      
     `)
+
+    useEffect(() => {
+      if(typeof window !== 'undefined'){
+        setCart(JSON.parse(localStorage.getItem('cart')))
+      }
+    }, [])
 
     return(
         <PageLayout>

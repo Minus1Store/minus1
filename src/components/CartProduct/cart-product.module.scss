@@ -1,0 +1,33 @@
+.product-image{
+    border-right:1px dotted #959595;
+    > div{
+        width:45px;
+        margin:auto;
+        display: block;
+    }
+}
+
+.product-description{
+    > p{
+        margin:3px 0;
+    }
+}
+
+.product-price{
+    p{
+        text-align: right;
+    }
+}
+
+.product-remove{
+    > button{
+        background:black;
+        color:white;
+        border:none;
+        text-transform: lowercase;
+        cursor:pointer;
+    }
+    > button:hover{
+        background:red;
+    }
+}

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link, useStaticQuery, graphql} from 'gatsby'
 
 import styles from './shop-filters.module.scss'
+import CartPopUp from '../../components/CartPopUp'
 
-const ShopFilters = ({location}) => {
+const ShopFilters = ({location, children}) => {
+
+    const [cart, setCart] = useState([])
 
     const data = useStaticQuery(graphql`
         query ShopFiltersQuery {
@@ -20,8 +23,20 @@ const ShopFilters = ({location}) => {
         }      
     `)
 
+    useEffect(() => {
+        if(typeof window !== 'undefined'){
+          setCart(JSON.parse(localStorage.getItem('cart')))
+        }
+      }, [])
+
     return(
         <div className={styles.filtersContainer}>
+            {children}
+            {cart.length > 0 &&
+                <div className={styles.cartContainer}>
+                    <CartPopUp cart={cart}/>
+                </div>
+            }
             <Link to={'/shop/all'} className={location.pathname == '/shop/all' && styles.activeLink}>
                 all
             </Link>

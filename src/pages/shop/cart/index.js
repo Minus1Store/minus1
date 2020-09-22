@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 import PageLayout from '../../../components/PageLayout'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
@@ -7,8 +7,40 @@ import styles from './cart.module.scss'
 import CartContainer from '../../../components/CartContainer'
 import CartHeader from '../../../components/CartHeader'
 import CartHeaderItem from '../../../components/CartHeaderItem'
+import CartProduct from '../../../components/CartProduct'
 
 const CartPage = () => {
+
+    const [cart, setCart] = useState([])
+
+    useEffect(() => {
+        if(localStorage.getItem('cart')){
+            setCart(JSON.parse(localStorage.getItem('cart')))
+        }else{
+            setCart([])
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
+
+    const removeProduct = (product) => {
+        let newArray = [...cart]
+        newArray.splice(newArray.indexOf(item => {
+            if(item.uid == product.uid && item.size == product.size){
+                return true
+            }else{
+                return false
+            }
+        }), 1)
+        setCart(newArray)
+    }
+
+
+
+    console.log(cart)
+
     return(
         <PageLayout>
             <div className={styles.pageWrapper}>
@@ -25,10 +57,19 @@ const CartPage = () => {
                         </CartHeaderItem>
                         <CartHeaderItem fullWidth={true} presentational={true}>
                             <p className={styles.cartCount}>
-                                1 item in your basket
+                                {cart.length} {cart.length == 1 ? 'item' : 'items'} in your basket
                             </p>
                         </CartHeaderItem>
                     </CartHeader>
+                    <div className={styles.cartBody}>
+                        <table className={styles.products}>
+                            <tbody>
+                                {cart.map((cartItem, index) => {
+                                    return <CartProduct key={index} removeProduct={removeProduct} data={cartItem}/>
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
                 </CartContainer>
             </div>
             <div className={styles.navFooterContainer}>

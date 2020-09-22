@@ -6,6 +6,7 @@
     flex-direction: row;
     margin-top:50px;
     min-height:70vh;
+    position:relative;
     @include breakpoint(lg){
         min-height:unset;
         width:820px;
@@ -105,4 +106,10 @@
 .active-image{
     display:block;
     opacity:1;
+}
+
+.cart-container{
+    position:absolute;
+    width:150px;
+    left:-150px;
 }

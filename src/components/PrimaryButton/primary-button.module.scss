@@ -11,3 +11,13 @@
 .primary-button:hover{
     background:darken($color: red, $amount: 10)
 }
+
+.disabled{
+    border:1px solid red;
+    background:white;
+    color:red;
+}
+
+.disabled:hover{
+    background: white;
+}
