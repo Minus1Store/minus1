@@ -25,7 +25,9 @@ const ShopFilters = ({location, children}) => {
 
     useEffect(() => {
         if(typeof window !== 'undefined'){
-          setCart(JSON.parse(localStorage.getItem('cart')))
+          if(localStorage.getItem('cart')){
+            setCart(JSON.parse(localStorage.getItem('cart')))
+          }
         }
       }, [])
 
