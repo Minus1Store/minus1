@@ -3,7 +3,6 @@ import Image from 'gatsby-image'
 
 
 import styles from './cart-product.module.scss'
-import testProductImg from '../../img/test/11.jpg'
 
 const CartProduct = ({data, removeProduct}) => {
 

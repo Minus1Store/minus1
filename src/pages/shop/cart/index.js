@@ -27,19 +27,21 @@ const CartPage = () => {
 
     const removeProduct = (product) => {
         let newArray = [...cart]
-        newArray.splice(newArray.indexOf(item => {
+        console.log(newArray[0].uid, product.uid)
+        let indexOfItem = newArray.findIndex(item => {
             if(item.uid == product.uid && item.size == product.size){
                 return true
             }else{
                 return false
             }
-        }), 1)
+        })
+
+        if(indexOfItem !== -1){
+            newArray.splice(indexOfItem, 1)
+        }
         setCart(newArray)
     }
 
-
-
-    console.log(cart)
 
     return(
         <PageLayout>
