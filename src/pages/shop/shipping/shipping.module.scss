@@ -23,7 +23,6 @@
 }
 
 .terms-container{
-    height:375px;
     overflow-y:auto;
     * {
         font-family: Arial, Helvetica, sans-serif ;
@@ -62,6 +61,9 @@
     a:hover{
         color:white;
         background:red;
+    }
+    @include breakpoint(lg){
+        height:375px;
     }
 }
 

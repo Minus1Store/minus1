@@ -1,0 +1,41 @@
+@import '../../styles/breakpoints.scss';
+
+.nav-footer-mobile{
+    display:block;
+    padding-top:50px;
+    padding-bottom:50px;
+    > ul{
+        list-style: none;
+        padding:0;
+        margin:0;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    li{
+        padding:1px;
+        margin:7.5px;
+    }
+
+    @include breakpoint(lg){
+        display:none;
+    }
+}
+
+.nav-footer-mobile a{
+    color:white;
+    text-decoration: none;
+    font-size:0.75rem;
+    text-transform: lowercase;
+    padding:1px;
+    color:black;
+    @include breakpoint(lg){
+        font-size:0.85rem;
+    }
+}
+
+.nav-footer-mobile a:hover{
+    background:red;
+    color:white;
+}

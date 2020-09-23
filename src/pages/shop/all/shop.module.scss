@@ -8,7 +8,11 @@
 }
 
 .page-wrapper{
-    margin-top:30px;   
+    margin-top:30px;
+    min-height: 70vh;   
+    @include breakpoint(lg){
+        min-height:unset;
+    }
 }
 
 .product-container{

@@ -119,6 +119,9 @@
     position:fixed;
     top:0;
     width:100%;
+    height:100%;
+    display:flex;
+    align-items: center;
     left:0;
     z-index:1;
     background: white;
@@ -126,9 +129,12 @@
 
 .image{
     margin:auto;
-    height:100%;
-    width:100vh;
+    width:100%;
     cursor: pointer;
+    @include breakpoint(lg){
+        width:100vh;
+        height:100%;
+    }
 }
 
 .mobile-logo{

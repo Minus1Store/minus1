@@ -25,12 +25,15 @@
 
 .cart-body{
     overflow-y:auto;
-    height:280px;
+    max-height:50vh;
+    @include breakpoint(lg){
+        height:280px;
+        max-height: unset;
+    }
 }
 
 .products{
     border-collapse: collapse;
-    width:100%;
     tr{
         border:1px dotted #959595;
         height:auto;
@@ -42,5 +45,9 @@
     }
     p{
         font-size:0.85rem;
+    }
+    width:400px;
+    @include breakpoint(lg){ 
+        width:100%;
     }
 }

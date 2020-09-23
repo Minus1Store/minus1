@@ -7,6 +7,8 @@ import styles from './lookbook.module.scss'
 import Header from '../../components/Header/index'
 import FadeImageSlider from '../../components/FadeImageSlider'
 import SliderPopUp from '../../components/SliderPopUp'
+import NavFooterMobile2 from '../../components/NavFooterMobile2'
+import NavFooterMobile from '../../components/NavFooterMobile'
 
 const LookbookPage = ({data}) => {
 
@@ -23,10 +25,13 @@ const LookbookPage = ({data}) => {
 
     return(
         <PageLayout showHeader={false}>
+            <div className={styles.mobileLogo}>
+                <Header/>
+            </div>
             <div className={styles.pageWrapper}>
                 <div className={styles.lookBookImages}>
                     <div className={styles.lookBookMainImage} onClick={() => setImageClicked(true)}>
-                        <FadeImageSlider images={data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} showNavigation={false} setSwiperInstance={setSwiperInstance}/>
+                        <FadeImageSlider images={data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} showNavigation={false} setSwiperInstance={setSwiperInstance} setClickedThumbnail={setClickedThumbnail}/>
                     </div>
                     <div>
                         <p className={styles.pagination}>
@@ -54,7 +59,9 @@ const LookbookPage = ({data}) => {
                 </div>
                 <div className={styles.lookBookHeader}>
                     <div>
-                        <Header/>
+                        <div className={styles.desktopLogo}>
+                            <Header/>
+                        </div>
                         <div className={styles.lookBookItemInformation}>
                             {data.lookbookProducts.edges.map(({node}, index) => {
                                 if(index == clickedThumbnail){
@@ -94,6 +101,7 @@ const LookbookPage = ({data}) => {
                 imageClicked &&
                 <SliderPopUp images={data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} clickedThumbnail={clickedThumbnail} setClickedThumbnail={setClickedThumbnail} setImageClicked={setImageClicked} />
             }
+            <NavFooterMobile2/>
         </PageLayout>
     )
 }
