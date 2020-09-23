@@ -1,14 +1,17 @@
 @import '../../styles/breakpoints.scss';
 
 .nav-footer-container{
-    width:655px;
+    width:100%;
     display:flex;
     justify-content: space-between;
     margin:auto;
     position:relative;
-    left:-15px;
     > footer{
         margin-top:20px;
+    }
+    @include breakpoint(lg){
+        left:-15px;
+        width:623.5px;
     }
 }
 
@@ -16,6 +19,7 @@
     padding:0;
     list-style: none;
     margin:0;
+    margin-left: auto;
     margin-top:36px;
     a{
         text-decoration: none;
@@ -26,6 +30,9 @@
     a:hover{
         background:red;
         color:white;
+    }
+    @include breakpoint(lg){
+        margin-left:0;
     }
 }
 

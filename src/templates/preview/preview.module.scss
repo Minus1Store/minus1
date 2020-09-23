@@ -1,12 +1,24 @@
+@import '../../styles/breakpoints.scss';
+
+.page-wrapper{
+    min-height:61vh;
+    @include breakpoint(lg){
+        min-height: unset;
+    }
+}
+
 .nav-footer-container{
-    width:623.5px;
+    width:100%;
     display:flex;
     justify-content: space-between;
     margin:auto;
     position:relative;
-    left:-15px;
     > footer{
         margin-top:20px;
+    }
+    @include breakpoint(lg){
+        left:-15px;
+        width:623.5px;
     }
 }
 
@@ -14,6 +26,7 @@
     padding:0;
     list-style: none;
     margin:0;
+    margin-left: auto;
     margin-top:36px;
     a{
         text-decoration: none;
@@ -25,10 +38,13 @@
         background:red;
         color:white;
     }
+    @include breakpoint(lg){
+        margin-left:0;
+    }
 }
 
 .family-thumbnails{
-    width:616px;
+    width:100%;
     display:flex;
     align-items: flex-start;
     flex-wrap: wrap;
@@ -36,13 +52,22 @@
     padding:0;
     margin:0;
     margin:auto;
+    height:100%;
     margin-top:45px;
-    height:440px;
     align-content: flex-start;
+    justify-content: space-between;
+    @include breakpoint(lg){
+        justify-content: flex-start;
+        height:440px;
+        width:616px;
+    }
 }
 
 .thumbnail{
-    width:100px;
-    margin-right:2px;
+    width:calc(33.33% - 2px);
     margin-bottom:2px;
+    @include breakpoint(lg){
+        margin-right:2px;
+        width:100px;
+    }
 }

@@ -42,7 +42,6 @@ const PreviewCategoryPage = ({location, data}) => {
                     </ProductsContainer>
                 </div>
             </div>
-            <NavFooterMobile/>
             <div className={styles.navFooterContainer}>
                 <NavFooterDesktop/>
                 <ul className={styles.otherLinks}>
@@ -53,6 +52,7 @@ const PreviewCategoryPage = ({location, data}) => {
                     </li>
                 </ul>
             </div>
+            <NavFooterMobile/>
         </PageLayout>
     )
 } 

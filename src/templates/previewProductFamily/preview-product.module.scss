@@ -1,12 +1,15 @@
 @import '../../styles/breakpoints.scss';
 
 .page-wrapper{
-    margin-top:50px;
+    margin-top:0;
+    @include breakpoint(lg){
+        margin-top:50px;
+    }
 }
 
 
 .look-book-header{
-    width:800px;
+    width:100%;
     margin:auto;
     display:flex;
     margin-top:20px;
@@ -15,11 +18,18 @@
         display:flex;
         align-items: flex-start;
     }
+    @include breakpoint(lg){
+        width:800px;
+    }
 }
 
 .look-book-item-information{
-    width:400px;
-    margin-left:122px;
+    width:65vw;
+    margin-left:0;
+    @include breakpoint(lg){
+        width:400px;
+        margin-left:122px;
+    }
 }
 
 .look-book-title{
@@ -58,9 +68,15 @@
 }
 
 .slider{
-    height:500px;
+    height:unset;
     > div > div:nth-of-type(2){
-        width:500px;
+        width:100%;
+    }
+    @include breakpoint(lg){
+        height:500px;
+        > div > div:nth-of-type(2){
+            width:500px;
+        }
     }
 }
 
@@ -79,12 +95,20 @@
     transform:rotate(180deg);
     margin-right:10px;
     cursor:pointer;
+    display:none;
+    @include breakpoint(lg){
+        display:block;
+    }
 }
 
 .swiper-next-el{
     margin-left:10px;
     cursor:pointer;
     transform:rotate(360deg);
+    display:none;
+    @include breakpoint(lg){
+        display:block;
+    }
 }
 
 .invisible{
@@ -105,4 +129,18 @@
     height:100%;
     width:100vh;
     cursor: pointer;
+}
+
+.mobile-logo{
+    display:block;
+    @include breakpoint(lg){
+        display:none;
+    }
+}
+
+.desktop-logo{
+    display:none;
+    @include breakpoint(lg){
+        display:block;
+    }
 }

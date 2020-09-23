@@ -73,13 +73,18 @@ const PreviewProductPage = ({data, location}) => {
 
     return(
         <PageLayout showHeader={false}>
+            <div className={styles.mobileLogo}>
+                <Header/>
+            </div>
             <div className={styles.pageWrapper}>
                 <div className={styles.slider}>
                     <TooltipSlider images={productImages()} clickedThumbnail={clickedThumbnail} setClickedThumbnail={setClickedThumbnail} setImageClicked={setImageClicked}/>
                 </div>
                 <div className={styles.lookBookHeader}>
                     <div>
-                        <Header/>
+                        <div className={styles.desktopLogo}>
+                            <Header/>
+                        </div>
                         <div className={styles.lookBookItemInformation}>
                             {productDescriptions().map(({data, uid}, index) => {
                                 if(index == clickedThumbnail){

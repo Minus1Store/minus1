@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {useStaticQuery, graphql} from 'gatsby'
 
 import styles from './faq.module.scss'
@@ -6,6 +6,7 @@ import PageLayout from '../../../components/PageLayout'
 import SiteTree from '../../../components/SiteTree'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import NavFooterMobile from '../../../components/NavFooterMobile'
+import CartPopUp from '../../../components/CartPopUp'
 
 const FAQPage = () => {
 
@@ -21,10 +22,27 @@ const FAQPage = () => {
         }
     `)
 
+    const [cart, setCart] = useState([])
+
+    useEffect(() => {
+        if(typeof window !== 'undefined'){
+          if(localStorage.getItem('cart')){
+            setCart(JSON.parse(localStorage.getItem('cart')))
+          }
+        }
+      }, [])
+
     return(
         <PageLayout>
             <div className={styles.pageWrapper}>
-                <div className={styles.termsContainer} dangerouslySetInnerHTML={{__html:data.faq.data.faq_body.html}}>
+                <div className={styles.content}>
+                    {cart.length > 0 &&
+                    <div className={styles.cartContainer}>
+                        <CartPopUp cart={cart}/>
+                    </div>
+                    }
+                    <div className={styles.termsContainer} dangerouslySetInnerHTML={{__html:data.faq.data.faq_body.html}}>
+                    </div>
                 </div>
             </div>
             <NavFooterMobile/>

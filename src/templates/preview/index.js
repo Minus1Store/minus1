@@ -22,7 +22,6 @@ const PreviewPage = ({data}) => {
                     })}
                 </ul>
             </div>
-            <NavFooterMobile/>
             <div className={styles.navFooterContainer}>
                 <NavFooterDesktop/>
                 <ul className={styles.otherLinks}>
@@ -33,6 +32,7 @@ const PreviewPage = ({data}) => {
                     </li>
                 </ul>
             </div>
+            <NavFooterMobile/>
         </PageLayout>
     )
 }
