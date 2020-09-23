@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import SwiperCore, {EffectFade, Navigation} from 'swiper'
 import Image from 'gatsby-image'
@@ -11,10 +11,16 @@ SwiperCore.use([EffectFade, Navigation]);
 import styles from './fade-image-slider.module.scss'
 import swiperArrow from '../../img/test/right-arrow.svg'
 
-const FadeImageSlider = ({images, showNavigation, setSwiperInstance}) => {
+const FadeImageSlider = ({images, showNavigation, setSwiperInstance, setClickedThumbnail}) => {
     let [swiper, setSwiper] = useState()
 
     const [currentSlide, setCurrentSlide] = useState(0)
+
+    useEffect(() => {
+        if(setClickedThumbnail){
+            setClickedThumbnail(currentSlide)
+        }
+    }, [currentSlide])
 
     return (
         <div className={styles.fadeImageContainer}>
