@@ -17,7 +17,7 @@ const FadeImageSlider = ({images, showNavigation, setSwiperInstance, setClickedT
     const [currentSlide, setCurrentSlide] = useState(0)
 
     useEffect(() => {
-        if(setClickedThumbnail){
+        if(setClickedThumbnail && currentSlide !== 0){
             setClickedThumbnail(currentSlide)
         }
     }, [currentSlide])

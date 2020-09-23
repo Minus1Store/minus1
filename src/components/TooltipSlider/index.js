@@ -38,7 +38,7 @@ const TooltipSlider = ({images, setImageClicked, clickedThumbnail, setClickedThu
 
     return(
         <div className={styles.tooltipSlider}>
-            <div onMouseMove={(e) => {setTooltipX(e.clientX - 15); setTooltipY(e.clientY + 15)}} className={styles.prevSlideButton} onClick={() => prevSlide()}>
+            <div onMouseMove={(e) => {setTooltipX(e.clientX - 15); setTooltipY(e.screenY + 15);}} className={styles.prevSlideButton} onClick={() => prevSlide()}>
                 <div className={styles.tooltip} style={{left:tooltipX,top:tooltipY}}>
                     <img src={arrow} className={styles.prevSlideTooltip}/>
                 </div>
@@ -46,7 +46,7 @@ const TooltipSlider = ({images, setImageClicked, clickedThumbnail, setClickedThu
             <div className={styles.slider} onClick={() => setImageClicked(false)}>
                 <FadeImageSlider images={images} showNavigation={false} setSwiperInstance={setSwiperInstance} setClickedThumbnail={setClickedThumbnail}/>
             </div>
-            <div onMouseMove={(e) => {setTooltipX(e.clientX - 15); setTooltipY(e.clientY + 15)}} className={styles.nextSlideButton} onClick={() => nextSlide()}>
+            <div onMouseMove={(e) => {setTooltipX(e.clientX - 15); setTooltipY(e.screenY + 15)}} className={styles.nextSlideButton} onClick={() => nextSlide()}>
                 <div className={styles.tooltip} style={{left:tooltipX,top:tooltipY}}>
                     <img src={arrow} className={styles.nextSlideTooltip}/>
                 </div>
