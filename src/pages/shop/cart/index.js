@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import {Link} from 'gatsby'
 
 import PageLayout from '../../../components/PageLayout'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
@@ -71,6 +72,30 @@ const CartPage = () => {
                                 })}
                             </tbody>
                         </table>
+                    </div>
+                    {
+                        cart.length > 0
+                        &&
+                        <div className={styles.cartSubtotal}>
+                            <p>
+                                subtotal: €{cart.map(item => item.data.price).reduce((total = 0, itemPrice) => {
+                                return total + itemPrice
+                            })}
+                            </p>
+                        </div>
+                    }
+                    <div className={styles.cartFooter}>
+                        <p>free shipping on all orders over €200, some exceptions may apply.</p>
+                        <div className={styles.secondaryLink}>
+                            <Link to={'/shop/all'}>
+                                keep shopping
+                            </Link>
+                        </div>
+                        <div className={styles.primaryLink}>
+                            <Link to={'/shop/checkout'}>
+                                checkout now
+                            </Link>
+                        </div>
                     </div>
                 </CartContainer>
             </div>
