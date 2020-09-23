@@ -207,6 +207,9 @@ export const pageQuery = graphql`
                 }
               }
             }
+            product_category{
+              uid
+            }
             price
             sizes {
               size {

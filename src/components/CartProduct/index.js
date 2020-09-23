@@ -1,15 +1,19 @@
 import React from 'react'
 import Image from 'gatsby-image'
-
+import {Link} from 'gatsby'
 
 import styles from './cart-product.module.scss'
 
 const CartProduct = ({data, removeProduct}) => {
 
+    console.log(data)
+
     return(
         <tr className={styles.cartProduct}>
             <td className={styles.productImage}>
-                <Image fluid={data.data.images[0].image.localFile.childImageSharp.fluid} alt={data.data.images[0].image.alt}/>
+                <Link to={`/shop/${data.data.product_category.uid}/${data.uid}`}>
+                    <Image fluid={data.data.images[0].image.localFile.childImageSharp.fluid} alt={data.data.images[0].image.alt}/>
+                </Link>
             </td>
             <td className={styles.productDescription}>
                 <p>{data.data.title}</p>
