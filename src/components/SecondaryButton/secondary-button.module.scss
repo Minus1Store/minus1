@@ -11,3 +11,14 @@
 .secondary-button:hover{
     background:lighten($color: #999999, $amount: 10)
 }
+
+.disabled{
+    background:white;
+    border:1px solid #999999;
+    color:#999999;
+}
+
+.disabled:hover{
+    opacity:0.5;
+    background:white;
+}

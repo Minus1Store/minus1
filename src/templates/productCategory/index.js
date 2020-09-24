@@ -26,7 +26,7 @@ const ProductCategoryPage = ({location, data}) => {
                         {data.products.edges.map(({node}) => {
                             return <div className={styles.product}>
                                 <Link to={`/shop/${node.data.product_family.document.data.product_category.document.uid}/${node.uid}`}>
-                                    <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt}/>
+                                    <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
                                     <div className={styles.productInformation}>
                                         <p>
                                             {node.data.title}
@@ -113,6 +113,19 @@ export const pageQuery = graphql`
             data {
               color_name
               title
+              sizes {
+                quantity
+                size {
+                  document {
+                    ... on PrismicSize {
+                      id
+                      data {
+                        title
+                      }
+                    }
+                  }
+                }
+              }
               images {
                 image {
                   localFile {

@@ -1,10 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Image from 'gatsby-image'
 import {Link} from 'gatsby'
 
 import styles from './cart-product.module.scss'
 
-const CartProduct = ({data, removeProduct}) => {
+const CartProduct = ({data, removeProduct, setQuantity}) => {
+
+    useEffect(() => {
+        if(data.quantity <= 0){
+            removeProduct({uid: data.uid, size:data.size})
+        }
+    }, [data.quantity])
 
     console.log(data)
 
@@ -21,7 +27,13 @@ const CartProduct = ({data, removeProduct}) => {
                 <p>Size: {data.size}</p>
             </td>
             <td className={styles.productQuantity}>
+                <button onClick={() => setQuantity({uid:data.uid,size:data.size}, data.quantity - 1)}>
+                    -
+                </button>
                 <p>{data.quantity}</p>
+                <button onClick={() => {data.data.sizes.find(size => size.size.document.data.title == data.size).quantity > data.quantity && setQuantity({uid:data.uid,size:data.size}, data.quantity + 1)}}> 
+                    +
+                </button>
             </td>
             <td className={styles.productRemove}>
                 <button onClick={() => removeProduct({uid: data.uid, size:data.size})}>
@@ -29,7 +41,7 @@ const CartProduct = ({data, removeProduct}) => {
                 </button>
             </td>
             <td className={styles.productPrice}>
-                <p>€{data.data.price}</p>
+                <p>€{data.data.price * data.quantity}</p>
             </td>
         </tr>
     )

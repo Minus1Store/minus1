@@ -108,9 +108,16 @@ const ProductPage = ({data, location}) => {
                   }
                 </div>
                 <div className={styles.actionButtons}>
+                  {
+                    data.product.data.sizes.find(size => size.size.document.data.title == selectedSize).quantity <= 0 ?
+                  <div>
+                    <SecondaryButton text={'sold out'} disabled={true}/>
+                  </div>
+                    :  
                   <div onClick={() => !alreadySelected && addProductToCart()}>
                     <PrimaryButton text={alreadySelected ? `in basket` : `add to basket`} disabled={alreadySelected ? true : false}/>
                   </div>
+                  }
                   <div>
                     <Link to={'/shop/all'}>
                       <SecondaryButton text='keep shopping'/>
@@ -212,6 +219,7 @@ export const pageQuery = graphql`
             }
             price
             sizes {
+              quantity
               size {
                 document {
                   ... on PrismicSize {

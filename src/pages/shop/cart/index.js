@@ -17,6 +17,12 @@ const CartPage = () => {
     useEffect(() => {
         if(localStorage.getItem('cart')){
             setCart(JSON.parse(localStorage.getItem('cart')))
+            cart.forEach((cartItem) => {
+                let availableQuantity = cartItem.data.sizes.find(size => size.size.document.data.title == cartItem.size).quantity
+                if(cartItem.quantity > availableQuantity){
+                    setQuantity({uid:cartItem.uid, size:cartItem.size}, availableQuantity)
+                }
+            })
         }else{
             setCart([])
         }
@@ -28,7 +34,6 @@ const CartPage = () => {
 
     const removeProduct = (product) => {
         let newArray = [...cart]
-        console.log(newArray[0].uid, product.uid)
         let indexOfItem = newArray.findIndex(item => {
             if(item.uid == product.uid && item.size == product.size){
                 return true
@@ -40,6 +45,22 @@ const CartPage = () => {
         if(indexOfItem !== -1){
             newArray.splice(indexOfItem, 1)
         }
+        setCart(newArray)
+    }
+
+    const setQuantity = (product, quantity) => {
+        let newArray = [...cart]
+        let indexOfItem = newArray.findIndex(item => {
+            if(item.uid == product.uid && item.size == product.size){
+                return true
+            }else{
+                return false
+            }
+        })
+        if(indexOfItem !== -1){
+            newArray[indexOfItem].quantity = quantity
+        }
+
         setCart(newArray)
     }
 
@@ -68,7 +89,7 @@ const CartPage = () => {
                         <table className={styles.products}>
                             <tbody>
                                 {cart.map((cartItem, index) => {
-                                    return <CartProduct key={index} removeProduct={removeProduct} data={cartItem}/>
+                                    return <CartProduct key={index} removeProduct={removeProduct} data={cartItem} setQuantity={setQuantity}/>
                                 })}
                             </tbody>
                         </table>
@@ -78,7 +99,7 @@ const CartPage = () => {
                         &&
                         <div className={styles.cartSubtotal}>
                             <p>
-                                subtotal: €{cart.map(item => item.data.price).reduce((total = 0, itemPrice) => {
+                                subtotal: €{cart.map(item => item.data.price * item.quantity).reduce((total = 0, itemPrice) => {
                                 return total + itemPrice
                             })}
                             </p>
