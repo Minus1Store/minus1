@@ -35,12 +35,14 @@
 }
 
 .product-quantity{
-    display:flex;
-    align-items: center;
-    >button{
-        border:none;
-        background:none;
-        margin:2px;
-        cursor:pointer;
+    >div{
+        display:flex;
+        align-items: center;
+        >button{
+            border:none;
+            background:none;
+            margin:2px;
+            cursor:pointer;
+        }
     }
 }

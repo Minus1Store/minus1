@@ -33,7 +33,7 @@ const StoreItem = ({data}) => {
             <p className={styles.storeAddress}>
                 {data.address}
             </p>
-            <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={data.view_map_button[0].button_link}>{data.view_map_button[0].button_text}</a>
+            <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={data.view_map_button[0].button_link.url}>{data.view_map_button[0].button_text}</a>
             <p className={styles.storeTelNumber}>
                 {data.telephone_information}
             </p>
@@ -50,7 +50,7 @@ const StoreItem = ({data}) => {
                     <div class={styles.informationBoxText}>
                         <h2>{data.title}</h2>
                         <p>{data.address}</p>
-                        <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={data.view_map_button[0].button_link}>{data.view_map_button[0].button_text}</a>
+                        <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={data.view_map_button[0].button_link.url}>{data.view_map_button[0].button_text}</a>
                         <p>{data.telephone_information}</p>
                         <div dangerouslySetInnerHTML={{__html:data.working_hours.html}}>
                         </div>
@@ -61,10 +61,11 @@ const StoreItem = ({data}) => {
                     </div>
                     <div className={styles.map}>
                         {typeof window !== 'undefined' &&
-                            <Map animate={true} center={[data.map_geolocation.latitude,data.map_geolocation.longitude]} zoom={13}>
+                            <Map animate={true} center={[data.map_geolocation.latitude,data.map_geolocation.longitude]} zoom={14}>
                                 <TileLayer
-                                    url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
-                                    attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+                                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+                                    subdomains={'abcd'}
                                 />
                             </Map>
                         }

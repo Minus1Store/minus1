@@ -27,13 +27,15 @@ const CartProduct = ({data, removeProduct, setQuantity}) => {
                 <p>Size: {data.size}</p>
             </td>
             <td className={styles.productQuantity}>
-                <button onClick={() => setQuantity({uid:data.uid,size:data.size}, data.quantity - 1)}>
-                    -
-                </button>
-                <p>{data.quantity}</p>
-                <button onClick={() => {data.data.sizes.find(size => size.size.document.data.title == data.size).quantity > data.quantity && setQuantity({uid:data.uid,size:data.size}, data.quantity + 1)}}> 
-                    +
-                </button>
+                <div>
+                    <button onClick={() => setQuantity({uid:data.uid,size:data.size}, data.quantity - 1)}>
+                        -
+                    </button>
+                    <p>{data.quantity}</p>
+                    <button onClick={() => {data.data.sizes.find(size => size.size.document.data.title == data.size).quantity > data.quantity && setQuantity({uid:data.uid,size:data.size}, data.quantity + 1)}}> 
+                        +
+                    </button>
+                </div>
             </td>
             <td className={styles.productRemove}>
                 <button onClick={() => removeProduct({uid: data.uid, size:data.size})}>
