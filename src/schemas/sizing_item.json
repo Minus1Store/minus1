@@ -1,0 +1,53 @@
+{
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "useAsTitle": true
+        }
+      }
+    },
+    "Table": {
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {
+            "row": [
+              {
+                "name": "row",
+                "display": "row"
+              }
+            ]
+          },
+          "choices": {
+            "row": {
+              "type": "Slice",
+              "fieldset": "Row",
+              "description": "Add Table Row",
+              "icon": "crop_7_5",
+              "display": "list",
+              "non-repeat": {},
+              "repeat": {
+                "column": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Column"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Other": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      }
+    }
+  }
