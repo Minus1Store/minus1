@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Link} from 'gatsby'
+import {Link, useStaticQuery, graphql} from 'gatsby'
 
 import PageLayout from '../../../components/PageLayout'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
@@ -14,37 +14,104 @@ const CartPage = () => {
 
     const [cart, setCart] = useState([])
 
-    useEffect(() => {
-        if(localStorage.getItem('cart')){
-            setCart(JSON.parse(localStorage.getItem('cart')))
-            cart.forEach((cartItem) => {
-                let availableQuantity = cartItem.data.sizes.find(size => size.size.document.data.title == cartItem.size).quantity
-                if(cartItem.quantity > availableQuantity){
-                    setQuantity({uid:cartItem.uid, size:cartItem.size}, availableQuantity)
+    const data = useStaticQuery(graphql`
+        query CartQuery{
+            allAvailableProducts:allPrismicProduct {
+                edges {
+                  node {
+                    uid
+                    data {
+                        color_name
+                        description {
+                        html
+                        }
+                        images {
+                        image {
+                            alt
+                            localFile {
+                            childImageSharp {
+                                fluid(maxWidth: 450, quality: 100) {
+                                ...GatsbyImageSharpFluid
+                                }
+                            }
+                            }
+                        }
+                        }
+                        product_category{
+                        uid
+                        }
+                        price
+                        sizes {
+                        quantity
+                        size {
+                            document {
+                            ... on PrismicSize {
+                                id
+                                data {
+                                title
+                                }
+                            }
+                            }
+                        }
+                        }
+                        title
+                    }
+                  }
+                }
+            }
+        }
+    `)
+
+    const setRealInformation = (products) => {
+        products.forEach(product => {
+            let realProduct = data.allAvailableProducts.edges.find(realProduct => {
+                if(realProduct.node.uid == product.uid){
+                    return true
                 }
             })
-        }else{
-            setCart([])
-        }
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart))
-    }, [cart])
-
-    const removeProduct = (product) => {
-        let newArray = [...cart]
-        let indexOfItem = newArray.findIndex(item => {
-            if(item.uid == product.uid && item.size == product.size){
-                return true
-            }else{
-                return false
+            
+            setCart(() => {
+                let newArray = [...products]
+                let cartProductIndex = newArray.findIndex(cartItem => {
+                    if(cartItem.uid == product.uid){
+                        return true
+                    }
+                })
+                let availableQuantity = realProduct.node.data.sizes.find(size => size.size.document.data.title == product.size).quantity
+                if(product.quantity > availableQuantity){
+                    newArray[cartProductIndex].quantity = availableQuantity
+                }
+                newArray[cartProductIndex].data = realProduct.node.data
+                return newArray
+                })
+            })
             }
-        })
+            
+            useEffect(() => {
+                if(localStorage.getItem('cart')){
+                    setRealInformation(JSON.parse(localStorage.getItem('cart')))
+                }else{
+                    setCart([])
+                }
+            }, [])
+            
+            useEffect(() => {
+                localStorage.setItem('cart', JSON.stringify(cart))
+            }, [cart])
 
-        if(indexOfItem !== -1){
-            newArray.splice(indexOfItem, 1)
-        }
+            const removeProduct = (product) => {
+                let newArray = [...cart]
+                let indexOfItem = newArray.findIndex(item => {
+                    if(item.uid == product.uid && item.size == product.size){
+                        return true
+                    }else{
+                        return false
+                    }
+                })
+                
+                if(indexOfItem !== -1){
+                    newArray.splice(indexOfItem, 1)
+                }
         setCart(newArray)
     }
 
