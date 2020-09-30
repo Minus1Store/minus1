@@ -7,8 +7,9 @@ import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import NavFooterMobile from '../../../components/NavFooterMobile'
 import SiteTree from '../../../components/SiteTree'
 import CartPopUp from '../../../components/CartPopUp'
+import SEO from '../../../components/SEO'
 
-const TermsPage = () => {
+const TermsPage = ({location}) => {
 
     const data = useStaticQuery(graphql`
         query TermsPageQuery{
@@ -16,6 +17,7 @@ const TermsPage = () => {
                 data {
                   terms_body {
                     html
+                    text
                   }
                 }
               }
@@ -34,6 +36,7 @@ const TermsPage = () => {
 
     return(
         <PageLayout>
+            <SEO titleTemplate={'%s | Terms of Service'} url={location.href} description={data.terms.data.terms_body.text}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.content}>
                     {cart.length > 0 &&

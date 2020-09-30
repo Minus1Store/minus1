@@ -11,12 +11,13 @@ import scrollbarStyle from 'swiper/components/scrollbar/scrollbar.scss';
 import PageLayout from '../../components/PageLayout'
 import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
+import SEO from '../../components/SEO'
 
 console.log(scrollbarStyle)
 
 SwiperCore.use([Scrollbar]);
 
-const News = () => {
+const News = ({location}) => {
 
     const data = useStaticQuery(graphql`
     query NewsArticlesQuery {
@@ -53,60 +54,60 @@ const News = () => {
     const archiveButtonHandler = () => {
         setArchiveOpened(prevState => !prevState)
     }
-
-    console.log(data)
-    
  
     return (
-            <React.Fragment>
-                    <PageLayout>
-                        <div className={styles.pageWrapper}>
+        <React.Fragment>        
+            <SEO titleTemplate={'%s | News'} url={location.href} description={`Here you can explore many news articles about interesting topics, such as: ${data.newsArticles.edges.map(({node}) => {
+                return `${node.data.date}: ${node.data.title}`
+            }).join(',')}`}/>
+            <PageLayout>
+                <div className={styles.pageWrapper}>
 
-                            <div className={styles.overlay}>
+                    <div className={styles.overlay}>
 
-                            </div>
-                            <Swiper
-                                slidesPerView={'auto'}
-                                centeredSlides={true}
-                                spaceBetween={30}
-                                allowTouchMove={false}
-                                scrollbar={{
-                                    draggable: true,
-                                    el:`.${styles.scrollbar}`
-                                }}
-                            >
-                                {
-                                    data.newsArticles.edges.map(({node}, index) => {
-                                        
-                                        let item = node.data;
+                    </div>
+                    <Swiper
+                        slidesPerView={'auto'}
+                        centeredSlides={true}
+                        spaceBetween={30}
+                        allowTouchMove={false}
+                        scrollbar={{
+                            draggable: true,
+                            el:`.${styles.scrollbar}`
+                        }}
+                    >
+                        {
+                            data.newsArticles.edges.map(({node}, index) => {
+                                
+                                let item = node.data;
 
-                                        if(index == 0){
-                                            return <SwiperSlide key={index} className={`${styles.slide}`}>
-                                                <div key={index}>
-                                            <NewsArticle images={item.images} heading={item.title} date={item.date} body={item.body.html} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
+                                if(index == 0){
+                                    return <SwiperSlide key={index} className={`${styles.slide}`}>
+                                        <div key={index}>
+                                    <NewsArticle images={item.images} heading={item.title} date={item.date} body={item.body.html} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
 
-                                                </div>
-                                        </SwiperSlide>
-                                        }else{
-                                            return <SwiperSlide key={index} className={`${styles.slide}  ${!archiveOpened && styles.notVisible}`}>
-                                            <div key={index}>
-                                            <NewsArticle images={item.images} heading={item.title} date={item.date} body={item.body.html} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
+                                        </div>
+                                </SwiperSlide>
+                                }else{
+                                    return <SwiperSlide key={index} className={`${styles.slide}  ${!archiveOpened && styles.notVisible}`}>
+                                    <div key={index}>
+                                    <NewsArticle images={item.images} heading={item.title} date={item.date} body={item.body.html} showArchive={index == 0} archiveButtonHandler={archiveButtonHandler}/>
 
-                                            </div>
-                                        </SwiperSlide>
-                                        }
-                                    })
+                                    </div>
+                                </SwiperSlide>
                                 }
-                            </Swiper>
-                            <div className={`${styles.scrollbar} ${!archiveOpened && styles.notVisible}`}></div>
-                        </div>
-                        
-                        <NavFooterMobile/>
-                        <div className={styles.navFooterContainer}>
-                            <NavFooterDesktop/>
-                        </div>
-                    </PageLayout>
-            </React.Fragment>
+                            })
+                        }
+                    </Swiper>
+                    <div className={`${styles.scrollbar} ${!archiveOpened && styles.notVisible}`}></div>
+                </div>
+                
+                <NavFooterMobile/>
+                <div className={styles.navFooterContainer}>
+                    <NavFooterDesktop/>
+                </div>
+            </PageLayout>
+        </React.Fragment>
     )
 }
 

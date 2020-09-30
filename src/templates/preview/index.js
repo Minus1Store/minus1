@@ -6,11 +6,15 @@ import styles from './preview.module.scss'
 import PageLayout from '../../components/PageLayout'
 import NavFooterMobile from '../../components/NavFooterMobile'
 import NavFooterDesktop from '../../components/NavFooterDesktop'
+import SEO from '../../components/SEO'
 
-const PreviewPage = ({data}) => {
+const PreviewPage = ({data, location}) => {
 
     return(
         <PageLayout>
+            <SEO titleTemplate={`%s | ${data.currentPreview.data.title} Preview`} url={location.href} description={`${data.currentPreview.data.title} Preview. Our preview products: ${data.previewFamilies.edges.map(({node}, index) =>
+                node.data.family_name
+            ).join(',')}`}/>
             <div className={styles.pageWrapper}>
                 <ul className={styles.familyThumbnails}>
                     {data.previewFamilies.edges.map(({node}, index) => { 
@@ -41,12 +45,16 @@ const PreviewPage = ({data}) => {
     query PreviewPageQuery($uid: String!){
         currentPreview:prismicPreview(uid:{eq:$uid}){
             uid
+            data{
+                title
+            }
         }
         previewFamilies:allPrismicPreviewProductFamily(limit:36, filter: {data: {preview: {uid: {eq: $uid}}}}) {
             edges {
                 node {
                   uid
                   data {
+                    family_name
                     preview{
                         uid
                     }

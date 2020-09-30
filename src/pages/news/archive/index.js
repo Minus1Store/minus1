@@ -5,8 +5,9 @@ import PageLayout from '../../../components/PageLayout'
 import NavFooterMobile from '../../../components/NavFooterMobile'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import styles from './archive.module.scss'
+import SEO from '../../../components/SEO'
 
-const Archive = () => {
+const Archive = ({location}) => {
 
     const data = useStaticQuery(graphql`
     query NewsArchiveQuery {
@@ -26,6 +27,11 @@ const Archive = () => {
 
     return(
         <PageLayout>
+            <SEO titleTemplate={'%s | News Archive'} url={location.href} description={`News titles: ${data.newsArticles.edges.map(
+                ({node}) => {
+                    return `${node.data.date}: ${node.data.title}`
+                }
+            ).join(',')}`}/>
             <div className={styles.pageWrapper}>
                 <h2 className={styles.sectionTitle}>news archive</h2>
                 <div className={styles.newsContainer}>

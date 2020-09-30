@@ -12,6 +12,7 @@ import SecondaryButton from '../../components/SecondaryButton'
 import ShopThumbnails from '../../components/ShopThumbnails'
 import SiteTree from '../../components/SiteTree'
 import CartPopUp from '../../components/CartPopUp'
+import SEO from '../../components/SEO'
 
 const ProductPage = ({data, location}) => {
 
@@ -77,6 +78,7 @@ const ProductPage = ({data, location}) => {
 
     return(
         <PageLayout>
+            <SEO titleTemplate={`%s | Product ${data.product.data.title} ${data.product.data.color_name}`} url={location.href} description={`Product ${data.product.data.title}. Color ${data.product.data.color_name}. Price €${data.product.data.price}. About product: ${data.product.data.description.text}. Sizes: ${data.product.data.sizes.map(({size}) => size).join(',')}`}/>
             <div className={styles.pageWrapper}>
               <div className={styles.mainImageContainer}>
                 {data.product.data.images.map(({image}, index) => {
@@ -201,6 +203,7 @@ export const pageQuery = graphql`
             color_name
             description {
               html
+              text
             }
             images {
               image {

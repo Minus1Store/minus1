@@ -6,8 +6,9 @@ import styles from './stores.module.scss'
 import StoreItem from '../../components/StoreItem'
 import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
+import SEO from '../../components/SEO'
 
-const Stores = () => {
+const Stores = ({location}) => {
 
     const data = useStaticQuery(graphql`
     query StoresQuery {
@@ -44,6 +45,7 @@ const Stores = () => {
                 }
                 working_hours {
                   html
+                  text
                 }
               }
             }
@@ -52,24 +54,27 @@ const Stores = () => {
       }          
     `)
 
-     return (
-     <PageLayout>
-            <div className={styles.pageWrapper}>
-                <div className={styles.storesContainer}>
-                    {
-                        data.stores.edges.map(({node}, index) => {
-                            return <StoreItem data={node.data} key={index}/>
-                        })
-                    }
-                </div>
-            </div>
-            
-            <NavFooterMobile/>
-            <div className={styles.navFooterContainer}>
-                <NavFooterDesktop/>
-            </div>
-        </PageLayout>
-     )
+    return (
+    <PageLayout>
+      <SEO titleTemplate={'%s | Stores'} url={location.href} description={`${data.stores.edges.map(({node}) => {
+        return `Store: ${node.data.title}. Location: ${node.data.address}. Phone Number: ${node.data.telephone_information}. Working hours: ${node.data.working_hours.text}`
+      }).join(',')}`}/>
+      <div className={styles.pageWrapper}>
+          <div className={styles.storesContainer}>
+              {
+                  data.stores.edges.map(({node}, index) => {
+                      return <StoreItem data={node.data} key={index}/>
+                  })
+              }
+          </div>
+      </div>
+      
+      <NavFooterMobile/>
+      <div className={styles.navFooterContainer}>
+          <NavFooterDesktop/>
+      </div>
+    </PageLayout>
+    )
 }
 
 export default Stores

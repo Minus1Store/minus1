@@ -10,10 +10,14 @@ import ShopFilters from '../../components/ShopFilters'
 import ProductsContainer from '../../components/ProductsContainer'
 import ProductThumbnail from '../../components/ProductThumbnail'
 import SiteTree from '../../components/SiteTree'
+import SEO from '../../components/SEO'
 
 const ProductCategoryPage = ({location, data}) => {
     return (
         <PageLayout>
+          <SEO titleTemplate={`%s | Shop ${data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category}`} url={location.href} description={`All shop ${data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category}. Products: ${data.products.edges.map(({node}) => {
+            return `${node.data.color_name} ${node.data.title}`
+          }).join(',')}`}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.productContainer}>
                     <div className={styles.filters}>
@@ -119,9 +123,6 @@ export const pageQuery = graphql`
                   document {
                     ... on PrismicSize {
                       id
-                      data {
-                        title
-                      }
                     }
                   }
                 }
@@ -146,6 +147,9 @@ export const pageQuery = graphql`
                         document {
                           ... on PrismicProductCategory {
                             uid
+                            data {
+                              product_category
+                            }
                           }
                         }
                       }

@@ -9,8 +9,9 @@ import FadeImageSlider from '../../components/FadeImageSlider'
 import SliderPopUp from '../../components/SliderPopUp'
 import NavFooterMobile2 from '../../components/NavFooterMobile2'
 import NavFooterMobile from '../../components/NavFooterMobile'
+import SEO from '../../components/SEO'
 
-const LookbookPage = ({data}) => {
+const LookbookPage = ({data, location}) => {
 
     const [swiperInstance, setSwiperInstance] = useState(null)
     const [clickedThumbnail, setClickedThumbnail] = useState(0)
@@ -25,6 +26,9 @@ const LookbookPage = ({data}) => {
 
     return(
         <PageLayout showHeader={false}>
+            <SEO titleTemplate={`%s | ${data.currentLookBook.data.title} Lookbook`} url={location.href} description={`${data.currentLookBook.data.title} Lookbook. Lookbook items: ${data.lookbookProducts.edges.map(({node}) => {
+                return node.data.description.text
+            }).join(',')}`}/>
             <div className={styles.mobileLogo}>
                 <Header/>
             </div>
@@ -114,6 +118,7 @@ export const pageQuery = graphql`
                 data {
                   description {
                     html
+                    text
                   }
                   image:product_image{
                       alt

@@ -9,8 +9,9 @@ import CartContainer from '../../../components/CartContainer'
 import CartHeader from '../../../components/CartHeader'
 import CartHeaderItem from '../../../components/CartHeaderItem'
 import CartProduct from '../../../components/CartProduct'
+import SEO from '../../../components/SEO'
 
-const CartPage = () => {
+const CartPage = ({location}) => {
 
     const [cart, setCart] = useState([])
 
@@ -38,7 +39,7 @@ const CartPage = () => {
                         }
                         }
                         product_category{
-                        uid
+                            uid
                         }
                         price
                         sizes {
@@ -134,6 +135,7 @@ const CartPage = () => {
 
     return(
         <PageLayout>
+            <SEO titleTemplate={'%s | Cart'} url={location.href} description={`This is your own cart. Here will appear everything you want to buy from our site so feel free to find something you like.`}/>
             <div className={styles.pageWrapper}>
                 <CartContainer>
                     <CartHeader>

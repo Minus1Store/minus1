@@ -6,10 +6,12 @@ import PageLayout from '../../components/PageLayout'
 import NavFooterMobile from '../../components/NavFooterMobile'
 import NavFooterDesktop from '../../components/NavFooterDesktop'
 import styles from './news-article.module.scss'
+import SEO from '../../components/SEO'
 
-const NewsArticlePage = ({data}) => {
+const NewsArticlePage = ({data, location}) => {
     return(
         <PageLayout>
+            <SEO titleTemplate={`%s | News: ${data.article.data.title}`} url={location.href} description={`Read about ${data.article.data.title}. ${data.article.data.body.text}`}/>
             <div className={styles.pageWrapper}>
                 <NewsArticle images={data.article.data.images} heading={data.article.data.title} date={data.article.data.date} body={data.article.data.body.html} showArchive={false}/>
             </div>
@@ -39,7 +41,8 @@ export const pageQuery = graphql`
             }
             title
             body {
-            html
+                text
+                html
             }
         }
         }

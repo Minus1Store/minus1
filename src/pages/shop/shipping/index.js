@@ -7,8 +7,9 @@ import SiteTree from '../../../components/SiteTree'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import NavFooterMobile from '../../../components/NavFooterMobile'
 import CartPopUp from '../../../components/CartPopUp'
+import SEO from '../../../components/SEO'
 
-const ShippingPage = () => {
+const ShippingPage = ({location}) => {
 
     const data = useStaticQuery(graphql`
         query ShippingPageQuery{
@@ -16,6 +17,7 @@ const ShippingPage = () => {
                 data {
                   shipping_body {
                     html
+                    text
                   }
                 }
               }
@@ -34,6 +36,7 @@ const ShippingPage = () => {
 
     return(
         <PageLayout>
+            <SEO titleTemplate={'%s | Shipping'} url={location.href} description={data.shipping.data.shipping_body.text}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.content}>
                     {cart.length > 0 &&

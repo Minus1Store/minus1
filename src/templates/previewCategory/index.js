@@ -9,10 +9,20 @@ import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 import PreviewFilters from '../../components/PreviewFilters'
 import ProductsContainer from '../../components/ProductsContainer'
 import ProductThumbnail from '../../components/ProductThumbnail'
+import SEO from '../../components/SEO'
 
 const PreviewCategoryPage = ({location, data}) => {
     return (
         <PageLayout>
+            <SEO titleTemplate={`%s | Preview ${data.productCategories.edges[0].node.data.product_category}`} url={location.href} description={`${data.productCategories.edges[0].node.data.product_category} Preview. ${data.products.edges.reduce((accumulator, currentValue) => {
+                    if(accumulator){
+                        return accumulator.find(item => item.node.data.product_family.uid == currentValue.node.data.product_family.uid) ? [...accumulator] : [...accumulator, currentValue]
+                    }else{
+                        return [currentValue]
+                    }
+            }, []).map(({node}) => {
+                return `${node.data.title}: ${node.data.description.text}`
+            }).join(',')}`}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.productContainer}>
                     <div className={styles.filters}>
@@ -77,6 +87,9 @@ export const pageQuery = graphql`
           node {
             data {
               title
+              description{
+                  text
+              }
               images {
                 image {
                   localFile {

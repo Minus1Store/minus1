@@ -7,8 +7,9 @@ import SiteTree from '../../../components/SiteTree'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import NavFooterMobile from '../../../components/NavFooterMobile'
 import CartPopUp from '../../../components/CartPopUp'
+import SEO from '../../../components/SEO'
 
-const ShippingPage = () => {
+const ShippingPage = ({location}) => {
 
     const data = useStaticQuery(graphql`
         query SizingPageQuery{
@@ -44,6 +45,9 @@ const ShippingPage = () => {
 
     return(
         <PageLayout>
+            <SEO titleTemplate={'%s | Sizing'} url={location.href} description={`Here you can find and see what size match your taste for these products: ${data.sizingItems.edges.map(({node}) => {
+                return node.data.body[0].items[0].column
+            }).join(',')}`}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.content}>
                     {cart.length > 0 &&

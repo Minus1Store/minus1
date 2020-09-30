@@ -7,8 +7,10 @@ import SiteTree from '../../../components/SiteTree'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import NavFooterMobile from '../../../components/NavFooterMobile'
 import CartPopUp from '../../../components/CartPopUp'
+import SEO from '../../../components/SEO'
 
-const FAQPage = () => {
+
+const FAQPage = ({location}) => {
 
     const data = useStaticQuery(graphql`
         query FAQPageQuery{
@@ -16,6 +18,7 @@ const FAQPage = () => {
                 data {
                   faq_body {
                     html
+                    text
                   }
                 }
               }
@@ -34,6 +37,7 @@ const FAQPage = () => {
 
     return(
         <PageLayout>
+            <SEO titleTemplate={'%s | F.A.Q.'} url={location.href} description={`${data.faq.data.faq_body.text}`}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.content}>
                     {cart.length > 0 &&

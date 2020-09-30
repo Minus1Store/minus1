@@ -5,8 +5,9 @@ import PageLayout from '../../components/PageLayout'
 import styles from './about.module.scss'
 import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
+import SEO from '../../components/SEO'
 
-const AboutPage = () => {
+const AboutPage = ({location}) => {
 
     const data = useStaticQuery(graphql`
     query AboutPageQuery {
@@ -16,6 +17,7 @@ const AboutPage = () => {
               data {
                 body {
                   html
+                  text
                 }
               }
             }
@@ -27,14 +29,15 @@ const AboutPage = () => {
 
     return(
         <PageLayout>
-            <div className={styles.pageWrapper}>
-                <div className={styles.aboutContainer} dangerouslySetInnerHTML={{__html:data.aboutPage.edges[0].node.data.body.html}}>
-                </div>
-            </div>            
-            <NavFooterMobile/>
-            <div className={styles.navFooterContainer}>
-                <NavFooterDesktop/>
-            </div>
+          <SEO titleTemplate={'%s | About'} url={location.href} description={data.aboutPage.edges[0].node.data.body.text}/>
+          <div className={styles.pageWrapper}>
+              <div className={styles.aboutContainer} dangerouslySetInnerHTML={{__html:data.aboutPage.edges[0].node.data.body.html}}>
+              </div>
+          </div>            
+          <NavFooterMobile/>
+          <div className={styles.navFooterContainer}>
+              <NavFooterDesktop/>
+          </div>
         </PageLayout>
     )
 }

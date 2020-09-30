@@ -8,6 +8,7 @@ import Header from '../../components/Header/index'
 import TooltipSlider from '../../components/TooltipSlider'
 import swiperArrow from '../../img/test/right-arrow.svg'
 import queryString from 'query-string'
+import SEO from '../../components/SEO'
 
 const PreviewProductPage = ({data, location}) => {
 
@@ -73,6 +74,9 @@ const PreviewProductPage = ({data, location}) => {
 
     return(
         <PageLayout showHeader={false}>
+            <SEO titleTemplate={`%s | Preview ${productDescriptions()[0].data.title}`} url={location.href} description={`Preview for ${productDescriptions()[0].data.title}. Products: ${data.previewProducts.edges.map(({node}) => {
+                return `${node.data.title}: ${node.data.description.text}`
+            }).join(',')}`}/>
             <div className={styles.mobileLogo}>
                 <Header/>
             </div>
@@ -140,6 +144,7 @@ export const pageQuery = graphql`
                         title
                         description{
                             html
+                            text
                         }
                         preview{
                             uid

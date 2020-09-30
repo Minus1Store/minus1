@@ -7,8 +7,9 @@ import SiteTree from '../../../components/SiteTree'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import NavFooterMobile from '../../../components/NavFooterMobile'
 import CartPopUp from '../../../components/CartPopUp'
+import SEO from '../../../components/SEO'
 
-const PrivacyPage = () => {
+const PrivacyPage = ({location}) => {
 
     const [cart, setCart] = useState([])
 
@@ -18,6 +19,7 @@ const PrivacyPage = () => {
                 data {
                   privacy_body {
                     html
+                    text
                   }
                 }
               }
@@ -34,6 +36,7 @@ const PrivacyPage = () => {
 
     return(
         <PageLayout>
+            <SEO titleTemplate={'%s | Privacy Policy'} url={location.href} description={data.privacy.data.privacy_body.text}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.content}>
                     {cart.length > 0 &&

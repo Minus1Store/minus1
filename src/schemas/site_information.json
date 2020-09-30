@@ -1,0 +1,36 @@
+{
+    "Main" : {
+      "title" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Title"
+        }
+      },
+      "title_template" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Title Template"
+        }
+      },
+      "description" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Description"
+        }
+      },
+      "url" : {
+        "type" : "Link",
+        "config" : {
+          "label" : "URL"
+        }
+      },
+      "image" : {
+        "type" : "Image",
+        "config" : {
+          "constraint" : { },
+          "thumbnails" : [ ],
+          "label" : "Logo"
+        }
+      }
+    }
+  }

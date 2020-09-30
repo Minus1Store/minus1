@@ -4,27 +4,7 @@ require('dotenv').config({
 
 const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
 
-const website = require('./config/website')
-
-const pathPrefix = website.pathPrefix === '/' ? '' : website.pathPrefix
-
 module.exports = {
-  /* General Information */
-  pathPrefix: website.pathPrefix,
-  siteMetadata: {
-    siteUrl: website.url + pathPrefix, // For gatsby-plugin-sitemap
-    pathPrefix,
-    title: website.title,
-    titleAlt: website.titleAlt,
-    description: website.description,
-    banner: website.logo,
-    headline: website.headline,
-    siteLanguage: website.siteLanguage,
-    ogLanguage: website.ogLanguage,
-    author: website.author,
-    twitter: website.twitter,
-    facebook: website.facebook,
-  },
   /* Plugins */
   plugins: [
     'gatsby-plugin-sass',
@@ -65,6 +45,7 @@ module.exports = {
           'preview_product_family': require('./src/schemas/preview_product_family.json'),
           'preview_product': require('./src/schemas/preview_product.json'),
           'sizing_item': require('./src/schemas/sizing_item.json'),
+          'site_information': require('./src/schemas/site_information.json'),
         },
         shouldDownloadImage: ({ node, key, value }) => {
           return true
@@ -104,26 +85,26 @@ module.exports = {
         display: 'swap'
       }
     },
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: website.googleAnalyticsID,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-google-analytics',
+    //   options: {
+    //     trackingId: website.googleAnalyticsID,
+    //   },
+    // },
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: website.title,
-        short_name: website.titleAlt,
-        description: website.description,
-        start_url: pathPrefix,
-        background_color: website.backgroundColor,
-        theme_color: website.themeColor,
-        display: 'standalone',
-        icon: website.favicon,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-manifest',
+    //   options: {
+    //     name: website.title,
+    //     short_name: website.titleAlt,
+    //     description: website.description,
+    //     start_url: pathPrefix,
+    //     background_color: website.backgroundColor,
+    //     theme_color: website.themeColor,
+    //     display: 'standalone',
+    //     icon: website.favicon,
+    //   },
+    // },
     // Must be placed at the end
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
