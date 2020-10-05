@@ -91,7 +91,7 @@ module.exports = {
     //     trackingId: website.googleAnalyticsID,
     //   },
     // },
-    'gatsby-plugin-sitemap',
+    // 'gatsby-plugin-sitemap',
     // {
     //   resolve: 'gatsby-plugin-manifest',
     //   options: {
