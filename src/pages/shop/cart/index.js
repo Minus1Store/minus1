@@ -142,8 +142,14 @@ const CartPage = ({location}) => {
                         <CartHeaderItem active={true}>
                             View/edit basket
                         </CartHeaderItem>
-                        <CartHeaderItem disabled={true}>
-                            Shipping / Payment
+                        <CartHeaderItem disabled={cart.length <= 0 && true}>
+                            {cart.length > 0 ?
+                            <Link to='/shop/checkout'>
+                                Shipping / Payment
+                            </Link>
+                            :
+                            `Shipping / Payment`
+                            }
                         </CartHeaderItem>
                         <CartHeaderItem disabled={true}>
                             Confirmation

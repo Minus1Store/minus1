@@ -4,15 +4,13 @@ import {Link} from 'gatsby'
 
 import styles from './cart-product.module.scss'
 
-const CartProduct = ({data, removeProduct, setQuantity}) => {
+const CartProduct = ({data, removeProduct, setQuantity, presentational}) => {
 
     useEffect(() => {
         if(data.quantity <= 0){
             removeProduct({uid: data.uid, size:data.size})
         }
     }, [data.quantity])
-
-    console.log(data)
 
     return(
         <tr className={styles.cartProduct}>
@@ -28,20 +26,29 @@ const CartProduct = ({data, removeProduct, setQuantity}) => {
             </td>
             <td className={styles.productQuantity}>
                 <div>
-                    <button onClick={() => setQuantity({uid:data.uid,size:data.size}, data.quantity - 1)}>
-                        -
-                    </button>
+                    {
+                        !presentational &&
+                        <button onClick={() => setQuantity({uid:data.uid,size:data.size}, data.quantity - 1)}>
+                            -
+                        </button>
+                    }
                     <p>{data.quantity}</p>
-                    <button onClick={() => {data.data.sizes.find(size => size.size.document.data.title == data.size).quantity > data.quantity && setQuantity({uid:data.uid,size:data.size}, data.quantity + 1)}}> 
-                        +
-                    </button>
+                    {
+                        !presentational &&
+                        <button onClick={() => {data.data.sizes.find(size => size.size.document.data.title == data.size).quantity > data.quantity && setQuantity({uid:data.uid,size:data.size}, data.quantity + 1)}}> 
+                            +
+                        </button>
+                    }
                 </div>
             </td>
-            <td className={styles.productRemove}>
-                <button onClick={() => removeProduct({uid: data.uid, size:data.size})}>
-                    Remove
-                </button>
-            </td>
+            {
+                !presentational &&
+                <td className={styles.productRemove}>
+                    <button onClick={() => removeProduct({uid: data.uid, size:data.size})}>
+                        Remove
+                    </button>
+                </td>
+            }
             <td className={styles.productPrice}>
                 <p>€{data.data.price * data.quantity}</p>
             </td>

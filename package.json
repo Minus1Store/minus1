@@ -63,6 +63,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-leaflet": "^2.7.0",
+    "react-paypal-button-v2": "^2.6.2",
     "react-spring": "^8.0.27",
     "react-transition-group": "^4.4.1",
     "react-typography": "^0.16.19",

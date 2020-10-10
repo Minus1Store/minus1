@@ -1,0 +1,127 @@
+@import '../../../styles/breakpoints.scss';
+
+.nav-footer-container{
+    display:flex;
+    margin:auto;
+    width:670px;
+    justify-content: space-between;
+}
+
+.page-wrapper{
+    width:100%;
+    height:auto;
+    margin:auto;
+    margin-bottom:50px;
+    @include breakpoint(lg){
+        margin-bottom:0px;
+        margin-top:25px;
+        width:670px;
+    }
+}
+
+.cart-body{
+    overflow-y:auto;
+    max-height:50vh;
+    display: flex;
+    flex-direction: column;
+    padding-top:20px;
+    @include breakpoint(lg){
+        height:280px;
+        max-height: unset;
+    }
+}
+
+.cart-body::-webkit-scrollbar{
+    background: #D6D6D6;
+    width:5px;
+}
+
+.cart-body::-webkit-scrollbar-thumb{
+    background: #B5B5B5;
+}
+
+.cart-body::-webkit-scrollbar-thumb:hover{
+    background:#A1A1A1;
+}
+
+.cart-subtotal{
+    display:block;
+    width:fit-content;
+    margin-left:auto;
+    border:1px dotted #959595;
+    padding:5px 12.5px;
+    p{
+        margin:0;
+        padding:0;
+        font-size:0.75rem;
+    }
+}
+
+.cart-footer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border:1px dotted #959595;
+    @include breakpoint(lg){
+        flex-direction: row;
+    }
+    > p, > div{
+        padding:5px;
+    }
+    > p{
+        margin:0;
+        font-size:0.7rem;
+        color:red;
+        font-weight: 700;
+    }
+}
+
+.secondary-link{
+    margin-left:auto;
+    a{
+        width: max-content;
+        padding:10px;
+        background:black;
+        text-decoration: none;
+        color:white;
+        display:block;
+        font-size:0.75rem;
+    }
+}
+
+.primary-link{
+    a{
+        width: max-content;
+        padding:10px 35px;
+        background:red;
+        text-decoration: none;
+        color:white;
+        display:block;
+        font-size:0.75rem;
+    }
+}
+
+.aligned-left{
+    text-align: left;
+    margin:0;
+}
+
+.products{
+    border-collapse: collapse;
+    tr{
+        border:1px dotted #959595;
+        height:auto;
+    }
+    td{
+        padding:0;
+        padding:10px;
+        
+    }
+    p{
+        font-size:0.85rem;
+    }
+    width:400px;
+    @include breakpoint(lg){ 
+        width:100%;
+    }
+}
