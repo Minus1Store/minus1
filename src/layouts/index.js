@@ -3,7 +3,7 @@ import {
     TransitionGroup,
     Transition as ReactTransition,
   } from "react-transition-group"
-
+import styles from './layout.module.scss'
 
 const timeout = 450
 const getTransitionStyles = {
