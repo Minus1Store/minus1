@@ -22,7 +22,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-prismic',
       options: {
-        repositoryName: 'mladenovic',
+        repositoryName: 'minus1',
         accessToken: `${process.env.PRISMIC_API_KEY}`,
         schemas: {
           'home_page': require('./src/schemas/home_page.json'),
