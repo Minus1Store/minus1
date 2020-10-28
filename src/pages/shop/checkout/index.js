@@ -210,7 +210,9 @@ const CheckoutPage = ({location}) => {
 
                         }
                         {payOnArrivalToggled &&
-                            <PayOnArrivalForm products={cart}/>
+                            <PayOnArrivalForm products={cart} price={cart.map(item => item.data.price * item.quantity).reduce((total = 0, itemPrice) => {
+                                return total + itemPrice
+                            })}/>
                         }
                     </div>
                     {

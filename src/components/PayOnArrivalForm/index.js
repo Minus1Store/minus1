@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import styles from './pay-on-arrival-form.module.scss'
 import PrimaryButton from '../PrimaryButton'
 
-const PayOnArrivalForm = ({products}) => {
+const PayOnArrivalForm = ({products, price}) => {
 
     const [firstName, setFirstName] = useState(undefined)
     const [lastName, setLastName] = useState(undefined)
@@ -12,6 +12,7 @@ const PayOnArrivalForm = ({products}) => {
     const [message, setMessage] = useState(undefined)
     const [errorMessage, setErrorMessage] = useState(undefined)
     const [successMessage, setSuccessMessage] = useState(undefined)
+    console.log(price)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -31,7 +32,7 @@ const PayOnArrivalForm = ({products}) => {
         } else {
           setErrorMessage(undefined)
           fetch(
-            `/.netlify/functions/contact-form?firstName=${firstName}&lastName=${lastName}&email=${email}&address=${address}&message=${message}&products=${JSON.stringify(products)}`,
+            `/.netlify/functions/pay-on-arrival-form?firstName=${firstName}&lastName=${lastName}&email=${email}&address=${address}&message=${message}&products=${JSON.stringify(products)}&price=${price}`,
             {
               headers: {
                 Accept: 'application/json',

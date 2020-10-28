@@ -19,13 +19,7 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp', 
-    {
-      resolve: `gatsby-plugin-netlify-functions`,
-      options: {
-        functionsSrc: `${__dirname}/lambda`,
-        functionsOutput: `${__dirname}/functions`,
-      },
-    },
+    
     {
       resolve: 'gatsby-source-prismic',
       options: {
@@ -115,5 +109,12 @@ module.exports = {
     // Must be placed at the end
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
+    {
+      resolve: `gatsby-plugin-netlify-functions`,
+      options: {
+        functionsSrc: `${__dirname}/lambda`,
+        functionsOutput: `${__dirname}/functions`,
+      },
+    },
   ],
 }
