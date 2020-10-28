@@ -10,9 +10,12 @@ import CartHeaderItem from '../../../components/CartHeaderItem'
 import styles from './checkout.module.scss'
 import CartHeader from '../../../components/CartHeader'
 import SEO from '../../../components/SEO'
+import PayOnArrivalForm from '../../../components/PayOnArrivalForm'
+import PrimaryButton from '../../../components/PrimaryButton'
 
 const CheckoutPage = ({location}) => {
 
+    const [payOnArrivalToggled, setPayOnArrivalToggled] = useState(false)
     const [cart, setCart] = useState([])
 
     const data = useStaticQuery(graphql`
@@ -198,6 +201,16 @@ const CheckoutPage = ({location}) => {
                         currency: 'EUR',
                         }}
                     />
+                        }
+                        {
+                            !payOnArrivalToggled &&
+                            <div onClick={() => setPayOnArrivalToggled(true)}>
+                                <PrimaryButton text='Pay on arrival'/>
+                            </div>
+
+                        }
+                        {payOnArrivalToggled &&
+                            <PayOnArrivalForm/>
                         }
                     </div>
                     {
