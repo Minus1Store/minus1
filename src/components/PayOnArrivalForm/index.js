@@ -12,7 +12,6 @@ const PayOnArrivalForm = ({products, price}) => {
     const [message, setMessage] = useState(undefined)
     const [errorMessage, setErrorMessage] = useState(undefined)
     const [successMessage, setSuccessMessage] = useState(undefined)
-    console.log(price)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -32,12 +31,12 @@ const PayOnArrivalForm = ({products, price}) => {
         } else {
           setErrorMessage(undefined)
           fetch(
-            `/.netlify/functions/pay-on-arrival-form?firstName=${firstName}&lastName=${lastName}&email=${email}&address=${address}&message=${message}&products=${JSON.stringify(products)}&price=${price}`,
+            `/.netlify/functions/pay-on-arrival-form?firstName=${firstName}&lastName=${lastName}&email=${email}&address=${address}&message=${message}&price=${price}&products=${JSON.stringify(products.map(product => {return{quantity:product.quantity, title:product.data.title, color: product.data.color_name, size: product.size, uid:product.uid}}))}`,
             {
-              headers: {
+            headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-              },
+                }, 
               method: 'POST',
             }
           )
@@ -50,7 +49,6 @@ const PayOnArrivalForm = ({products, price}) => {
               }
             })
             .catch((error) => {
-              console.log(error)
               setErrorMessage(
                 'There was some error while trying to send your email. Try later!'
               )

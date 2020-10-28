@@ -12,6 +12,7 @@ sgMail.setApiKey(SENDGRID_API_KEY);
 
 exports.handler = async function (event, context) {
   const data = event.queryStringParameters;
+  console.log(JSON.parse(data.products));
   const msgToSeller = {
     to: SENDGRID_TO_EMAIL,
     from: data.email,
@@ -46,8 +47,8 @@ exports.handler = async function (event, context) {
                 ${JSON.parse(data.products).map(product => {
       return `<tr>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.quantity}</td>
-                        <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.data.title}</td>
-                        <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.data.color_name}</td>
+                        <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.title}</td>
+                        <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.color}</td>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.size}</td>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.uid}</td>
                     </tr>`;
@@ -92,8 +93,8 @@ exports.handler = async function (event, context) {
                 ${JSON.parse(data.products).map(product => {
       return `<tr>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.quantity}</td>
-                        <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.data.title}</td>
-                        <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.data.color_name}</td>
+                        <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.title}</td>
+                        <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.color}</td>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.size}</td>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.uid}</td>
                     </tr>`;
