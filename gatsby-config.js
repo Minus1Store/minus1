@@ -20,6 +20,13 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp', 
     {
+      resolve: `gatsby-plugin-netlify-functions`,
+      options: {
+        functionsSrc: `${__dirname}/lambda`,
+        functionsOutput: `${__dirname}/functions`,
+      },
+    },
+    {
       resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'minus1',

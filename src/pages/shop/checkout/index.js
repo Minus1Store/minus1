@@ -210,7 +210,7 @@ const CheckoutPage = ({location}) => {
 
                         }
                         {payOnArrivalToggled &&
-                            <PayOnArrivalForm/>
+                            <PayOnArrivalForm products={cart}/>
                         }
                     </div>
                     {
