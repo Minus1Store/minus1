@@ -15,7 +15,7 @@ import SEO from '../../components/SEO'
 const ProductCategoryPage = ({location, data}) => {
     return (
         <PageLayout>
-          <SEO titleTemplate={`%s | Shop ${data.products && data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category}`} url={location.href} description={`All shop ${data.products && data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category}. Products: ${data.products && data.products.edges.map(({node}) => {
+          <SEO titleTemplate={`%s | Shop ${data.products.edges && data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category}`} url={location.href} description={`All shop ${data.products.edges && data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category}. Products: ${data.products.edges && data.products.edges.map(({node}) => {
             return `${node.data.color_name} ${node.data.title}`
           }).join(',')}`}/>
             <div className={styles.pageWrapper}>
