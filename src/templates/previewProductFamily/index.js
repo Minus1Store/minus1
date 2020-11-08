@@ -21,9 +21,11 @@ const PreviewProductPage = ({data, location}) => {
 
         let imageArray = []
 
-        data.previewProducts.edges.forEach(({node}) => {
-            node.data.images.forEach(image => imageArray.push(image))
-        })
+        if(data.previewProducts){
+            data.previewProducts.edges.forEach(({node}) => {
+                node.data.images.forEach(image => imageArray.push(image))
+            })
+        }
 
         return imageArray
     }
@@ -31,11 +33,13 @@ const PreviewProductPage = ({data, location}) => {
     let productDescriptions = () => {
         let descriptionArray = []
 
-        data.previewProducts.edges.forEach(({node}) => {
-            node.data.images.forEach(() => {
-                descriptionArray.push({data:node.data, uid:node.uid})
-        })
-        })
+        if(data.previewProducts){
+            data.previewProducts.edges.forEach(({node}) => {
+                node.data.images.forEach(() => {
+                    descriptionArray.push({data:node.data, uid:node.uid})
+            })
+            })
+        }
 
         return descriptionArray
     }
@@ -74,7 +78,7 @@ const PreviewProductPage = ({data, location}) => {
 
     return(
         <PageLayout showHeader={false}>
-            <SEO titleTemplate={`%s | Preview ${productDescriptions()[0].data.title}`} url={location.href} description={`Preview for ${productDescriptions()[0].data.title}. Products: ${data.previewProducts.edges.map(({node}) => {
+            <SEO titleTemplate={`%s | Preview ${productDescriptions()[0].data.title}`} url={location.href} description={`Preview for ${productDescriptions()[0].data.title}. Products: ${data.previewProducts && data.previewProducts.edges.map(({node}) => {
                 return `${node.data.title}: ${node.data.description.text}`
             }).join(',')}`}/>
             <div className={styles.mobileLogo}>
@@ -82,7 +86,10 @@ const PreviewProductPage = ({data, location}) => {
             </div>
             <div className={styles.pageWrapper}>
                 <div className={styles.slider}>
-                    <TooltipSlider images={productImages()} clickedThumbnail={clickedThumbnail} setClickedThumbnail={setClickedThumbnail} setImageClicked={setImageClicked}/>
+                    {
+                        productImages() &&
+                        <TooltipSlider images={productImages()} clickedThumbnail={clickedThumbnail} setClickedThumbnail={setClickedThumbnail} setImageClicked={setImageClicked}/>
+                    }
                 </div>
                 <div className={styles.lookBookHeader}>
                     <div>
@@ -90,7 +97,7 @@ const PreviewProductPage = ({data, location}) => {
                             <Header/>
                         </div>
                         <div className={styles.lookBookItemInformation}>
-                            {productDescriptions().map(({data, uid}, index) => {
+                            {productDescriptions() && productDescriptions().map(({data, uid}, index) => {
                                 if(index == clickedThumbnail){
                                     return <React.Fragment>
                                         <h2 className={styles.lookBookTitle}>
@@ -110,11 +117,14 @@ const PreviewProductPage = ({data, location}) => {
                                 }
                             }} className={`${styles.swiperPrevEl} ${clickedThumbnail == 0 && styles.invisible}`} src={swiperArrow} alt='prev slide' />
                             {clickedThumbnail + 1} of {productImages().length}
+                            {
+                                productImages() &&
                             <img onClick={() => {
                                 if(productImages().length - 1 > clickedThumbnail){
                                     setClickedThumbnail(prevState => prevState + 1)
                                 }
                             }} className={`${styles.swiperNextEl} ${clickedThumbnail == productImages().length - 1 && styles.invisible}`} src={swiperArrow} alt='next slide'/>
+                            }
                         </div>
                         <div className={styles.navigationButton} onClick={() => window && window.history.back()}>
                             back
@@ -126,7 +136,10 @@ const PreviewProductPage = ({data, location}) => {
             !imageClicked && 
             <div className={styles.imagePopUp}>
                 <div className={styles.image} onClick={() => setImageClicked(true)}>
-                    <Image fluid={productImages()[clickedThumbnail].image.localFile.childImageSharp.fluid} alt={productImages()[clickedThumbnail].image.localFile.childImageSharp.fluid}/>
+                    {
+                        productImages() &&
+                        <Image fluid={productImages()[clickedThumbnail].image.localFile.childImageSharp.fluid} alt={productImages()[clickedThumbnail].image.localFile.childImageSharp.fluid}/>
+                    }
                 </div>
             </div>
             }

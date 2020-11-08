@@ -57,7 +57,7 @@ const ShippingPage = ({location}) => {
                     }
                     <div className={styles.termsContainer}>
                         {
-                            data.sizingItems.edges.map((table, index) => {
+                            data.sizingItems && data.sizingItems.edges.map((table, index) => {
                                 return <table className={styles.sizingItem} key={index}>
                                     {table.node.data.body.map((row, index) => {
                                         if(index == 0){

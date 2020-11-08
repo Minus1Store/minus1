@@ -29,11 +29,9 @@ const Social = () => {
       }
     `)
 
-    console.log(data.socialNetworks.edges[0].node.data)
-
     return (
         <div className={styles.social}>
-            {data.socialNetworks.edges[0].node.data.social_networks.map(socialNetwork => {
+            {data.social_networks && data.socialNetworks.edges[0].node.data.social_networks.map(socialNetwork => {
                 return <a href={socialNetwork.social_network_link.url}>
                             <img src={socialNetwork.social_network_icon.url} alt={socialNetwork.social_network_icon.alt}/>
                         </a>    

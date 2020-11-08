@@ -62,7 +62,7 @@ const Stores = ({location}) => {
       <div className={styles.pageWrapper}>
           <div className={styles.storesContainer}>
               {
-                  data.stores.edges.map(({node}, index) => {
+                  data.stores && data.stores.edges.map(({node}, index) => {
                       return <StoreItem data={node.data} key={index}/>
                   })
               }

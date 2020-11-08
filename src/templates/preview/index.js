@@ -12,12 +12,12 @@ const PreviewPage = ({data, location}) => {
 
     return(
         <PageLayout>
-            <SEO titleTemplate={`%s | ${data.currentPreview.data.title} Preview`} url={location.href} description={`${data.currentPreview.data.title} Preview. Our preview products: ${data.previewFamilies.edges.map(({node}, index) =>
+            <SEO titleTemplate={`%s | ${data.currentPreview.data.title} Preview`} url={location.href} description={`${data.currentPreview.data.title} Preview. Our preview products: ${data.previewFamilies && data.previewFamilies.edges.map(({node}, index) =>
                 node.data.family_name
             ).join(',')}`}/>
             <div className={styles.pageWrapper}>
                 <ul className={styles.familyThumbnails}>
-                    {data.previewFamilies.edges.map(({node}, index) => { 
+                    {data.previewFamilies && data.previewFamilies.edges.map(({node}, index) => { 
                         return <li key={index} className={styles.thumbnail}>
                             <Link to={`/previews/${node.data.preview.uid}/${node.data.product_category.uid}/${node.uid}`}>
                                 <Image fluid={node.data.family_main_image.localFile.childImageSharp.fluid} alt={node.data.family_main_image.alt}/>

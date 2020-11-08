@@ -32,7 +32,7 @@ const PreviewCategoryPage = ({location, data}) => {
                         }
                     </div>
                     <ProductsContainer>
-                        {data.products.edges.map(({node}) => {
+                        {data.products && data.products.edges.map(({node}) => {
                             return <div className={styles.product}>
                                 <Link to={`/previews/${data.currentPreview.uid}/${node.data.product_category.uid}/${node.data.product_family.uid}?product=${node.uid}`}>
                                     <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt}/>

@@ -58,7 +58,7 @@ const NavFooterDesktop = ({linksArray}) => {
             ]
         },
         {
-            link:data.previews.edges.map(({node}) => {
+            link:data.previews && data.previews.edges.map(({node}) => {
                 return {
                     text:node.data.title + ' preview',
                     href:`/previews/${node.uid}`
@@ -80,7 +80,7 @@ const NavFooterDesktop = ({linksArray}) => {
             link:[
                 {
                     text:'lookbook',
-                    href:`/lookbooks/${data.lookbooks.edges[0].node.uid}`
+                    href:`/lookbooks/${data.lookbooks && data.lookbooks.edges[0].node.uid}`
                 }
             ]
         },

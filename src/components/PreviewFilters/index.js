@@ -10,7 +10,7 @@ const PreviewFilters = ({location, currentPreview, data}) => {
             <Link to={`${currentPreview}/all`} className={location.pathname == `${currentPreview}/all` && styles.activeLink}>
                 all
             </Link>
-            {data.productCategories.edges.map(({node}) => {
+            {data.productCategories && data.productCategories.edges.map(({node}) => {
                 return <Link to={`${currentPreview}/${node.uid}`} className={location.pathname == `${currentPreview}/${node.uid}` && styles.activeLink}>
                     {node.data.product_category}
                 </Link>

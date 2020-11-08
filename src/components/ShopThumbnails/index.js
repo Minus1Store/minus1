@@ -8,7 +8,7 @@ const ShopThumbnails = ({data, location}) => {
     
     return (
         <div className={styles.shopThumbnailsContainer}>
-            {data.allFamilyProducts.edges.map(({node}) => {
+            {data.allFamilyProducts && data.allFamilyProducts.edges.map(({node}) => {
             return <div className={styles.allProductThumbnails}>
                 {node.data.images.map(({image}, index) => {
                     if(index == 0){

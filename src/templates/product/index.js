@@ -78,10 +78,10 @@ const ProductPage = ({data, location}) => {
 
     return(
         <PageLayout>
-            <SEO titleTemplate={`%s | Product ${data.product.data.title} ${data.product.data.color_name}`} url={location.href} description={`Product ${data.product.data.title}. Color ${data.product.data.color_name}. Price €${data.product.data.price}. About product: ${data.product.data.description.text}. Sizes: ${data.product.data.sizes.map(({size}) => size).join(',')}`}/>
+            <SEO titleTemplate={`%s | Product ${data.product.data.title} ${data.product.data.color_name}`} url={location.href} description={`Product ${data.product.data.title}. Color ${data.product.data.color_name}. Price €${data.product.data.price}. About product: ${data.product.data.description.text}. Sizes: ${data.product.data.sizes && data.product.data.sizes.map(({size}) => size).join(',')}`}/>
             <div className={styles.pageWrapper}>
               <div className={styles.mainImageContainer}>
-                {data.product.data.images.map(({image}, index) => {
+                {data.product.data.images && data.product.data.images.map(({image}, index) => {
                   return <Image key={index} className={`${styles.mainImage} ${index == mainImageNum && styles.activeImage}`} fluid={image.localFile.childImageSharp.fluid} alt={image.alt}/>
                 })}
               </div>
@@ -103,7 +103,7 @@ const ProductPage = ({data, location}) => {
                   {
                     data.product.data.sizes.length > 0 &&
                     <select name='size' onChange={(e) => setSelectedSize(e.target.value)}>
-                      {data.product.data.sizes.map(({size}) => {
+                      {data.product.data.sizes && data.product.data.sizes.map(({size}) => {
                         return <option value={size.document.data.title}>{size.document.data.title}</option>
                       })}
                     </select>
@@ -111,6 +111,7 @@ const ProductPage = ({data, location}) => {
                 </div>
                 <div className={styles.actionButtons}>
                   {
+                    data.product.data.sizes &&
                     data.product.data.sizes.find(size => size.size.document.data.title == selectedSize).quantity <= 0 ?
                   <div>
                     <SecondaryButton text={'sold out'} disabled={true}/>

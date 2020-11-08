@@ -32,7 +32,7 @@ const FadeImageSlider = ({images, showNavigation, setSwiperInstance, setClickedT
                 onInit={swiper => {setSwiper(swiper); setSwiperInstance && setSwiperInstance(swiper)}}
                 onSlideChangeTransitionStart={(swiper) => setCurrentSlide(swiper.activeIndex)}
             >
-                {images.map(({image}, index) => {
+                {images && images.map(({image}, index) => {
                     return <SwiperSlide key={index} className={styles.slide}>
                         <div className={`${styles.slideImage} ${currentSlide === index && styles.activeSlideImage}`}>
                             <Image fluid={image.localFile.childImageSharp.fluid} alt={image.alt}/>

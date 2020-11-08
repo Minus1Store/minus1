@@ -24,8 +24,6 @@ const SEO = ({ title, description, image, article, url, titleTemplate }) => {
         }
     `)
 
-    console.log(data)
-
     const seo = {
         title:title || data.seo.data.title,
         titleTemplate:titleTemplate || data.seo.data.titleTemplate,
