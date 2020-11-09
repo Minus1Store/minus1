@@ -23,7 +23,7 @@ exports.handler = async function (event, context) {
                     <td>${data.firstName}</td>
                 </tr>
                 <tr>
-                    <td>Last Name</td>
+                    <td>First Name</td>
                     <td>${data.lastName}</td>
                 </tr>
                 <tr>

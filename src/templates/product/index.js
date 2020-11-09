@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Image from 'gatsby-image'
 import {graphql, Link} from 'gatsby'
 import queryString from 'query-string'
-import ReactImageMagnify from 'react-image-magnify'
+import ReactImageMagnify from '@milosmladenovicwork/react-image-magnify'
 
 import PageLayout from '../../components/PageLayout'
 import styles from './product-page.module.scss'
