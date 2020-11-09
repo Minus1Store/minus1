@@ -10,6 +10,18 @@
     align-items: flex-end;
     flex-direction: column;
     align-content: flex-end;
+    &::-webkit-scrollbar{
+        background: #D6D6D6;
+        width:5px;
+    }
+    
+    &::-webkit-scrollbar-thumb{
+        background: #B5B5B5;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover{
+        background:#A1A1A1;
+    }
     @include breakpoint(lg){
         width:670px;
         align-items: flex-start;
