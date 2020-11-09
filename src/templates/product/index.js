@@ -85,6 +85,7 @@ const ProductPage = ({data, location}) => {
                 <ReactImageMagnify
                   smallImage={
                     {
+                      alt:data.product.data.images[mainImageNum].image.alt,
                       isFluidWidth:true,
                       src: data.product.data.images[mainImageNum].image.localFile.url
                     }
