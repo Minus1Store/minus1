@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Image from 'gatsby-image'
 import {graphql, Link} from 'gatsby'
 import queryString from 'query-string'
+import ReactImageMagnify from 'react-image-magnify'
 
 import PageLayout from '../../components/PageLayout'
 import styles from './product-page.module.scss'
@@ -81,9 +82,22 @@ const ProductPage = ({data, location}) => {
             <SEO titleTemplate={`%s | Product ${data.product.data.title} ${data.product.data.color_name}`} url={location.href} description={`Product ${data.product.data.title}. Color ${data.product.data.color_name}. Price €${data.product.data.price}. About product: ${data.product.data.description.text}. Sizes: ${data.product.data.sizes && data.product.data.sizes.map(({size}) => size).join(',')}`}/>
             <div className={styles.pageWrapper}>
               <div className={styles.mainImageContainer}>
-                {data.product.data.images && data.product.data.images.map(({image}, index) => {
-                  return <Image key={index} className={`${styles.mainImage} ${index == mainImageNum && styles.activeImage}`} fluid={image.localFile.childImageSharp.fluid} alt={image.alt}/>
-                })}
+                <ReactImageMagnify
+                  smallImage={
+                    {
+                      isFluidWidth:true,
+                      src: data.product.data.images[mainImageNum].image.localFile.url
+                    }
+                  }
+                  largeImage={
+                    {
+                      width:800,
+                      height:800,
+                      src: data.product.data.images[mainImageNum].image.localFile.url
+                    }
+                  }
+                  className={styles.mainZoomedImage}
+                />
               </div>
               <div className={styles.informationContainer}>
                 <div className={styles.title}>
@@ -210,6 +224,7 @@ export const pageQuery = graphql`
               image {
                 alt
                 localFile {
+                  url
                   childImageSharp {
                     fluid(maxWidth: 900, quality: 100) {
                       ...GatsbyImageSharpFluid
