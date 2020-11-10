@@ -20,6 +20,19 @@ const ShopFilters = ({location, children}) => {
                   }
                 }
               }
+            productSubcategories: allPrismicProductSubcategory {
+              edges {
+                node {
+                  uid
+                  data {
+                    product_subcategory
+                    product_category {
+                      uid
+                    }
+                  }
+                }
+              }
+            }
         }      
     `)
 
@@ -43,9 +56,22 @@ const ShopFilters = ({location, children}) => {
                 all
             </Link>
             {data.productCategories && data.productCategories.edges.map(({node}) => {
-                return <Link to={`/shop/${node.uid}`} className={location.pathname == `/shop/${node.uid}` && styles.activeLink}>
-                    {node.data.product_category}
-                </Link>
+                return <div className={`${styles.categoryContainer} ${location.pathname.match(new RegExp(`\/shop\/${node.uid}`, 'g')) && styles.activeCategory}`}>
+                    <Link to={`/shop/${node.uid}`} className={location.pathname == `/shop/${node.uid}` && styles.activeLink}>
+                        {node.data.product_category}
+                    </Link>
+                    {data.productSubcategories.edges.filter(({node:subcategoryNode}) => {
+                      console.log(subcategoryNode.data.product_category.uid, node.uid)
+                      if(subcategoryNode.data.product_category.uid == node.uid){
+                        return subcategoryNode
+                      }
+                    }).map(({node:subcategoryNode}) => 
+                      <Link to={`/shop/${node.uid}/${subcategoryNode.uid}`} className={`${styles.subcategoryLink} ${location.pathname.match(new RegExp(`\/shop\/${node.uid}\/${subcategoryNode.uid}`, 'g')) && styles.activeLink}`}>
+                          {subcategoryNode.data.product_subcategory}
+                      </Link>
+                    )
+                    }
+                  </div>
             })}
         </div>
     )

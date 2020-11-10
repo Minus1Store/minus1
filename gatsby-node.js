@@ -16,6 +16,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const productTemplate = require.resolve('./src/templates/product/index.js')
   const newsArticleTemplate = require.resolve('./src/templates/newsArticle/index.js')
   const productCategoryTemplate = require.resolve('./src/templates/productCategory/index.js')
+  const productSubcategoryTemplate = require.resolve('./src/templates/productSubcategory/index.js')
   const lookbookTemplate = require.resolve('./src/templates/lookbook/index.js')
   const previewTemplate = require.resolve('./src/templates/preview/index.js')
   const previewAllTemplate = require.resolve('./src/templates/previewAll/index.js')
@@ -65,6 +66,18 @@ exports.createPages = async ({ graphql, actions }) => {
           edges{
             node{
               uid
+            }
+          }
+        }
+        productSubcategories: allPrismicProductSubcategory{
+          edges{
+            node{
+              uid
+              data{
+                product_category{
+                  uid
+                }
+              }
             }
           }
         }
@@ -162,8 +175,20 @@ exports.createPages = async ({ graphql, actions }) => {
       })
     })
 
-    const lookbookList = result.data.lookbooks.edges
+    const productSubcategoriesList = result.data.productSubcategories.edges
 
+    productSubcategoriesList.forEach(edge => {
+      createPage({
+        path:`/shop/${edge.node.data.product_category.uid}/${edge.node.uid}`,
+        component: productSubcategoryTemplate,
+        context:{
+          subcategory_uid:edge.node.uid
+        }
+      })
+    })
+    
+    const lookbookList = result.data.lookbooks.edges
+    
     lookbookList.forEach(edge => {
       createPage({
         path:`/lookbooks/${edge.node.uid}`,

@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: flex-end;
     text-align: right;
-    > a{
+    a{
         color:white;
         text-decoration: none;
         font-size:0.65rem;
@@ -17,9 +17,17 @@
             font-size:0.85rem;
         }
     }
-    > a:hover{
+    a:hover{
         background:red;
         color:white
+    }
+    .subcategory-link{
+        color:#777777;
+        font-size:0.6rem;
+        display: none;
+        @include breakpoint(lg){
+            font-size:0.8rem;
+        }
     }
 }
 
@@ -29,4 +37,19 @@
 
 .cart-container{
     margin-bottom:10px;
+}
+
+.category-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.category-container:hover .subcategory-link{
+    @include breakpoint(lg){
+        display: block;
+    }
+}
+
+.active-category .subcategory-link{
+    display: block;
 }

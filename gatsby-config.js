@@ -47,6 +47,7 @@ module.exports = {
           'preview_product': require('./src/schemas/preview_product.json'),
           'sizing_item': require('./src/schemas/sizing_item.json'),
           'site_information': require('./src/schemas/site_information.json'),
+          'product_subcategory': require('./src/schemas/product_subcategory.json'),
         },
         shouldDownloadImage: ({ node, key, value }) => {
           return true

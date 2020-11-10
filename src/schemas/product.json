@@ -1,100 +1,116 @@
 {
-  "Main" : {
-    "title" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "Title"
+  "Main": {
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title"
       }
     },
-    "description" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
-        "allowTargetBlank" : true,
-        "label" : "Description"
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
+        "allowTargetBlank": true,
+        "label": "Description"
       }
     },
-    "color_name" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "Color Name"
+    "color_name": {
+      "type": "Text",
+      "config": {
+        "label": "Color Name"
       }
     },
-    "price" : {
-      "type" : "Number",
-      "config" : {
-        "label" : "Price"
+    "price": {
+      "type": "Number",
+      "config": {
+        "label": "Price"
       }
     }
   },
-  "Category" : {
-    "product_category" : {
-      "type" : "Link",
-      "config" : {
-        "select" : "document",
-        "customtypes" : [ "product_category" ],
-        "label" : "Product Category"
+  "Category": {
+    "product_category": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": [
+          "product_category"
+        ],
+        "label": "Product Category"
       }
     },
-    "product_family" : {
-      "type" : "Link",
-      "config" : {
-        "select" : "document",
-        "customtypes" : [ "product_family" ],
-        "label" : "Product Family"
+    "product_subcategory": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": [
+          "product_subcategory"
+        ],
+        "label": "Product Subcategory"
+      }
+    },
+    "product_family": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": [
+          "product_family"
+        ],
+        "label": "Product Family"
       }
     }
   },
-  "Sizes" : {
-    "sizes" : {
-      "type" : "Group",
-      "config" : {
-        "fields" : {
-          "size" : {
-            "type" : "Link",
-            "config" : {
-              "select" : "document",
-              "customtypes" : [ "size" ],
-              "label" : "Size"
+  "Sizes": {
+    "sizes": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "size": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": [
+                "size"
+              ],
+              "label": "Size"
             }
           },
-          "quantity" : {
-            "type" : "Number",
-            "config" : {
-              "label" : "Quantity"
+          "quantity": {
+            "type": "Number",
+            "config": {
+              "label": "Quantity"
             }
           }
         },
-        "label" : "Sizes"
+        "label": "Sizes"
       }
     }
   },
-  "Images" : {
-    "images" : {
-      "type" : "Group",
-      "config" : {
-        "fields" : {
-          "image" : {
-            "type" : "Image",
-            "config" : {
-              "constraint" : {
-                "width" : 900,
-                "height" : 900
+  "Images": {
+    "images": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": 900,
+                "height": 900
               },
-              "thumbnails" : [ ],
-              "label" : "Image"
+              "thumbnails": [],
+              "label": "Image"
             }
           }
         },
-        "label" : "Images"
+        "label": "Images"
       }
     }
   },
-  "Other" : {
-    "uid" : {
-      "type" : "UID",
-      "config" : {
-        "label" : "UID"
+  "Other": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID"
       }
     }
   }
