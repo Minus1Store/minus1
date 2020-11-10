@@ -44,6 +44,23 @@ const ProductSubcategoryPage = ({location, data}) => {
                                 </Link>
                             </div>
                         })}
+                        {data.secondaryProducts && data.secondaryProducts.edges.map(({node}) => {
+                            return <div className={styles.product}>
+                                <Link to={`/shop/${node.data.product_family.document.data.product_category.document.uid}/${node.uid}`}>
+                                    <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
+                                    <div className={styles.productInformation}>
+                                        <p>
+                                            {node.data.title}
+                                        </p>
+                                    </div>
+                                    <div className={styles.productInformation}>
+                                        <p>
+                                            {node.data.color_name}
+                                        </p>
+                                    </div>
+                                </Link>
+                            </div>
+                        })}
                     </ProductsContainer>
                 </div>
             </div>
@@ -112,6 +129,57 @@ const ProductSubcategoryPage = ({location, data}) => {
 export const pageQuery = graphql`
   query SubcategoryQuery($subcategory_uid: String!) {
     products:allPrismicProduct(filter: {data: {product_subcategory: {uid: {eq: $subcategory_uid}}}}) {
+        edges {
+          node {
+            data {
+              color_name
+              title
+              sizes {
+                quantity
+                size {
+                  document {
+                    ... on PrismicSize {
+                      id
+                    }
+                  }
+                }
+              }
+              images {
+                image {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 650, quality: 100){
+                          ...GatsbyImageSharpFluid
+                      }
+                    }
+                  }
+                }
+              }
+              product_family {
+                document {
+                  ... on PrismicProductFamily {
+                    id
+                    data {
+                      product_category {
+                        document {
+                          ... on PrismicProductCategory {
+                            uid
+                            data {
+                              product_category
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            uid
+          }
+        }
+      }
+      secondaryProducts: allPrismicProduct(filter: {data: {secondary_categories: {elemMatch: {secondary_product_subcategory: {uid: {eq: $subcategory_uid}}}}}}) {
         edges {
           node {
             data {

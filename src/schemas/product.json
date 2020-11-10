@@ -57,6 +57,34 @@
         ],
         "label": "Product Family"
       }
+    },
+    "secondary_categories": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "secondary_product_category": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": [
+                "product_category"
+              ],
+              "label": "Product Category"
+            }
+          },
+          "secondary_product_subcategory": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": [
+                "product_subcategory"
+              ],
+              "label": "Product Subcategory"
+            }
+          }
+        },
+        "label": "Secondary Categories"
+      }
     }
   },
   "Sizes": {
