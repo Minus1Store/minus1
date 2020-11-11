@@ -5,7 +5,7 @@
     min-height:275px;
     height:35vh;
     width:100%;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         width:365px;
         height:280px;
     }
@@ -20,7 +20,7 @@
 }
 
 .body{
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         max-height:240px;
         overflow-y:scroll;
         width:250px;
@@ -35,7 +35,7 @@
 .news-article-container{
     margin-top:35px;
     margin-bottom:50px;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         margin-top: 0;
         margin-bottom:27.5px;
     }
@@ -53,7 +53,7 @@
         padding:1px;
         color:black;
         font-size:0.75rem;
-        @include breakpoint(lg){
+        @include breakpoint(sm){
             font-size:0.65rem;
         }
     }
@@ -61,7 +61,7 @@
         background:red;
         color:white;
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         flex-direction: row;
         width:665px;
         margin:auto;
@@ -70,7 +70,7 @@
 
 .slide{
     width:100%;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         width:650px;
     }
 }
@@ -108,7 +108,7 @@
     z-index:2;
     background: rgb(0,0,0);
     background: radial-gradient(circle, rgba(0,0,0,0) 37%, rgba(255,255,255,1) 100%);
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:block;
     }
 }
@@ -116,7 +116,7 @@
 .page-wrapper{
     width:100%;
     position:relative;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         margin-top:30px;
         margin-bottom:50px;
     }

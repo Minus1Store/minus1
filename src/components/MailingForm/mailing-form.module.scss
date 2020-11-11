@@ -11,7 +11,7 @@
     align-items: center;
     margin-bottom:10px;
     flex-direction: column;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         flex-direction: row;
     }
 }
@@ -23,13 +23,13 @@
         margin:0;
         border-radius: 5px;
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         width:calc(50% + 50px);
     }
     input[type=email]{
         width:100%;
         padding:5px;
-        @include breakpoint(lg){
+        @include breakpoint(sm){
             width:calc(100% - 100px);
         }
     }
@@ -40,7 +40,7 @@
     width:100%;
     color:#757575;
     margin-bottom:10px;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         margin-bottom:unset;
         width:calc(50% - 50px);
         font-size:0.85rem;
@@ -54,7 +54,7 @@
     margin-top:-5px;
     color:#959595;
     padding-right:20px;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         width:calc(50% - 50px);
         font-size:0.8rem;
     }
@@ -67,14 +67,14 @@
     > div{
         margin-right:10px;
         margin-bottom:10px;
-        @include breakpoint(lg){
+        @include breakpoint(sm){
             margin-right: 0;
             width:100%;
             display:flex;
             justify-content: center;
         }
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         flex-wrap: wrap;
     }
 }
@@ -89,7 +89,7 @@
         flex-basis:0;
         
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:flex;
         flex-direction: row;
         > label {

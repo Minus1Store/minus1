@@ -11,6 +11,12 @@
     width:100%;
     height:auto;
     margin:auto;
+    @include breakpoint(sm){
+        margin-top:30px;
+        margin-bottom:30px;
+        height:375px;
+        width:368px;
+    }
     @include breakpoint(lg){
         margin-top:30px;
         margin-bottom:30px;
@@ -63,7 +69,7 @@
         color:white;
         background:red;
     }
-    @include breakpoint(lg){    
+    @include breakpoint(sm){    
         height:375px;
     }
 }

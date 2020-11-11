@@ -7,7 +7,7 @@
     width:100vw;
     position: relative;
     left:-15px;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:none;
     }
 }

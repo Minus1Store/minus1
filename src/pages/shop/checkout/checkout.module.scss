@@ -12,6 +12,11 @@
     height:auto;
     margin:auto;
     margin-bottom:50px;
+    @include breakpoint(sm){
+        margin-bottom:0px;
+        margin-top:25px;
+        width:600px;
+    }
     @include breakpoint(lg){
         margin-bottom:0px;
         margin-top:25px;
@@ -26,7 +31,7 @@
     flex-direction: column;
     align-items: center;
     padding-top:20px;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         height:280px;
         max-height: unset;
     }
@@ -63,7 +68,7 @@
     flex-direction: column;
     align-items: center;
     border:1px dotted #959595;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         flex-direction: row;
     }
     > p, > div{

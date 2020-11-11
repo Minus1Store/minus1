@@ -18,7 +18,7 @@
         padding:1px;
         margin:5px;
         color:black;
-        @include breakpoint(lg){
+        @include breakpoint(sm){
             font-size:0.85rem;
         }
     }
@@ -26,7 +26,7 @@
         background:red;
         color:white
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:inline-block;
     }
 }
@@ -34,7 +34,7 @@
 .page-wrapper{
     margin-top:30px;
     min-height:70vh;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         min-height: unset;
         margin-bottom:30px;
     }   
@@ -42,7 +42,7 @@
 
 .product-container{
     position:relative;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         max-height:60vh;
     }
 }
@@ -52,6 +52,10 @@
     width:100px;
     left:calc(50vw - 130px - 10px);
     top:0;
+    @include breakpoint(sm){
+        width:200px;
+        left:calc(50% - 200px - 200px - 10px);
+    }
     @include breakpoint(lg){
         width:200px;
         left:calc(50% - 335px - 200px - 10px);
@@ -80,7 +84,7 @@
     > a{
         text-decoration: none;
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         width:160px;
         margin-right: 5px;
     }

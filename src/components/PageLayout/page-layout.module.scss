@@ -13,7 +13,7 @@
     justify-content: flex-end;
     align-items: center;
     margin-top: 20px;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         margin-bottom:unset;
     }
 }
@@ -21,7 +21,7 @@
 .centered-items{
     height:100%;
     width:100%;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:flex;
         flex-direction: column;
         align-items: center;

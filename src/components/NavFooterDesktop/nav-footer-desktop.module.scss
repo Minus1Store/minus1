@@ -2,7 +2,7 @@
 
 .nav-footer{
     display:none;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:block;
     }
 }
@@ -45,7 +45,7 @@
     text-transform: lowercase;
     padding:1px;
     color:black;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         font-size:0.85rem;
     }
 }

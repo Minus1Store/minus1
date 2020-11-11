@@ -22,7 +22,7 @@
         padding:5px;
         resize: none;
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         width:45%;
     }
 }
@@ -37,7 +37,7 @@
         padding:5px;
         border:1px solid #CDCDCD;
         border-radius:4px;
-        @include breakpoint(lg){
+        @include breakpoint(sm){
             width:121px;
         }
     }

@@ -22,6 +22,15 @@
     &::-webkit-scrollbar-thumb:hover{
         background:#A1A1A1;
     }
+    @include breakpoint(sm){
+        width:380px;
+        align-items: flex-start;
+        align-content:flex-start;
+        overflow-y: auto;
+        height:375px;
+        max-height: 60vh;
+        flex-direction: row;
+    }
     @include breakpoint(lg){
         width:670px;
         align-items: flex-start;

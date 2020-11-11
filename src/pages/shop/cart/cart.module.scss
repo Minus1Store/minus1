@@ -12,6 +12,11 @@
     height:auto;
     margin:auto;
     margin-bottom:50px;
+    @include breakpoint(sm){
+        margin-bottom:0px;
+        margin-top:25px;
+        width:600px;
+    }
     @include breakpoint(lg){
         margin-bottom:0px;
         margin-top:25px;
@@ -27,7 +32,7 @@
 .cart-body{
     overflow-y:auto;
     max-height:50vh;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         height:280px;
         max-height: unset;
     }
@@ -61,7 +66,7 @@
         font-size:0.85rem;
     }
     width:400px;
-    @include breakpoint(lg){ 
+    @include breakpoint(sm){ 
         width:100%;
     }
 }
@@ -84,7 +89,7 @@
     flex-direction: column;
     align-items: center;
     border:1px dotted #959595;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         flex-direction: row;
     }
     > p, > div{

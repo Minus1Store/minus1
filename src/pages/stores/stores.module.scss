@@ -6,7 +6,7 @@
     flex-direction: column;
     min-height: 80vh;
     padding:0 25px 0;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         padding:0;
         min-height: unset;
         flex-direction: row;
@@ -16,7 +16,7 @@
 .page-wrapper{
     width:100%;
     position:relative;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         margin-top:75px;
     }
 }

@@ -10,7 +10,7 @@
         padding:1px;
         margin:5px;
         color:black;
-        @include breakpoint(lg){
+        @include breakpoint(sm){
             font-size:0.85rem;
         }
     }
@@ -18,7 +18,7 @@
         background:red;
         color:white
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:inline-block;
     }
 }

@@ -3,7 +3,7 @@
 .page-wrapper{
     width:100%;
     margin:auto;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         margin-top:50px;
         width:800px;
     }
@@ -17,7 +17,7 @@
         display:flex;
         align-items: flex-start;
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         margin-bottom:0;
     }
 }
@@ -25,7 +25,7 @@
 .look-book-item-information{
     width:100%;
     margin-left:0;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         width:400px;
         margin-left:140px;
     }
@@ -109,11 +109,11 @@
     cursor: pointer;
     > div > div > div > div > div{
         width:100%;
-        @include breakpoint(lg){
+        @include breakpoint(sm){
             width:300px;
         }
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         margin-left:214.5px;
         width:350px;
     }
@@ -123,7 +123,7 @@
     display:flex;
     justify-content: flex-start;
     flex-direction: column;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         flex-direction: row;
         justify-content: space-between;
     }
@@ -139,7 +139,7 @@
     flex-wrap: wrap;
     height:405px;
     overflow: auto;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:flex;
     }
 }
@@ -182,21 +182,21 @@
     > span{
         color:red;
     }
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         text-align: left;
     }
 }
 
 .mobile-logo{
     display:block;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:none;
     }
 }
 
 .desktop-logo{
     display:none;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:block;
     }
 }

@@ -18,7 +18,7 @@
         margin:7.5px;
     }
 
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         display:none;
     }
 }
@@ -30,7 +30,7 @@
     text-transform: lowercase;
     padding:1px;
     color:black;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         font-size:0.85rem;
     }
 }
