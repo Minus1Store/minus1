@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Link, graphql, navigate} from 'gatsby'
 import Image from 'gatsby-image'
 
-import styles from './preview-product.module.scss'
+import styles from './preview-product-family.module.scss'
 import PageLayout from '../../components/PageLayout'
 import Header from '../../components/Header/index'
 import TooltipSlider from '../../components/TooltipSlider'

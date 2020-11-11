@@ -66,7 +66,7 @@ const ProductSubcategoryPage = ({location, data}) => {
             </div>
             <NavFooterMobile/>
             <div className={styles.navFooterContainer}>
-            <SiteTree links={[{text: 'home',link:'/'}, {text: 'shop', link:'/shop/all'}]}/>
+            <SiteTree links={[{text: 'home',link:'/'}, {text: 'shop', link:'/shop/all'}, {text: data.subcategory.data.product_subcategory, link:`/shop/${data.subcategory.data.product_category.uid}/${data.subcategory.data.product_subcategory}`}]}/>
             <NavFooterDesktop
                 linksArray={
                     [
@@ -230,6 +230,14 @@ export const pageQuery = graphql`
           }
         }
       }
+    subcategory:prismicProductSubcategory(uid: {eq: $subcategory_uid}) {
+      data {
+        product_subcategory
+        product_category {
+          uid
+        }
+      }
+    }
 }
 `
 

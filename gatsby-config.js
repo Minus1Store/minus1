@@ -55,7 +55,6 @@ module.exports = {
         // Get the correct URLs in blog posts
         linkResolver: () => (doc) => {
           if(doc.type == 'product'){
-            console.log(doc)
             if(doc.data){
               return `/shop/${doc.data.product_category.uid}/${doc.uid}`
             }

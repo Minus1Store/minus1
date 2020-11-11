@@ -31,25 +31,11 @@ exports.createPages = async ({ graphql, actions }) => {
             node {
               uid
               data {
+                product_category {
+                  uid
+                }
                 product_family {
-                  document {
-                    ... on PrismicProductFamily {
-                      id
-                      uid
-                      data {
-                        product_category {
-                          document {
-                            ... on PrismicProductCategory {
-                              id
-                              data {
-                                product_category
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
+                  uid
                 }
               }
             }
@@ -138,16 +124,17 @@ exports.createPages = async ({ graphql, actions }) => {
   //   }
     productList.forEach((edge) => {
 
-
-      createPage({
-        path: `/shop/${edge.node.data.product_family.document.data.product_category.document.data.product_category.toLowerCase()}/${edge.node.uid}`,
-        component: productTemplate,
-        context: {
-          // Pass the unique ID (uid) through context so the template can filter by it
-          uid: edge.node.uid,
-          family_uid: edge.node.data.product_family.document.uid
-        },
-      })
+      if(edge.node.data.product_family.uid && edge.node.data.product_category.uid){
+        createPage({
+          path: `/shop/${edge.node.data.product_category.uid}/${edge.node.uid}`,
+          component: productTemplate,
+          context: {
+            // Pass the unique ID (uid) through context so the template can filter by it
+            uid: edge.node.uid,
+            family_uid: edge.node.data.product_family.uid
+          },
+        })
+      }
     })
 
     let newsArticlesList = result.data.newsArticles.edges

@@ -27,7 +27,7 @@
     margin-left:0;
     @include breakpoint(lg){
         width:400px;
-        margin-left:122px;
+        margin-left:140px;
     }
 }
 
@@ -110,13 +110,12 @@
     > div > div > div > div > div{
         width:100%;
         @include breakpoint(lg){
-            width:335px;
+            width:300px;
         }
     }
     @include breakpoint(lg){
         margin-left:214.5px;
         width:350px;
-        margin-bottom:50px;
     }
 }
 

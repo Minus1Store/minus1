@@ -9,8 +9,6 @@ sgMail.setApiKey(SENDGRID_API_KEY)
 
 exports.handler = async function(event, context) {
     const data = event.queryStringParameters
-
-    console.log(JSON.parse(data.products))
     
     const msgToSeller = {
         to: SENDGRID_TO_EMAIL,

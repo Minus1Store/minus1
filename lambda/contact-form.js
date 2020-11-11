@@ -15,25 +15,25 @@ exports.handler = async function(event, context) {
         from: data.email,
         subject: data.reasonOfContact,
         html:`
-            <table>
+            <table style='margin-bottom:15px; border:1px dotted #959595;border-collapse: collapse'>
                 <tr>
-                    <td>First Name</td>
-                    <td>${data.firstName}</td>
+                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>First Name</th>
+                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.firstName}</td>
                 </tr>
                 <tr>
-                    <td>First Name</td>
-                    <td>${data.lastName}</td>
+                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>First Name</th>
+                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.lastName}</td>
                 </tr>
                 <tr>
-                    <td>Email</td>
-                    <td>${data.email}</td>
+                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Email</th>
+                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.email}</td>
                 </tr>
                 <tr>
-                    <td>Order Number</td>
-                    <td>${data.orderNumber}</td>
+                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Order Number</th>
+                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.orderNumber}</td>
                 </tr>
             </table>                
-            <p>${data.message}</p>
+            <p>Message: ${data.message}</p>
         `
       }
     try{

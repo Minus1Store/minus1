@@ -46,24 +46,11 @@ const Shop = ({location}) => {
                           }
                         }
                       }
+                      product_category {
+                        uid
+                      }
                       product_family {
-                        document {
-                          ... on PrismicProductFamily {
-                            id
-                            data {
-                              product_category {
-                                document {
-                                  ... on PrismicProductCategory {
-                                    uid
-                                    data {
-                                      product_category
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
+                        uid
                       }
                     }
                     uid
@@ -89,7 +76,7 @@ const Shop = ({location}) => {
                 <ProductsContainer>
                     {data.products && data.products.edges.map(({node}) => {
                         return <div className={styles.product}>
-                            <Link to={`/shop/${node.data.product_family.document.data.product_category.document.uid}/${node.uid}`}>
+                            <Link to={`/shop/${node.data.product_category.uid}/${node.uid}`}>
                               <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
                             </Link>
                         </div>

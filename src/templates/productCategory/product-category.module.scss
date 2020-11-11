@@ -36,6 +36,7 @@
     min-height:70vh;
     @include breakpoint(lg){
         min-height: unset;
+        margin-bottom:30px;
     }   
 }
 

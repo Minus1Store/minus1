@@ -27,7 +27,8 @@
         align-items: flex-start;
         align-content:flex-start;
         overflow-y: auto;
-        height:390px;
+        height:375px;
+        max-height: 60vh;
         flex-direction: row;
     }
 }

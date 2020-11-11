@@ -1,7 +1,6 @@
 @import '../../styles/breakpoints.scss';
 
 .nav-footer{
-    margin-top:45px;
     display:none;
     @include breakpoint(lg){
         display:block;
@@ -15,6 +14,7 @@
 }
 
 .nav-list{
+    margin-top:0;
     padding-left:0;
     list-style-type: none;
 }
