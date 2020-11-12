@@ -32,7 +32,7 @@ const ShopThumbnails = ({data, location}) => {
             </div>
             })}
             {
-            !data.allFamilyProducts &&
+            !data.allFamilyProducts.edges.length > 0 &&
             <div className={styles.allProductThumbnails}>
                 {data.product.data.images.map(({image}, index) => {
                     if(index == 0){

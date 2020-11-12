@@ -124,14 +124,15 @@ exports.createPages = async ({ graphql, actions }) => {
   //   }
     productList.forEach((edge) => {
 
-      if(edge.node.data.product_family.uid && edge.node.data.product_category.uid){
+      if(edge.node.data.product_category.uid){
+        const familyUID = edge.node.data.product_family.uid ? edge.node.data.product_family.uid : 'null'
         createPage({
           path: `/shop/${edge.node.data.product_category.uid}/${edge.node.uid}`,
           component: productTemplate,
           context: {
             // Pass the unique ID (uid) through context so the template can filter by it
             uid: edge.node.uid,
-            family_uid: edge.node.data.product_family.uid
+            family_uid: familyUID
           },
         })
       }

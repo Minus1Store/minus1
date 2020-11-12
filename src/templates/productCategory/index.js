@@ -15,7 +15,7 @@ import SEO from '../../components/SEO'
 const ProductCategoryPage = ({location, data}) => {
     return (
         <PageLayout>
-          <SEO titleTemplate={`%s | Shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_category : ''}`} url={location.href} description={`All shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category : ""}. Products: ${data.products.edges.length > 0 && data.products.edges.map(({node}) => {
+          <SEO titleTemplate={`%s | Shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_category.document.data.product_category : ''}`} url={location.href} description={`All shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category : ""}. Products: ${data.products.edges.length > 0 && data.products.edges.map(({node}) => {
             return `${node.data.color_name} ${node.data.title}`
           }).join(',')}`}/>
             <div className={styles.pageWrapper}>
@@ -157,6 +157,14 @@ export const pageQuery = graphql`
               }
               product_category{
                 uid
+                document {
+                  ... on PrismicProductCategory {
+                    id
+                    data {
+                      product_category
+                    }
+                  }
+                }
               }
               product_family {
                 document {
@@ -211,6 +219,14 @@ export const pageQuery = graphql`
               }
               product_category{
                 uid
+                document {
+                  ... on PrismicProductCategory {
+                    id
+                    data {
+                      product_category
+                    }
+                  }
+                }
               }
               product_family {
                 document {
