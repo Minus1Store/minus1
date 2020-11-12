@@ -62,9 +62,15 @@ const Shop = ({location}) => {
 
     return(
       <PageLayout>
-        <SEO titleTemplate={'%s | Shop'} url={location.href} description={`All shop products: ${data.products.edges.map(({node}) => {
-          return node.data.title
-        }).join(',')}`}/>
+        <SEO 
+          titleTemplate={'%s | Shop'} 
+          url={location.href} 
+          description={`All shop products: ${data.products.edges.map(({node}, index) => {
+            if(index < 50){
+              return node.data.title
+            }
+        }).join(',')}`}
+        />
         <div className={styles.pageWrapper}>
             <div className={styles.productContainer}>
                 <div className={styles.filters}>

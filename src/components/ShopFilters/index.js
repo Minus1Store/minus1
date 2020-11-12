@@ -55,19 +55,19 @@ const ShopFilters = ({location, children}) => {
             <Link to={'/shop/all'} className={location.pathname == '/shop/all' && styles.activeLink}>
                 all
             </Link>
-            {data.productCategories && data.productCategories.edges.sort((edgeA, edgeB) => {return edgeA.node.data.product_category.length > edgeB.node.data.product_category.length}).map(({node}) => {
-                return <div className={`${styles.categoryContainer} ${location.pathname.match(new RegExp(`\/shop\/${node.uid}`, 'g')) && styles.activeCategory}`}>
+            {data.productCategories && data.productCategories.edges.sort((edgeA, edgeB) => {return Number(edgeA.node.data.product_category.length) - Number(edgeB.node.data.product_category.length)}).map(({node}) => {
+                return <div key={node.uid} className={`${styles.categoryContainer} ${location.pathname.match(new RegExp(`\/shop\/${node.uid}`, 'g')) && styles.activeCategory}`}>
                     <Link to={`/shop/${node.uid}`} className={location.pathname == `/shop/${node.uid}` && styles.activeLink}>
                         {node.data.product_category}
                     </Link>
                     {
-                    data.productSubcategories.edges.sort((edgeA, edgeB) => {return edgeA.node.data.product_subcategory.length > edgeB.node.data.product_subcategory.length}).filter(({node:subcategoryNode}) => {
+                    data.productSubcategories.edges.sort((edgeA, edgeB) => {return Number(edgeA.node.data.product_subcategory.length) - Number(edgeB.node.data.product_subcategory.length)}).filter(({node:subcategoryNode}) => {
                       
                       if(subcategoryNode.data.product_category.uid == node.uid){
                         return subcategoryNode
                       }
                     }).map(({node:subcategoryNode}) => 
-                      <Link to={`/shop/${node.uid}/${subcategoryNode.uid}`} className={`${styles.subcategoryLink} ${location.pathname.match(new RegExp(`\/shop\/${node.uid}\/${subcategoryNode.uid}`, 'g')) && styles.activeLink}`}>
+                      <Link key={subcategoryNode.uid} to={`/shop/${node.uid}/${subcategoryNode.uid}`} className={`${styles.subcategoryLink} ${location.pathname.match(new RegExp(`\/shop\/${node.uid}\/${subcategoryNode.uid}`, 'g')) && styles.activeLink}`}>
                           {subcategoryNode.data.product_subcategory}
                       </Link>
                     )
