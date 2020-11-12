@@ -61,7 +61,7 @@ const ShopFilters = ({location, children}) => {
                         {node.data.product_category}
                     </Link>
                     {data.productSubcategories.edges.filter(({node:subcategoryNode}) => {
-                      console.log(subcategoryNode.data.product_category.uid, node.uid)
+                      
                       if(subcategoryNode.data.product_category.uid == node.uid){
                         return subcategoryNode
                       }

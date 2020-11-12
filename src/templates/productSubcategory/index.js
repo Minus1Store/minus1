@@ -15,7 +15,7 @@ import SEO from '../../components/SEO'
 const ProductSubcategoryPage = ({location, data}) => {
     return (
         <PageLayout>
-          <SEO titleTemplate={`%s | Shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category : ""}`} url={location.href} description={`All shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_family.document.data.product_category.document.data.product_category : ""}. Products: ${data.products.edges.length > 0 && data.products.edges.map(({node}) => {
+          <SEO titleTemplate={`%s | Shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_category : ""}`} url={location.href} description={`All shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_category.uid : ""}. Products: ${data.products.edges.length > 0 && data.products.edges.map(({node}) => {
             return `${node.data.color_name} ${node.data.title}`
           }).join(',')}`}/>
             <div className={styles.pageWrapper}>
@@ -29,7 +29,7 @@ const ProductSubcategoryPage = ({location, data}) => {
                     <ProductsContainer>
                         {data.products && data.products.edges.map(({node}) => {
                             return <div className={styles.product}>
-                                <Link to={`/shop/${node.data.product_family.document.data.product_category.document.uid}/${node.uid}`}>
+                                <Link to={`/shop/${node.data.product_category.uid}/${node.uid}`}>
                                     <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
                                     <div className={styles.productInformation}>
                                         <p>
@@ -46,7 +46,7 @@ const ProductSubcategoryPage = ({location, data}) => {
                         })}
                         {data.secondaryProducts && data.secondaryProducts.edges.map(({node}) => {
                             return <div className={styles.product}>
-                                <Link to={`/shop/${node.data.product_family.document.data.product_category.document.uid}/${node.uid}`}>
+                                <Link to={`/shop/${node.data.product_category.uid}/${node.uid}`}>
                                     <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
                                     <div className={styles.productInformation}>
                                         <p>
@@ -155,6 +155,9 @@ export const pageQuery = graphql`
                   }
                 }
               }
+              product_category{
+                uid
+              }
               product_family {
                 document {
                   ... on PrismicProductFamily {
@@ -205,6 +208,9 @@ export const pageQuery = graphql`
                     }
                   }
                 }
+              }
+              product_category{
+                uid
               }
               product_family {
                 document {
