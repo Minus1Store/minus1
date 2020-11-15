@@ -133,6 +133,10 @@ const ProductPage = ({data, location}) => {
                       if(size.size.document.data){
                         size.size.document.data.title == selectedSize
                       }
+                    }) && data.product.data.sizes.find(size => {
+                      if(size.size.document.data){
+                        size.size.document.data.title == selectedSize
+                      }
                     }).quantity <= 0 ?
                   <div>
                     <SecondaryButton text={'sold out'} disabled={true}/>
