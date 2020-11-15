@@ -130,11 +130,15 @@ const ProductPage = ({data, location}) => {
                   {
                     data.product.data.sizes &&
                     data.product.data.sizes.find(size => {
-                      if(size.size.document.data){
+                      if(size.size.document && size.size.document.data){
                         size.size.document.data.title == selectedSize
                       }
                     }) && data.product.data.sizes.find(size => {
-                      if(size.size.document.data){
+                      if(size.size.document && size.size.document.data){
+                        size.size.document.data.title == selectedSize
+                      }
+                    }) && data.product.data.sizes.find(size => {
+                      if(size.size.document && size.size.document.data){
                         size.size.document.data.title == selectedSize
                       }
                     }).quantity <= 0 ?
