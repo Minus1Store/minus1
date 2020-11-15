@@ -119,7 +119,7 @@ const ProductPage = ({data, location}) => {
                     data.product.data.sizes.length > 0 &&
                     <select name='size' onChange={(e) => setSelectedSize(e.target.value)}>
                       {data.product.data.sizes && data.product.data.sizes.map(({size}) => {
-                        if(size.document.data){
+                        if(size.document){
                           return <option value={size.document.data.title}>{size.document.data.title}</option>
                         }
                       })}
