@@ -19,7 +19,7 @@ const ProductPage = ({data, location}) => {
 
     const [mainImageNum, setMainImageNum] = useState(0)
     const [parsedQuery, setParsedQuery] = useState(queryString.parse(location.search))
-    const [selectedSize, setSelectedSize] = useState(data.product.data.sizes[0].size.document.data.title)
+    const [selectedSize, setSelectedSize] = useState(data.product.data.sizes[0].size.document && data.product.data.sizes[0].size.document.data.title)
     const [alreadySelected, setAlreadySelected] = useState(false)
     const [cart, setCart] = useState([])
 
@@ -119,7 +119,9 @@ const ProductPage = ({data, location}) => {
                     data.product.data.sizes.length > 0 &&
                     <select name='size' onChange={(e) => setSelectedSize(e.target.value)}>
                       {data.product.data.sizes && data.product.data.sizes.map(({size}) => {
-                        return <option value={size.document.data.title}>{size.document.data.title}</option>
+                        if(size.document){
+                          return <option value={size.document.data.title}>{size.document.data.title}</option>
+                        }
                       })}
                     </select>
                   }
@@ -127,7 +129,19 @@ const ProductPage = ({data, location}) => {
                 <div className={styles.actionButtons}>
                   {
                     data.product.data.sizes &&
-                    data.product.data.sizes.find(size => size.size.document.data.title == selectedSize).quantity <= 0 ?
+                    data.product.data.sizes.find(size => {
+                      if(size.size.document && size.size.document.data){
+                        size.size.document.data.title == selectedSize
+                      }
+                    }) && data.product.data.sizes.find(size => {
+                      if(size.size.document && size.size.document.data){
+                        size.size.document.data.title == selectedSize
+                      }
+                    }) && data.product.data.sizes.find(size => {
+                      if(size.size.document && size.size.document.data){
+                        size.size.document.data.title == selectedSize
+                      }
+                    }).quantity <= 0 ?
                   <div>
                     <SecondaryButton text={'sold out'} disabled={true}/>
                   </div>
