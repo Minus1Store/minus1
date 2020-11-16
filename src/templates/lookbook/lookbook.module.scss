@@ -141,6 +141,7 @@
     overflow: auto;
     @include breakpoint(sm){
         display:flex;
+        align-content: flex-start;
     }
 }
 
