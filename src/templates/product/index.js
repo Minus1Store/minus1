@@ -19,7 +19,7 @@ const ProductPage = ({data, location}) => {
 
     const [mainImageNum, setMainImageNum] = useState(0)
     const [parsedQuery, setParsedQuery] = useState(queryString.parse(location.search))
-    const [selectedSize, setSelectedSize] = useState(data.product.data.sizes[0].size.document && data.product.data.sizes[0].size.document.data.title)
+    const [selectedSize, setSelectedSize] = useState(data.product.data.sizes && data.product.data.sizes[0].size.document && data.product.data.sizes[0].size.document.data.title)
     const [alreadySelected, setAlreadySelected] = useState(false)
     const [cart, setCart] = useState([])
 
@@ -79,26 +79,29 @@ const ProductPage = ({data, location}) => {
 
     return(
         <PageLayout>
-            <SEO titleTemplate={`%s | Product ${data.product.data.title} ${data.product.data.color_name}`} url={location.href} description={`Product ${data.product.data.title}. Color ${data.product.data.color_name}. Price €${data.product.data.price}. About product: ${data.product.data.description.text}. Sizes: ${data.product.data.sizes && data.product.data.sizes.map(({size}) => size).join(',')}`}/>
+            <SEO titleTemplate={`%s | Product ${data.product.data.title} ${data.product.data.color_name}`} url={location.href} description={`Product ${data.product.data.title}. Color ${data.product.data.color_name}. Price €${data.product.data.price}. About product: ${data.product.data.description && data.product.data.description.text}. Sizes: ${data.product.data.sizes && data.product.data.sizes.map(({size}) => size).join(',')}`}/>
             <div className={styles.pageWrapper}>
               <div className={styles.mainImageContainer}>
-                <ReactImageMagnify
-                  smallImage={
-                    {
-                      alt:data.product.data.images[mainImageNum].image.alt,
-                      isFluidWidth:true,
-                      src: data.product.data.images[mainImageNum].image.localFile.url
+                {
+                  data.product.data.images && data.product.data.images[mainImageNum] &&
+                  <ReactImageMagnify
+                    smallImage={
+                      {
+                        alt:data.product.data.images[mainImageNum].image.alt,
+                        isFluidWidth:true,
+                        src: data.product.data.images[mainImageNum].image.localFile.url
+                      }
                     }
-                  }
-                  largeImage={
-                    {
-                      width:800,
-                      height:800,
-                      src: data.product.data.images[mainImageNum].image.localFile.url
+                    largeImage={
+                      {
+                        width:800,
+                        height:800,
+                        src: data.product.data.images[mainImageNum].image.localFile.url
+                      }
                     }
-                  }
-                  className={styles.mainZoomedImage}
-                />
+                    className={styles.mainZoomedImage}
+                  />
+                }
               </div>
               <div className={styles.informationContainer}>
                 <div className={styles.title}>
@@ -107,7 +110,10 @@ const ProductPage = ({data, location}) => {
                 <div className={styles.color}>
                   {data.product.data.color_name}
                 </div>
-                <div className={styles.description} dangerouslySetInnerHTML={{__html:data.product.data.description.html}}></div>
+                {
+                  data.product.data.description &&
+                  <div className={styles.description} dangerouslySetInnerHTML={{__html:data.product.data.description.html}}></div>
+                }
                 <div className={styles.productThumbnails}>
                   <ShopThumbnails data={data} location={location}/>
                 </div>
@@ -118,7 +124,7 @@ const ProductPage = ({data, location}) => {
                   {
                     data.product.data.sizes.length > 0 &&
                     <select name='size' onChange={(e) => setSelectedSize(e.target.value)}>
-                      {data.product.data.sizes && data.product.data.sizes.map(({size}) => {
+                      {data.product.data.sizes.map(({size}) => {
                         if(size.document){
                           return <option value={size.document.data.title}>{size.document.data.title}</option>
                         }
@@ -130,10 +136,6 @@ const ProductPage = ({data, location}) => {
                   {
                     data.product.data.sizes &&
                     data.product.data.sizes.find(size => {
-                      if(size.size.document && size.size.document.data){
-                        size.size.document.data.title == selectedSize
-                      }
-                    }) && data.product.data.sizes.find(size => {
                       if(size.size.document && size.size.document.data){
                         size.size.document.data.title == selectedSize
                       }

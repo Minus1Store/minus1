@@ -35,22 +35,24 @@ const ShopThumbnails = ({data, location}) => {
             !data.allFamilyProducts.edges.length > 0 &&
             <div className={styles.allProductThumbnails}>
                 {data.product.data.images.map(({image}, index) => {
-                    if(index == 0){
-                        let to = `/shop/${data.product.data.product_category.uid}/${data.product.uid}`
-                        
-                        return <div className={`${styles.productThumbnail} ${(to == location.pathname && location.search == '') && styles.activeLink}`}>
-                            <Link to={to}>
-                            <Image fluid={image.localFile.childImageSharp.fluid} alt={image.alt}/>
-                        </Link>
-                        </div>
-                    }else{
-                        let to = `/shop/${data.product.data.product_category.uid}/${data.product.uid}`
-                        
-                        return <div className={`${styles.productThumbnail} ${(to == location.pathname && location.search == `?img=${index}`) && styles.activeLink}`}>
-                            <Link to={`${to}?img=${index}`}>
-                            <Image fluid={image.localFile.childImageSharp.fluid} alt={image.alt}/>
-                        </Link>
-                        </div>
+                    if(image.localFile){
+                        if(index == 0){
+                            let to = `/shop/${data.product.data.product_category.uid}/${data.product.uid}`
+                            
+                            return <div className={`${styles.productThumbnail} ${(to == location.pathname && location.search == '') && styles.activeLink}`}>
+                                <Link to={to}>
+                                <Image fluid={image.localFile.childImageSharp.fluid} alt={image.alt}/>
+                            </Link>
+                            </div>
+                        }else{
+                            let to = `/shop/${data.product.data.product_category.uid}/${data.product.uid}`
+                            
+                            return <div className={`${styles.productThumbnail} ${(to == location.pathname && location.search == `?img=${index}`) && styles.activeLink}`}>
+                                <Link to={`${to}?img=${index}`}>
+                                <Image fluid={image.localFile.childImageSharp.fluid} alt={image.alt}/>
+                            </Link>
+                            </div>
+                        }
                     }
                 })}
             </div>
