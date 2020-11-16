@@ -6,10 +6,9 @@
     margin:auto;
     display:flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    align-content: flex-end;
     &::-webkit-scrollbar{
         background: #D6D6D6;
         width:5px;
