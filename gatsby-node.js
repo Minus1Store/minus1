@@ -34,6 +34,9 @@ exports.createPages = async ({ graphql, actions }) => {
                 product_category {
                   uid
                 }
+                product_subcategory {
+                  uid
+                }
                 product_family {
                   uid
                 }
@@ -132,6 +135,8 @@ exports.createPages = async ({ graphql, actions }) => {
           context: {
             // Pass the unique ID (uid) through context so the template can filter by it
             uid: edge.node.uid,
+            category_uid: edge.node.data.product_category.uid,
+            subcategory_uid: edge.node.data.product_subcategory.uid,
             family_uid: familyUID
           },
         })

@@ -22,6 +22,7 @@ const ProductPage = ({data, location}) => {
     const [selectedSize, setSelectedSize] = useState(data.product.data.sizes && data.product.data.sizes[0].size.document && data.product.data.sizes[0].size.document.data.title)
     const [alreadySelected, setAlreadySelected] = useState(false)
     const [cart, setCart] = useState([])
+    const [nextLink, setNextLink] = useState(nextProductLink(data.product.uid, data.allSubcategoryProducts.edges, data.allCategoryProducts.edges))
 
     useEffect(() => {
       if(!parsedQuery.img){
@@ -77,6 +78,38 @@ const ProductPage = ({data, location}) => {
       }
     }, [cart, selectedSize])
 
+    function nextProductLink(productUID, primaryProducts, secondaryProducts){
+      if(primaryProducts.length > 0){
+        let productIndex = primaryProducts.findIndex(product => product.node.uid == productUID)
+
+        if(productIndex >= 0){
+          let nextProductIndex = productIndex + 1
+          if(nextProductIndex < primaryProducts.length){
+            return `/shop/${primaryProducts[nextProductIndex].node.data.product_category.uid}/${primaryProducts[nextProductIndex].node.uid}`
+          }else{
+            return false
+          }
+        }else{
+          return false
+        }
+      }else if(secondaryProducts.length > 0){
+        let productIndex = secondaryProducts.findIndex(product => product.node.uid == productUID)
+        
+        if(productIndex >= 0){
+          let nextProductIndex = productIndex + 1
+          if(nextProductIndex < secondaryProducts.length){
+            return `/shop/${secondaryProducts[nextProductIndex].node.data.product_category.uid}/${secondaryProducts[nextProductIndex].node.uid}`
+          }else{
+            return false
+          }
+        }else{
+          return false
+        }
+      }else{
+        return false
+      }
+    }
+
     return(
         <PageLayout>
             <SEO titleTemplate={`%s | Product ${data.product.data.title} ${data.product.data.color_name}`} url={location.href} description={`Product ${data.product.data.title}. Color ${data.product.data.color_name}. Price €${data.product.data.price}. About product: ${data.product.data.description && data.product.data.description.text}. Sizes: ${data.product.data.sizes && data.product.data.sizes.map(({size}) => size).join(',')}`}/>
@@ -120,16 +153,24 @@ const ProductPage = ({data, location}) => {
                 <div className={styles.price}>
                   €{data.product.data.price}
                 </div>
-                <div className={styles.sizes}>
+                <div className={styles.row}>
+                  <div className={styles.sizes}>
+                    {
+                      data.product.data.sizes.length > 0 &&
+                      <select name='size' onChange={(e) => setSelectedSize(e.target.value)}>
+                        {data.product.data.sizes.map(({size}) => {
+                          if(size.document){
+                            return <option value={size.document.data.title}>{size.document.data.title}</option>
+                          }
+                        })}
+                      </select>
+                    }
+                  </div>
                   {
-                    data.product.data.sizes.length > 0 &&
-                    <select name='size' onChange={(e) => setSelectedSize(e.target.value)}>
-                      {data.product.data.sizes.map(({size}) => {
-                        if(size.document){
-                          return <option value={size.document.data.title}>{size.document.data.title}</option>
-                        }
-                      })}
-                    </select>
+                    nextLink &&
+                    <Link to={nextLink} className={styles.link}>
+                      next {(data.product.data.product_subcategory.document && data.product.data.product_subcategory.document.data.product_subcategory) || (data.product.data.product_category.document && data.product.data.product_category.document.data.product_category)} &gt;
+                    </Link>
                   }
                 </div>
                 <div className={styles.actionButtons}>
@@ -228,7 +269,7 @@ const ProductPage = ({data, location}) => {
 }
 
 export const pageQuery = graphql`
-  query ProductBySlug($uid: String!, $family_uid: String!) {
+  query ProductBySlug($uid: String!, $family_uid: String!, $category_uid: String!, $subcategory_uid: String) {
     product:prismicProduct(uid: { eq: $uid }) {
         uid
         data {
@@ -252,6 +293,25 @@ export const pageQuery = graphql`
             }
             product_category{
               uid
+              document{
+                ... on PrismicProductCategory{
+                  data{
+                    product_category
+                  }
+                }
+              }
+            }
+            product_subcategory{
+              document{
+                ... on PrismicProductSubcategory {
+                  data{
+                    product_subcategory
+                  }
+                }
+              }
+            }
+            product_family{
+              uid
             }
             price
             sizes {
@@ -269,6 +329,30 @@ export const pageQuery = graphql`
             }
             title
           }
+    }
+    allCategoryProducts: allPrismicProduct(filter: {data: {product_category: {uid: {eq: $category_uid}}}}){
+      edges{
+        node{
+          uid
+          data{
+            product_category{
+              uid
+            }
+          }
+        }
+      }
+    }
+    allSubcategoryProducts: allPrismicProduct(filter: {data: {product_subcategory: {uid: {eq: $subcategory_uid}}}}){
+      edges{
+        node{
+          uid
+          data{
+            product_category{
+              uid
+            }
+          }
+        }
+      }
     }
     allFamilyProducts: allPrismicProduct(filter: {data: {product_family: {uid: {eq: $family_uid}}}}) {
       edges {

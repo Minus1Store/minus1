@@ -75,6 +75,10 @@
 
 .sizes{
     margin-bottom:10px;
+    > select{
+        min-width:105px;
+        padding:2.5px;
+    }
 }
 
 .price{
@@ -121,4 +125,27 @@
 
 .main-zoomed-image{
     z-index:2;
+}
+
+.row{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.link{
+    text-transform: lowercase;
+    text-decoration:none;
+    color:black;
+    font-size:0.6875rem;
+    padding:1px;
+    margin-left:7.5px;
+    @include breakpoint(sm){
+        font-size:0.85rem;
+    }
+}
+
+.link:hover{
+    background:red;
+    color:white;
 }
