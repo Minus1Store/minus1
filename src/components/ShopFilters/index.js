@@ -57,7 +57,7 @@ const ShopFilters = ({location, children}) => {
             onClick={() => setShowFilters(prevState => !prevState)}
             className={styles.showFiltersButton}
             >
-              {showFilters ? `hide filters` : `show filters +`}
+              {showFilters ? `hide filters -` : `show filters +`}
             </a>
             <div className={`${styles.filters} ${showFilters && styles.isVisible}`}>
               <Link to={'/shop/all'} className={location.pathname == '/shop/all' && styles.activeLink}>
