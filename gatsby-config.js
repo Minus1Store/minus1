@@ -1,8 +1,8 @@
 require('dotenv').config({
   path: `.env`,
 })
-
-process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
+// setting this when downloads fail bcs of poor connection
+// process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
 
 const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
 
