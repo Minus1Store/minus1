@@ -57,3 +57,24 @@
 .active-category .subcategory-link{
     display: block;
 }
+
+.show-filters-button{
+    cursor: pointer;
+    display: block;
+    @include breakpoint(sm){
+        display:none;
+    }
+}
+
+.filters{
+    max-height:0;
+    overflow: hidden;
+    transition:0.5s;
+    @include breakpoint(sm){
+        max-height: 200vh;
+    }
+}
+
+.is-visible{
+    max-height: 200vh;
+}
