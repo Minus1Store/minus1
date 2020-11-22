@@ -11,11 +11,13 @@ import styles from './checkout.module.scss'
 import CartHeader from '../../../components/CartHeader'
 import SEO from '../../../components/SEO'
 import PayOnArrivalForm from '../../../components/PayOnArrivalForm'
+import PayWithCardForm from '../../../components/PayWithCardForm'
 import PrimaryButton from '../../../components/PrimaryButton'
 
 const CheckoutPage = ({location}) => {
 
     const [payOnArrivalToggled, setPayOnArrivalToggled] = useState(false)
+    const [payWithCard, setPayWithCard] = useState(false)
     const [cart, setCart] = useState([])
 
     const data = useStaticQuery(graphql`
@@ -126,90 +128,97 @@ const CheckoutPage = ({location}) => {
                         </CartHeaderItem>
                     </CartHeader>
                     <div className={styles.cartBody}>
-                        {cart.length > 0 &&
-                        
-                        <PayPalButton
-                        amount={
-                        cart &&
-                        cart.reduce((a, b) => {
-                            console.log(a)
-                            return a + b.quantity * b.data.price
-                        }, 0)
+                        {
+                            <div onClick={() => setPayWithCard(prevState => !prevState)} className={styles.paymentMethodButton}>
+                                <PrimaryButton text='Pay with credit card'/>
+                            </div>
+
                         }
-                        createOrder={(data, actions) => {
-                        return actions.order.create({
-                            purchase_units: [
-                            {  
-                                // invoice_id:'fsfsfs',
-                                amount: {
-                                value:
-                                    cart &&
-                                    cart.reduce((a, b) => {
-                                    return (
-                                        a + b.quantity * b.data.price
-                                    )
-                                    }, 0),
-                                currency_code: 'EUR',
-                                breakdown: {
-                                    item_total: {
-                                    currency_code: 'EUR',
-                                    value:
-                                        cart &&
-                                        cart.reduce((a, b) => {
-                                        return (
-                                            a +
-                                            b.quantity * b.data.price
-                                        )
-                                        }, 0),
-                                    },
-                                },
-                                },
-                                items: [
-                                ...cart.map((product) => {
-                                    return {
-                                    name: product.data.title,
-                                    quantity: product.quantity,
-                                    description: `${
-                                        product.size != undefined
-                                        ? 'Size:' +
-                                            product.size
-                                        : ''
-                                    }`,
-                                    sku: `/${product.data.product_category.uid}/${product.uid}`,
-                                    unit_amount: {
-                                        currency_code: 'EUR',
-                                        value: product.data.price,
-                                    },
-                                    }
-                                }),
-                                ],
-                            },
-                            ],
-                        })
-                    }}
-                    onApprove={(data, actions) => {
-                        actions.order.capture().then(function(details){
-                            console.log(details)
-                            confirmationSet(cart, details.payer.name.given_name, details.purchase_units[0].payments.captures[0].id)
-                            localStorage.setItem('cart', JSON.stringify([]))
-                            setCart([])
-                            navigate('/shop/confirmation')
-                        })
-                    }}
-                        options={{
-                        clientId: process.env.GATSBY_PAYPAL_CLIENT_ID,
-                        currency: 'EUR',
-                        }}
-                    />
+                        {cart.length > 0 && payWithCard &&
+                            <PayWithCardForm products={cart} price={cart.map(item => item.data.price * item.quantity).reduce((total = 0, itemPrice) => {
+                                return total + itemPrice
+                            })}/>
+                    //     <PayPalButton
+                    //     amount={
+                    //     cart &&
+                    //     cart.reduce((a, b) => {
+                    //         console.log(a)
+                    //         return a + b.quantity * b.data.price
+                    //     }, 0)
+                    //     }
+                    //     createOrder={(data, actions) => {
+                    //     return actions.order.create({
+                    //         purchase_units: [
+                    //         {  
+                    //             // invoice_id:'fsfsfs',
+                    //             amount: {
+                    //             value:
+                    //                 cart &&
+                    //                 cart.reduce((a, b) => {
+                    //                 return (
+                    //                     a + b.quantity * b.data.price
+                    //                 )
+                    //                 }, 0),
+                    //             currency_code: 'EUR',
+                    //             breakdown: {
+                    //                 item_total: {
+                    //                 currency_code: 'EUR',
+                    //                 value:
+                    //                     cart &&
+                    //                     cart.reduce((a, b) => {
+                    //                     return (
+                    //                         a +
+                    //                         b.quantity * b.data.price
+                    //                     )
+                    //                     }, 0),
+                    //                 },
+                    //             },
+                    //             },
+                    //             items: [
+                    //             ...cart.map((product) => {
+                    //                 return {
+                    //                 name: product.data.title,
+                    //                 quantity: product.quantity,
+                    //                 description: `${
+                    //                     product.size != undefined
+                    //                     ? 'Size:' +
+                    //                         product.size
+                    //                     : ''
+                    //                 }`,
+                    //                 sku: `/${product.data.product_category.uid}/${product.uid}`,
+                    //                 unit_amount: {
+                    //                     currency_code: 'EUR',
+                    //                     value: product.data.price,
+                    //                 },
+                    //                 }
+                    //             }),
+                    //             ],
+                    //         },
+                    //         ],
+                    //     })
+                    // }}
+                    // onApprove={(data, actions) => {
+                    //     actions.order.capture().then(function(details){
+                    //         console.log(details)
+                    //         confirmationSet(cart, details.payer.name.given_name, details.purchase_units[0].payments.captures[0].id)
+                    //         localStorage.setItem('cart', JSON.stringify([]))
+                    //         setCart([])
+                    //         navigate('/shop/confirmation')
+                    //     })
+                    // }}
+                    //     options={{
+                    //     clientId: process.env.GATSBY_PAYPAL_CLIENT_ID,
+                    //     currency: 'EUR',
+                    //     }}
+                    // />
                         }
                         {
-                            !payOnArrivalToggled &&
-                            <div onClick={() => setPayOnArrivalToggled(true)}>
+                            <div onClick={() => setPayOnArrivalToggled(prevState => !prevState)} className={styles.paymentMethodButton}>
                                 <PrimaryButton text='Pay on arrival'/>
                             </div>
 
                         }
-                        {payOnArrivalToggled &&
+                        {cart.length > 0 && payOnArrivalToggled &&
                             <PayOnArrivalForm products={cart} price={cart.map(item => item.data.price * item.quantity).reduce((total = 0, itemPrice) => {
                                 return total + itemPrice
                             })}/>
