@@ -6,6 +6,7 @@ import NavFooterMobile from '../../../components/NavFooterMobile'
 import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import styles from './archive.module.scss'
 import SEO from '../../../components/SEO'
+import ComingSoon from '../../../components/ComingSoon'
 
 const Archive = ({location}) => {
 
@@ -35,13 +36,18 @@ const Archive = ({location}) => {
             <div className={styles.pageWrapper}>
                 <h2 className={styles.sectionTitle}>news archive</h2>
                 <div className={styles.newsContainer}>
-                    {data.newsArticles.edges.map(({node}) => {
+                    {
+                    data.newsArticles.edges.length > 0 ?
+                    data.newsArticles.edges.map(({node}) => {
                         return <p className={styles.article}>
                             <Link to={`/news/${node.uid}`}>
                                 {node.data.date}: {node.data.title}
                             </Link>
                         </p>
-                    })}
+                    })
+                    :
+                    <ComingSoon/>
+                    }
                 </div>
             </div>
             <NavFooterMobile/>

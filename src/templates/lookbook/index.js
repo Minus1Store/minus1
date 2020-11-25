@@ -10,6 +10,7 @@ import SliderPopUp from '../../components/SliderPopUp'
 import NavFooterMobile2 from '../../components/NavFooterMobile2'
 import NavFooterMobile from '../../components/NavFooterMobile'
 import SEO from '../../components/SEO'
+import ComingSoon from '../../components/ComingSoon'
 
 const LookbookPage = ({data, location}) => {
 
@@ -34,32 +35,39 @@ const LookbookPage = ({data, location}) => {
             </div>
             <div className={styles.pageWrapper}>
                 <div className={styles.lookBookImages}>
-                    <div className={styles.lookBookMainImage} onClick={() => setImageClicked(true)}>
-                        <FadeImageSlider images={data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} showNavigation={false} setSwiperInstance={setSwiperInstance} setClickedThumbnail={setClickedThumbnail}/>
-                    </div>
-                    <div>
-                        <p className={styles.pagination}>
-                            {
-                                hoveredThumbnail !== undefined ?
-                                <React.Fragment>
-                                    <span>{hoveredThumbnail + 1}</span> / {data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
-                                </React.Fragment>
-                                :
-                                <React.Fragment>
-                                    {clickedThumbnail + 1} / {data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
-                                </React.Fragment>
-                            }
-                        </p>
-                        <ul className={styles.lookBookThumbnails}>
-                            {data.lookbookProducts && data.lookbookProducts.edges.map(({node}, index) => {
-                                return <li onClick={() => {setClickedThumbnail(index)}} onPointerOver={() => setHoveredThumbnail(index)} onPointerOut={() => setHoveredThumbnail(undefined)} className={styles.thumbnail} key={index}>
-                                    <button>
-                                        <Image fluid={node.data.image.localFile.childImageSharp.fluid} alt={node.data.image.alt}/>
-                                    </button>
-                                </li>
-                            })}
-                        </ul>
-                    </div>
+                    {
+                        data.lookbookProducts.edges.length > 0 ?
+                        <>
+                        <div className={styles.lookBookMainImage} onClick={() => setImageClicked(true)}>
+                            <FadeImageSlider images={data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} showNavigation={false} setSwiperInstance={setSwiperInstance} setClickedThumbnail={setClickedThumbnail}/>
+                        </div>
+                        <div>
+                            <p className={styles.pagination}>
+                                {
+                                    hoveredThumbnail !== undefined ?
+                                    <React.Fragment>
+                                        <span>{hoveredThumbnail + 1}</span> / {data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
+                                    </React.Fragment>
+                                    :
+                                    <React.Fragment>
+                                        {clickedThumbnail + 1} / {data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
+                                    </React.Fragment>
+                                }
+                            </p>
+                            <ul className={styles.lookBookThumbnails}>
+                                {data.lookbookProducts && data.lookbookProducts.edges.map(({node}, index) => {
+                                    return <li onClick={() => {setClickedThumbnail(index)}} onPointerOver={() => setHoveredThumbnail(index)} onPointerOut={() => setHoveredThumbnail(undefined)} className={styles.thumbnail} key={index}>
+                                        <button>
+                                            <Image fluid={node.data.image.localFile.childImageSharp.fluid} alt={node.data.image.alt}/>
+                                        </button>
+                                    </li>
+                                })}
+                            </ul>
+                        </div>
+                        </>
+                        :
+                        <ComingSoon/>
+                    }
                 </div>
                 <div className={styles.lookBookHeader}>
                     <div>

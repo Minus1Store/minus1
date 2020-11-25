@@ -12,6 +12,7 @@ import PageLayout from '../../components/PageLayout'
 import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 import SEO from '../../components/SEO'
+import ComingSoon from '../../components/ComingSoon';
 
 console.log(scrollbarStyle)
 
@@ -66,6 +67,9 @@ const News = ({location}) => {
                     <div className={styles.overlay}>
 
                     </div>
+                    {
+
+                    data.newsArticles.edges.length > 0 ?
                     <Swiper
                         slidesPerView={'auto'}
                         centeredSlides={true}
@@ -76,7 +80,7 @@ const News = ({location}) => {
                             el:`.${styles.scrollbar}`
                         }}
                     >
-                        {
+                        {   
                             data.newsArticles.edges.map(({node}, index) => {
                                 
                                 let item = node.data;
@@ -99,6 +103,9 @@ const News = ({location}) => {
                             })
                         }
                     </Swiper>
+                    :
+                    <ComingSoon/>
+                    }
                     <div className={`${styles.scrollbar} ${!archiveOpened && styles.notVisible}`}></div>
                 </div>
                 

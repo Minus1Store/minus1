@@ -48,6 +48,7 @@
 .article-container{
     display:flex;
     flex-direction: column;
+    min-height:275px;
     > div > a {
         text-decoration: none;
         padding:1px;
@@ -116,9 +117,11 @@
 .page-wrapper{
     width:100%;
     position:relative;
+    height: 440px;
     @include breakpoint(sm){
+        max-height: 60vh;
         margin-top:30px;
-        margin-bottom:50px;
+        margin-bottom:10px;
     }
 }
 

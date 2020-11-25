@@ -4,6 +4,7 @@
     width:100%;
     margin:auto;
     @include breakpoint(sm){
+        max-height: 61vh;
         margin-top:50px;
         width:800px;
     }
@@ -126,6 +127,7 @@
     @include breakpoint(sm){
         flex-direction: row;
         justify-content: space-between;
+        height: 405px;
     }
 }
 

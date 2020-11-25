@@ -10,6 +10,7 @@ import PreviewFilters from '../../components/PreviewFilters'
 import ProductsContainer from '../../components/ProductsContainer'
 import ProductThumbnail from '../../components/ProductThumbnail'
 import SEO from '../../components/SEO'
+import ComingSoon from '../../components/ComingSoon'
 
 const PreviewAllPage = ({data, location}) => {
     return(
@@ -32,13 +33,17 @@ const PreviewAllPage = ({data, location}) => {
                         }
                     </div>
                     <ProductsContainer>
-                        {data.products && data.products.edges.map(({node}) => {
+                        {
+                        data.products.edges.length > 0 ? data.products.edges.map(({node}) => {
                             return <div className={styles.product}>
                                 <Link to={`/previews/${data.currentPreview.uid}/${node.data.product_category.uid}/${node.data.product_family.uid}?product=${node.uid}`}>
                                     <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt}/>
                                 </Link>
                             </div>
-                        })}
+                        })
+                        :
+                        <ComingSoon/>   
+                    }
                     </ProductsContainer>
                 </div>
             </div>

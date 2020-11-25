@@ -22,6 +22,7 @@
     "test:e2e:ci": "cross-env CYPRESS_SUPPORT=y start-server-and-test develop http://localhost:8000 cy:run:ci"
   },
   "dependencies": {
+    "2checkout-node": "0.0.1",
     "@appinfini/react-cursor-position": "^3.0.31",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",

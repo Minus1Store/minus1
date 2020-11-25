@@ -7,6 +7,7 @@ import PageLayout from '../../components/PageLayout'
 import NavFooterMobile from '../../components/NavFooterMobile'
 import NavFooterDesktop from '../../components/NavFooterDesktop'
 import SEO from '../../components/SEO'
+import ComingSoon from '../../components/ComingSoon'
 
 const PreviewPage = ({data, location}) => {
 
@@ -17,13 +18,16 @@ const PreviewPage = ({data, location}) => {
             ).join(',')}`}/>
             <div className={styles.pageWrapper}>
                 <ul className={styles.familyThumbnails}>
-                    {data.previewFamilies && data.previewFamilies.edges.map(({node}, index) => { 
+                    {data.previewFamilies.edges > 0 ? data.previewFamilies.edges.map(({node}, index) => { 
                         return <li key={index} className={styles.thumbnail}>
                             <Link to={`/previews/${node.data.preview.uid}/${node.data.product_category.uid}/${node.uid}`}>
                                 <Image fluid={node.data.family_main_image.localFile.childImageSharp.fluid} alt={node.data.family_main_image.alt}/>
                             </Link>
                         </li>
-                    })}
+                    })
+                    :
+                    <ComingSoon/>
+                }
                 </ul>
             </div>
             <div className={styles.navFooterContainer}>
