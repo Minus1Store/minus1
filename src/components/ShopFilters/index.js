@@ -68,18 +68,20 @@ const ShopFilters = ({location, children}) => {
                       <Link to={`/shop/${node.uid}`} className={location.pathname == `/shop/${node.uid}` && styles.activeLink}>
                           {node.data.product_category}
                       </Link>
-                      {
-                      data.productSubcategories.edges.sort((edgeA, edgeB) => {return Number(edgeA.node.data.product_subcategory.length) - Number(edgeB.node.data.product_subcategory.length)}).filter(({node:subcategoryNode}) => {
-                        
-                        if(subcategoryNode.data.product_category.uid == node.uid){
-                          return subcategoryNode
+                      <div className={styles.subcategoriesContainer}>
+                        {
+                        data.productSubcategories.edges.sort((edgeA, edgeB) => {return Number(edgeA.node.data.product_subcategory.length) - Number(edgeB.node.data.product_subcategory.length)}).filter(({node:subcategoryNode}) => {
+                          
+                          if(subcategoryNode.data.product_category.uid == node.uid){
+                            return subcategoryNode
+                          }
+                        }).map(({node:subcategoryNode}) => 
+                          <Link key={subcategoryNode.uid} to={`/shop/${node.uid}/${subcategoryNode.uid}`} className={`${styles.subcategoryLink} ${location.pathname.match(new RegExp(`\/shop\/${node.uid}\/${subcategoryNode.uid}`, 'g')) && styles.activeLink}`}>
+                              {subcategoryNode.data.product_subcategory}
+                          </Link>
+                        )
                         }
-                      }).map(({node:subcategoryNode}) => 
-                        <Link key={subcategoryNode.uid} to={`/shop/${node.uid}/${subcategoryNode.uid}`} className={`${styles.subcategoryLink} ${location.pathname.match(new RegExp(`\/shop\/${node.uid}\/${subcategoryNode.uid}`, 'g')) && styles.activeLink}`}>
-                            {subcategoryNode.data.product_subcategory}
-                        </Link>
-                      )
-                      }
+                      </div>
                     </div>
               })}
             </div>
