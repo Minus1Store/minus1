@@ -25,6 +25,51 @@
 }
 
 .body{
+    p{
+        font-size:0.75rem;
+        line-height:1.1rem;
+        @include breakpoint(sm){
+            line-height:0.9rem;
+            font-size:0.85rem;
+        }
+    }
+    h1, h2, h3, h4, h5, h6{
+        font-weight: bold;
+    }
+    h1{
+        font-size:1rem;
+    }
+    h2{
+        font-size:0.95rem;
+    }
+    h3{
+        font-size:0.9rem;
+    }
+    h4{
+        font-size: 0.85rem;
+    }
+    h5{
+        font-size:0.8rem;
+    }
+    h6{
+        font-size:0.75rem;
+    }
+    img{
+        width:100%;
+    }
+    a{
+        color:black;
+        padding:1px;
+    }
+    a:hover{
+        color:white;
+        background:red;
+    }
+    li{
+        margin-bottom:15px;
+        line-height: 1.4rem;
+        font-size:0.85rem;
+    }
     @include breakpoint(sm){
         max-height:240px;
         overflow-y:auto;
@@ -43,15 +88,6 @@
 
 .body::-webkit-scrollbar-thumb:hover{
     background:#A1A1A1;
-}
-
-.body > p{
-    font-size:0.75rem;
-    line-height:1.1rem;
-    @include breakpoint(sm){
-        line-height:0.9rem;
-        font-size:0.85rem;
-    }
 }
 
 .wrapper{

@@ -31,7 +31,7 @@ const News = ({location}) => {
                     alt
                     localFile{
                         childImageSharp{
-                            fluid(maxWidth:500, quality:100){
+                            fluid(maxWidth:1000, quality:100){
                                 ...GatsbyImageSharpFluid
                             }
                         }
@@ -71,9 +71,9 @@ const News = ({location}) => {
 
                     data.newsArticles.edges.length > 0 ?
                     <Swiper
-                        slidesPerView={'auto'}
+                        slidesPerView={data.newsArticles.edges.length > 3 ? 'auto' : 1}
                         centeredSlides={true}
-                        spaceBetween={30}
+                        spaceBetween={10}
                         allowTouchMove={false}
                         scrollbar={{
                             draggable: true,
