@@ -19,6 +19,14 @@ const CheckoutPage = ({location}) => {
     const [payOnArrivalToggled, setPayOnArrivalToggled] = useState(false)
     const [payWithCard, setPayWithCard] = useState(false)
     const [cart, setCart] = useState([])
+    const [price, setPrice] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
+
+    useEffect(() => {
+        setPrice(cart.length > 0 && cart.map(item => item.data.price * item.quantity).reduce((total = 0, itemPrice) => {
+            return total + itemPrice
+        }))
+    }, [cart])    
 
     const data = useStaticQuery(graphql`
         query CheckoutQuery{
@@ -129,15 +137,19 @@ const CheckoutPage = ({location}) => {
                     </CartHeader>
                     <div className={styles.cartBody}>
                         {
-                            <div onClick={() => setPayWithCard(prevState => !prevState)} className={styles.paymentMethodButton}>
-                                <PrimaryButton text='Pay with credit card'/>
-                            </div>
+                            // <div onClick={() => setPayWithCard(prevState => !prevState)} className={styles.paymentMethodButton}>
+                            //     <PrimaryButton text='Pay with credit card'/>
+                            // </div>
 
                         }
-                        {cart.length > 0 && payWithCard &&
-                            <PayWithCardForm products={cart} price={cart.map(item => item.data.price * item.quantity).reduce((total = 0, itemPrice) => {
-                                return total + itemPrice
-                            })}/>
+                        {
+                        // cart.length > 0 && payWithCard &&
+                        //     <PayWithCardForm 
+                        //         products={cart} 
+                        //         price={price}
+                        //         totalPrice={totalPrice}
+                        //         setTotalPrice={setTotalPrice}
+                        //     />
                     //     <PayPalButton
                     //     amount={
                     //     cart &&
@@ -219,9 +231,12 @@ const CheckoutPage = ({location}) => {
 
                         }
                         {cart.length > 0 && payOnArrivalToggled &&
-                            <PayOnArrivalForm products={cart} price={cart.map(item => item.data.price * item.quantity).reduce((total = 0, itemPrice) => {
-                                return total + itemPrice
-                            })}/>
+                            <PayOnArrivalForm 
+                                products={cart} 
+                                price={price}
+                                totalPrice={totalPrice}
+                                setTotalPrice={setTotalPrice}
+                            />
                         }
                     </div>
                     {
@@ -229,9 +244,7 @@ const CheckoutPage = ({location}) => {
                         &&
                         <div className={styles.cartSubtotal}>
                             <p>
-                                subtotal: €{cart.map(item => item.data.price * item.quantity).reduce((total = 0, itemPrice) => {
-                                return total + itemPrice
-                            })}
+                                total: €{totalPrice || price}
                             </p>
                         </div>
                     }

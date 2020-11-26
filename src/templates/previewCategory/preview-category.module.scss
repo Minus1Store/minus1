@@ -31,10 +31,15 @@
 }
 
 .filters{
-    position:absolute;
-    width:100px;
-    left:calc(50vw - 130px - 10px);
-    top:0;
+    width:100%;
+    @include breakpoint(sm){
+        position:absolute;
+        width:100px;
+        left:calc(50vw - 130px - 10px);
+        top:0;
+        width:200px;
+        left:calc(50% - 200px - 200px - 10px);
+    }
     @include breakpoint(lg){
         width:200px;
         left:calc(50% - 335px - 200px - 10px);

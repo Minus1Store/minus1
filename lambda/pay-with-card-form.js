@@ -21,7 +21,8 @@ exports.handler = async function(event, context) {
         message,
         token,
         price,
-        products
+        products,
+        state
     } = event.queryStringParameters
     
     const msgToSeller = {
@@ -169,7 +170,7 @@ exports.handler = async function(event, context) {
                 "name": `${firstName} ${lastName}`,
                 "addrLine1": address,
                 "city": city,
-                "state": country,
+                "state": state,
                 "zipCode": zipCode,
                 "country": country,
                 "email": email,

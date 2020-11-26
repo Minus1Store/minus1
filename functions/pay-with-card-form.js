@@ -28,7 +28,8 @@ exports.handler = async function (event, context) {
     message,
     token,
     price,
-    products
+    products,
+    state
   } = event.queryStringParameters;
   const msgToSeller = {
     to: SENDGRID_TO_EMAIL,
@@ -55,6 +56,10 @@ exports.handler = async function (event, context) {
                 <tr>
                     <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Country</th>
                     <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${country}</td>
+                </tr>
+                <tr>
+                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>State</th>
+                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${state}</td>
                 </tr>
                 <tr>
                     <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>City</th>
@@ -119,6 +124,10 @@ exports.handler = async function (event, context) {
                 <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${country}</td>
             </tr>
             <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>State</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${state}</td>
+            </tr>
+            <tr>
                 <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>City</th>
                 <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${city}</td>
             </tr>
@@ -175,7 +184,7 @@ exports.handler = async function (event, context) {
         "name": `${firstName} ${lastName}`,
         "addrLine1": address,
         "city": city,
-        "state": country,
+        "state": state,
         "zipCode": zipCode,
         "country": country,
         "email": email,

@@ -31,7 +31,7 @@ const News = ({location}) => {
                     alt
                     localFile{
                         childImageSharp{
-                            fluid(maxWidth:280, quality:100){
+                            fluid(maxWidth:500, quality:100){
                                 ...GatsbyImageSharpFluid
                             }
                         }

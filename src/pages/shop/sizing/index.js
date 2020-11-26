@@ -8,6 +8,7 @@ import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import NavFooterMobile from '../../../components/NavFooterMobile'
 import CartPopUp from '../../../components/CartPopUp'
 import SEO from '../../../components/SEO'
+import ComingSoon from '../../../components/ComingSoon'
 
 const ShippingPage = ({location}) => {
 
@@ -57,7 +58,7 @@ const ShippingPage = ({location}) => {
                     }
                     <div className={styles.termsContainer}>
                         {
-                            data.sizingItems && data.sizingItems.edges.map((table, index) => {
+                            data.sizingItems.edges.length > 0 ? data.sizingItems.edges.map((table, index) => {
                                 return <table className={styles.sizingItem} key={index}>
                                     {table.node.data.body.map((row, index) => {
                                         if(index == 0){
@@ -76,6 +77,8 @@ const ShippingPage = ({location}) => {
                                     })}
                                 </table>
                             })
+                            :
+                            <ComingSoon/>
                         }
                     </div>
                 </div>

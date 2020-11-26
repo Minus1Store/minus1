@@ -11,6 +11,7 @@ import ProductsContainer from '../../components/ProductsContainer'
 import ProductThumbnail from '../../components/ProductThumbnail'
 import SiteTree from '../../components/SiteTree'
 import SEO from '../../components/SEO'
+import NavFooterMobile2 from '../../components/NavFooterMobile2'
 
 const ProductSubcategoryPage = ({location, data}) => {
     return (
@@ -64,7 +65,7 @@ const ProductSubcategoryPage = ({location, data}) => {
                     </ProductsContainer>
                 </div>
             </div>
-            <NavFooterMobile/>
+            <NavFooterMobile2/>
             <div className={styles.navFooterContainer}>
             <SiteTree links={[{text: 'home',link:'/'}, {text: 'shop', link:'/shop/all'}, {text: data.subcategory.data.product_subcategory, link:`/shop/${data.subcategory.data.product_category.uid}/${data.subcategory.data.product_subcategory}`}]}/>
             <NavFooterDesktop

@@ -14,6 +14,7 @@ import ShopThumbnails from '../../components/ShopThumbnails'
 import SiteTree from '../../components/SiteTree'
 import CartPopUp from '../../components/CartPopUp'
 import SEO from '../../components/SEO'
+import NavFooterMobile2 from '../../components/NavFooterMobile2'
 
 const ProductPage = ({data, location}) => {
 
@@ -110,6 +111,11 @@ const ProductPage = ({data, location}) => {
       }
     }
 
+    const checkIfThereAreSizes = () => {
+      return data.product.data.sizes.every(node => node.size.document && node.size.document.data.title)
+    }
+    
+
     return(
         <PageLayout>
             <SEO titleTemplate={`%s | Product ${data.product.data.title} ${data.product.data.color_name}`} url={location.href} description={`Product ${data.product.data.title}. Color ${data.product.data.color_name}. Price €${data.product.data.price}. About product: ${data.product.data.description && data.product.data.description.text}. Sizes: ${data.product.data.sizes && data.product.data.sizes.map(({size}) => size).join(',')}`}/>
@@ -154,18 +160,16 @@ const ProductPage = ({data, location}) => {
                   €{data.product.data.price}
                 </div>
                 <div className={styles.row}>
-                  <div className={styles.sizes}>
-                    {
-                      data.product.data.sizes.length > 0 &&
-                      <select name='size' onChange={(e) => setSelectedSize(e.target.value)}>
-                        {data.product.data.sizes.map(({size}) => {
-                          if(size.document){
-                            return <option value={size.document.data.title}>{size.document.data.title}</option>
-                          }
-                        })}
-                      </select>
-                    }
-                  </div>
+                  {checkIfThereAreSizes() &&
+                    <div className={styles.sizes}>
+                      {
+                        data.product.data.sizes.length > 0 &&
+                        <select name='size' onChange={(e) => setSelectedSize(e.target.value)}>
+                          {}
+                        </select>
+                      }
+                    </div>
+                  }
                   {
                     nextLink &&
                     <Link to={nextLink} className={styles.link}>
@@ -175,7 +179,8 @@ const ProductPage = ({data, location}) => {
                 </div>
                 <div className={styles.actionButtons}>
                   {
-                    data.product.data.sizes &&
+                    checkIfThereAreSizes() && (
+                    (data.product.data.sizes &&
                     data.product.data.sizes.find(size => {
                       if(size.size.document && size.size.document.data){
                         size.size.document.data.title == selectedSize
@@ -184,7 +189,7 @@ const ProductPage = ({data, location}) => {
                       if(size.size.document && size.size.document.data){
                         size.size.document.data.title == selectedSize
                       }
-                    }).quantity <= 0 ?
+                    }).quantity) <= 0 ?
                   <div>
                     <SecondaryButton text={'sold out'} disabled={true}/>
                   </div>
@@ -192,6 +197,7 @@ const ProductPage = ({data, location}) => {
                   <div onClick={() => !alreadySelected && addProductToCart()}>
                     <PrimaryButton text={alreadySelected ? `in basket` : `add to basket`} disabled={alreadySelected ? true : false}/>
                   </div>
+                    )
                   }
                   <div>
                     <Link to={'/shop/all'}>
@@ -206,7 +212,7 @@ const ProductPage = ({data, location}) => {
                 </div>
               }
             </div>
-            <NavFooterMobile/>
+            <NavFooterMobile2/>
             <div className={styles.navFooterContainer}>
               <SiteTree links={[{text: 'home',link:'/'}, {text: 'shop', link:'/shop/all'}]}/>
               <NavFooterDesktop
