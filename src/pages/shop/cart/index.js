@@ -11,10 +11,12 @@ import CartHeaderItem from '../../../components/CartHeaderItem'
 import CartProduct from '../../../components/CartProduct'
 import SEO from '../../../components/SEO'
 import NavFooterMobile2 from '../../../components/NavFooterMobile2'
+import getProductSoldQuantity from '../../../utils/getProductSoldQuantity'
 
 const CartPage = ({location}) => {
 
     const [cart, setCart] = useState([])
+    const [loadingCart, setLoadingCart] = useState([])
 
     const data = useStaticQuery(graphql`
         query CartQuery{
@@ -65,14 +67,17 @@ const CartPage = ({location}) => {
     `)
 
     const setRealInformation = (products) => {
-        products.forEach(product => {
-            let realProduct = data.allAvailableProducts.edges.find(realProduct => {
-                if(realProduct.node.uid == product.uid){
-                    return true
-                }
-            })
-            
-            setCart(() => {
+        setLoadingCart(true)
+        products.forEach(async (product) => {
+            (async () =>{
+                let soldQuantity = await getProductSoldQuantity(product.uid, product.size)
+                soldQuantity = soldQuantity ? soldQuantity : 0
+                let realProduct = data.allAvailableProducts.edges.find(realProduct => {
+                    if(realProduct.node.uid == product.uid){
+                        return true
+                    }
+                })
+                
                 let newArray = [...products]
                 let cartProductIndex = newArray.findIndex(cartItem => {
                     if(cartItem.uid == product.uid){
@@ -83,11 +88,17 @@ const CartPage = ({location}) => {
                 if(product.quantity > availableQuantity){
                     newArray[cartProductIndex].quantity = availableQuantity
                 }
+                console.log(availableQuantity, soldQuantity)
+                if(availableQuantity - soldQuantity <= 0){
+                    newArray[cartProductIndex].quantity = 0
+                }
                 newArray[cartProductIndex].data = realProduct.node.data
-                return newArray
-                })
+                
+                setCart(() =>  newArray)
+                setLoadingCart(false)
+            })()
             })
-            }
+        }
             
             useEffect(() => {
                 if(localStorage.getItem('cart')){
@@ -164,7 +175,12 @@ const CartPage = ({location}) => {
                     <div className={styles.cartBody}>
                         <table className={styles.products}>
                             <tbody>
-                                {cart.map((cartItem, index) => {
+                                {loadingCart ?
+                                <div className={styles.centered}>
+                                    Loading Cart
+                                </div>
+                                :
+                                cart.map((cartItem, index) => {
                                     return <CartProduct key={index} removeProduct={removeProduct} data={cartItem} setQuantity={setQuantity}/>
                                 })}
                             </tbody>

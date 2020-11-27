@@ -28,7 +28,7 @@ const CheckoutPage = ({location}) => {
             return total + itemPrice
         }))
     }, [cart])    
-
+    
     const data = useStaticQuery(graphql`
         query CheckoutQuery{
             allAvailableProducts:allPrismicProduct {
@@ -150,6 +150,12 @@ const CheckoutPage = ({location}) => {
                         //         price={price}
                         //         totalPrice={totalPrice}
                         //         setTotalPrice={setTotalPrice}
+                        //         onSuccess={() => {
+                        //             confirmationSet(cart, 'Buyer', '')
+                        //             localStorage.setItem('cart', JSON.stringify([]))
+                        //             setCart([])
+                        //             navigate('/shop/confirmation')
+                        //         }}
                         //     />
                     //     <PayPalButton
                     //     amount={
@@ -237,6 +243,14 @@ const CheckoutPage = ({location}) => {
                                 price={price}
                                 totalPrice={totalPrice}
                                 setTotalPrice={setTotalPrice}
+                                onSuccess={() => {
+                                    confirmationSet(cart, 'Buyer', '')
+                                    localStorage.setItem('cart', JSON.stringify([]))
+                                    setCart([])
+                                    setTimeout(() => {
+                                        navigate('/shop/confirmation')
+                                    }, 1000)
+                                }}
                             />
                         }
                     </div>

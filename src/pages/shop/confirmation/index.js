@@ -52,12 +52,14 @@ const CheckoutPage = ({location}) => {
                     <React.Fragment>
                         <CartHeaderItem fullWidth={true} presentational={true}>
                             <p className={styles.alignedLeft}>
-                                Customer: {confirmationData.name}
+                                Email has been sent to your email adress, happy shopping!
+                                {/* Customer: {confirmationData.name} */}
                             </p>
                         </CartHeaderItem>
                         <CartHeaderItem fullWidth={true} presentational={true}>
                             <p className={styles.alignedLeft}>
-                                Order ID: {confirmationData.id}
+                                You bought:
+                                {/* Order ID: {confirmationData.id} */}
                             </p>
                         </CartHeaderItem>
                         <div className={styles.cartBody}>
@@ -76,7 +78,7 @@ const CheckoutPage = ({location}) => {
                                 <p>
                                     You payed: €{confirmationData.cart.map(item => item.data.price * item.quantity).reduce((total = 0, itemPrice) => {
                                     return total + itemPrice
-                                })}
+                                })} + shipping
                                 </p>
                             </div>
                         }

@@ -75,7 +75,7 @@ const ProductSubcategoryPage = ({location, data}) => {
                             link:[
                                 {
                                     text:'view all',
-                                    href:'/shop'
+                                    href:'/shop/all'
                                 }
                             ]
                         },

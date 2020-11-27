@@ -15,6 +15,7 @@ import SiteTree from '../../components/SiteTree'
 import CartPopUp from '../../components/CartPopUp'
 import SEO from '../../components/SEO'
 import NavFooterMobile2 from '../../components/NavFooterMobile2'
+import getProductAvailability from '../../utils/getProductAvailability'
 
 const ProductPage = ({data, location}) => {
 
@@ -24,6 +25,7 @@ const ProductPage = ({data, location}) => {
     const [alreadySelected, setAlreadySelected] = useState(false)
     const [cart, setCart] = useState([])
     const [nextLink, setNextLink] = useState(nextProductLink(data.product.uid, data.allSubcategoryProducts.edges, data.allCategoryProducts.edges))
+    const [productSold, setProductSold] = useState(false)
 
     useEffect(() => {
       if(!parsedQuery.img){
@@ -32,6 +34,10 @@ const ProductPage = ({data, location}) => {
         setMainImageNum(parsedQuery.img)
       }
     }, [parsedQuery])
+
+    useEffect(() => {
+      getProductAvailability(data.product.uid, selectedSize, data.product.data.sizes, setProductSold)
+    }, [selectedSize])
 
     useEffect(() => {
       setParsedQuery(queryString.parse(location.search))
@@ -193,7 +199,7 @@ const ProductPage = ({data, location}) => {
                       if(size.size.document && size.size.document.data){
                         size.size.document.data.title == selectedSize
                       }
-                    }).quantity) <= 0 ?
+                    }).quantity) <= 0 || productSold ?
                   <div>
                     <SecondaryButton text={'sold out'} disabled={true}/>
                   </div>

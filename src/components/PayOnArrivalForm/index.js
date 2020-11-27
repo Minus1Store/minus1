@@ -1,11 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import {useStaticQuery, graphql} from 'gatsby'
 import Image from 'gatsby-image'
+import updateSoldProducts from '../../utils/updateSoldProducts'
 
 import styles from './pay-on-arrival-form.module.scss'
 import PrimaryButton from '../PrimaryButton'
 
-const PayOnArrivalForm = ({products, price, totalPrice, setTotalPrice}) => {
+const PayOnArrivalForm = ({
+  products, 
+  price, 
+  totalPrice, 
+  setTotalPrice,
+  onSuccess
+}) => {
 
   const data = useStaticQuery(graphql`
   query PayOnArrivalFormQuery {
@@ -101,6 +108,7 @@ const PayOnArrivalForm = ({products, price, totalPrice, setTotalPrice}) => {
             .then((data) => {
               if (data.status == 'success') {
                 setFetching(false)
+                updateSoldProducts(products, onSuccess)
                 return setSuccessMessage(data.message)
               } else if (data.status == 'error') {
                 setFetching(false)
