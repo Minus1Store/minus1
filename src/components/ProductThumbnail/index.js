@@ -20,7 +20,7 @@ const ProductThumbnail = ({image, alt, sizes, thumbnailSize}) => {
     if(typeof window != 'undefined'){
 
         return(
-            <VisibilitySensor onChange={onVisibilityChange}>
+            <VisibilitySensor onChange={onVisibilityChange} partialVisibility>
                 <div className={`${styles.productThumbnail} ${styles[thumbnailSize]}`} onPointerEnter={() => setHovered(true)} onPointerLeave={() => setHovered(false)}>
                     {   imageVisible &&
                         <Image fluid={image} alt={alt}/>
