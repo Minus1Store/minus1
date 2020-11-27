@@ -10,7 +10,7 @@ const ProductThumbnail = ({image, alt, sizes, thumbnailSize}) => {
     const [imageVisible, setImageVisible] = useState(false)
 
     const checkIfThereAreSizes = () => {
-        return sizes.every(node => node.size.document.data && node.size.document.data.title)
+        return sizes.every(node => node.size.document && node.size.document.data && node.size.document.data.title)
     }
 
     function onVisibilityChange (isVisible) {
