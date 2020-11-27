@@ -111,13 +111,6 @@ module.exports = {
     // },
     // Must be placed at the end
     {
-      resolve: `gatsby-plugin-netlify-functions`,
-      options: {
-        functionsSrc: `${__dirname}/lambda`,
-        functionsOutput: `${__dirname}/functions`,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-netlify',
       options: {
         headers: {
@@ -133,6 +126,13 @@ module.exports = {
           ]
         }
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-netlify-functions`,
+      options: {
+        functionsSrc: `${__dirname}/lambda`,
+        functionsOutput: `${__dirname}/functions`,
+      },
+    },
   ],
 }
