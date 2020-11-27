@@ -112,7 +112,7 @@ const ProductPage = ({data, location}) => {
     }
 
     const checkIfThereAreSizes = () => {
-      return data.product.data.sizes.every(node => node.size.document && node.size.document.data.title)
+      return data.product.data.sizes.every(node => node.size.document && node.size.document.data && node.size.document.data.title)
     }
     
 
