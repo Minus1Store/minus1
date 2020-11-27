@@ -17,27 +17,32 @@ const ProductThumbnail = ({image, alt, sizes, thumbnailSize}) => {
         setImageVisible(isVisible)
     }
 
-    return(
-        <VisibilitySensor onChange={onVisibilityChange}>
-            <div className={`${styles.productThumbnail} ${styles[thumbnailSize]}`} onPointerEnter={() => setHovered(true)} onPointerLeave={() => setHovered(false)}>
-                {   imageVisible &&
-                    <Image fluid={image} alt={alt}/>
-                }
-                {
-                    hovered && sizes && sizes.every(size => size.quantity <= 0) && checkIfThereAreSizes() &&
-                    <div className={styles.soldOutIndicator}>
-                        <p>sold out</p>
-                    </div>
-                }
-                {
-                    hovered && sizes && !checkIfThereAreSizes() &&
-                    <div className={styles.soldOutIndicator}>
-                        <p>not available</p>
-                    </div>
-                }
-            </div>
-        </VisibilitySensor>
-    )
+    if(typeof window != 'undefined'){
+
+        return(
+            <VisibilitySensor onChange={onVisibilityChange}>
+                <div className={`${styles.productThumbnail} ${styles[thumbnailSize]}`} onPointerEnter={() => setHovered(true)} onPointerLeave={() => setHovered(false)}>
+                    {   imageVisible &&
+                        <Image fluid={image} alt={alt}/>
+                    }
+                    {
+                        hovered && sizes && sizes.every(size => size.quantity <= 0) && checkIfThereAreSizes() &&
+                        <div className={styles.soldOutIndicator}>
+                            <p>sold out</p>
+                        </div>
+                    }
+                    {
+                        hovered && sizes && !checkIfThereAreSizes() &&
+                        <div className={styles.soldOutIndicator}>
+                            <p>not available</p>
+                        </div>
+                    }
+                </div>
+            </VisibilitySensor>
+        )
+    }else{
+        return <></>
+    }
 }
 
 export default ProductThumbnail
