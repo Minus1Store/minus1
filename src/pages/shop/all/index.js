@@ -83,7 +83,10 @@ const Shop = ({location}) => {
                     {data.products && data.products.edges.map(({node}) => {
                         return <div className={styles.product}>
                             <Link to={`/shop/${node.data.product_category.uid}/${node.uid}`}>
-                              <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
+                              {
+                                node.data.images[0].image.localFile &&
+                                <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
+                              }
                             </Link>
                         </div>
                     })}

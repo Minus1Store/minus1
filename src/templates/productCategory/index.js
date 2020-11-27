@@ -34,7 +34,7 @@ const ProductCategoryPage = ({location, data}) => {
                         {data.products && data.products.edges.map(({node}) => {
                             return <div className={styles.product}>
                                 <Link to={`/shop/${node.data.product_category.uid}/${node.uid}`}>
-                                    <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
+                                    <ProductThumbnail thumbnailSize='medium' image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
                                     <div className={styles.productInformation}>
                                         <p>
                                             {node.data.title}
@@ -51,7 +51,7 @@ const ProductCategoryPage = ({location, data}) => {
                         {data.secondaryProducts && data.secondaryProducts.edges.map(({node}) => {
                             return <div className={styles.product}>
                                 <Link to={`/shop/${node.data.product_category.uid}/${node.uid}`}>
-                                    <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
+                                    <ProductThumbnail thumbnailSize='medium' image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
                                     <div className={styles.productInformation}>
                                         <p>
                                             {node.data.title}
