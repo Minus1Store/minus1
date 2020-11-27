@@ -46,7 +46,6 @@
     "gatsby-plugin-manifest": "^2.4.27",
     "gatsby-plugin-netlify": "^2.3.13",
     "gatsby-plugin-netlify-functions": "0.0.3",
-    "gatsby-plugin-offline": "^3.2.26",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-react-leaflet": "^2.0.13",
     "gatsby-plugin-sass": "^2.3.12",
