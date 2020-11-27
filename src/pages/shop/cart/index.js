@@ -10,6 +10,7 @@ import CartHeader from '../../../components/CartHeader'
 import CartHeaderItem from '../../../components/CartHeaderItem'
 import CartProduct from '../../../components/CartProduct'
 import SEO from '../../../components/SEO'
+import NavFooterMobile2 from '../../../components/NavFooterMobile2'
 
 const CartPage = ({location}) => {
 
@@ -252,6 +253,7 @@ const CartPage = ({location}) => {
                     }
                 />
             </div>
+            <NavFooterMobile2/>
         </PageLayout>
     )
 }

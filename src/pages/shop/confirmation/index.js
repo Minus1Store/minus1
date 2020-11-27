@@ -11,6 +11,7 @@ import styles from './confirmation.module.scss'
 import CartHeader from '../../../components/CartHeader'
 import SEO from '../../../components/SEO'
 import CartProduct from '../../../components/CartProduct'
+import NavFooterMobile2 from '../../../components/NavFooterMobile2'
 
 const CheckoutPage = ({location}) => {
 
@@ -148,6 +149,7 @@ const CheckoutPage = ({location}) => {
                     }
                 />
             </div>
+            <NavFooterMobile2/>
         </PageLayout>
     )
 }

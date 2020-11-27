@@ -8,6 +8,7 @@ import NavFooterDesktop from '../../../components/NavFooterDesktop'
 import NavFooterMobile from '../../../components/NavFooterMobile'
 import CartPopUp from '../../../components/CartPopUp'
 import SEO from '../../../components/SEO'
+import NavFooterMobile2 from '../../../components/NavFooterMobile2'
 
 const PrivacyPage = ({location}) => {
 
@@ -48,7 +49,6 @@ const PrivacyPage = ({location}) => {
                     </div>
                 </div>
             </div>
-            <NavFooterMobile/>
             <div className={styles.navFooterContainer}>
                 <SiteTree links={[{text: 'home',link:'/'}, {text: 'shop', link:'/shop/all'}]}/>
                 <NavFooterDesktop
@@ -106,6 +106,7 @@ const PrivacyPage = ({location}) => {
                     }
                 />
             </div>
+            <NavFooterMobile2/>
         </PageLayout>
     )
 }

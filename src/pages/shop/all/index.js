@@ -4,7 +4,7 @@ import Image from 'gatsby-image'
 
 import styles from './shop.module.scss'
 import PageLayout from '../../../components/PageLayout'
-import NavFooterMobile from '../../../components/NavFooterMobile/index'
+import NavFooterMobile2 from '../../../components/NavFooterMobile2/index'
 import NavFooterDesktop from '../../../components/NavFooterDesktop/index'
 import ShopFilters from '../../../components/ShopFilters'
 import ProductsContainer from '../../../components/ProductsContainer'
@@ -90,7 +90,7 @@ const Shop = ({location}) => {
                 </ProductsContainer>
             </div>
         </div>
-        <NavFooterMobile/>
+        <NavFooterMobile2/>
         <div className={styles.navFooterContainer}>
         <SiteTree links={[{text: 'home',link:'/'}, {text: 'shop', link:'/shop/all'}]}/>
         <NavFooterDesktop

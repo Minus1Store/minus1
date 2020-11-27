@@ -13,6 +13,7 @@ import SEO from '../../../components/SEO'
 import PayOnArrivalForm from '../../../components/PayOnArrivalForm'
 import PayWithCardForm from '../../../components/PayWithCardForm'
 import PrimaryButton from '../../../components/PrimaryButton'
+import NavFooterMobile2 from '../../../components/NavFooterMobile2'
 
 const CheckoutPage = ({location}) => {
 
@@ -315,6 +316,7 @@ const CheckoutPage = ({location}) => {
                     }
                 />
             </div>
+            <NavFooterMobile2/>
         </PageLayout>
     )
 }

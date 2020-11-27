@@ -8,6 +8,11 @@ const  NavFooterMobile2 = () => {
         <nav className={styles.navFooterMobile}>
             <ul>
                 <li>
+                    <Link to={'/shop/all'}>
+                        view all
+                    </Link>
+                </li>
+                <li>
                     <Link to={'/shop/sizing'}>
                         sizing
                     </Link>

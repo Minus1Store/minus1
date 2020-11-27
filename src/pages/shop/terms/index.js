@@ -8,6 +8,7 @@ import NavFooterMobile from '../../../components/NavFooterMobile'
 import SiteTree from '../../../components/SiteTree'
 import CartPopUp from '../../../components/CartPopUp'
 import SEO from '../../../components/SEO'
+import NavFooterMobile2 from '../../../components/NavFooterMobile2'
 
 const TermsPage = ({location}) => {
 
@@ -48,7 +49,6 @@ const TermsPage = ({location}) => {
                     </div>
                 </div>
             </div>
-            <NavFooterMobile/>
             <div className={styles.navFooterContainer}>
                 <SiteTree links={[{text: 'home',link:'/'}, {text: 'shop', link:'/shop/all'}]}/>
                 <NavFooterDesktop
@@ -106,6 +106,7 @@ const TermsPage = ({location}) => {
                     }
                 />
             </div>
+            <NavFooterMobile2/>
         </PageLayout>
     )
 }
