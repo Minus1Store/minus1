@@ -203,6 +203,7 @@ export const pageQuery = graphql`
                   document {
                     ... on PrismicSize {
                       id
+                      title
                     }
                   }
                 }
