@@ -12,7 +12,7 @@ exports.handler = async function(event, context) {
     
     const msg = {
         to: SENDGRID_TO_EMAIL,
-        from: data.email,
+        from: SENDGRID_TO_EMAIL,
         subject: data.reasonOfContact,
         html:`
             <table style='margin-bottom:15px; border:1px dotted #959595;border-collapse: collapse'>
