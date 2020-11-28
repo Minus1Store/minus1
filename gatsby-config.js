@@ -9,6 +9,16 @@ const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
 module.exports = {
   /* Plugins */
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "G-9EPEW8BRTP",
+        // this option places the tracking script into the head of the DOM
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+      },
+    },
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
