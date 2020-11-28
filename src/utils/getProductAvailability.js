@@ -10,7 +10,7 @@ export default function getProductAvailability(uid, size, productSizes, setProdu
       )
       .then(response => response.json())
       .then(response => {
-        if(response.product[0]){
+        if(response && response.product[0]){
           let quantity = productSizes.find(node => node.size.document.data.title == response.product[0].size).quantity
           if(response.product[0].sold >= quantity){
             setProductSold(true)
