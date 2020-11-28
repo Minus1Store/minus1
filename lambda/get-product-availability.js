@@ -10,7 +10,6 @@ const {
 
 exports.handler = function(event, context, callback) {
   const data = event.queryStringParameters;
-  
   context.callbackWaitsForEmptyEventLoop = false;
 
   run(data).

@@ -1,11 +1,15 @@
 "use strict";
 
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 
 var co = require('co');
 
 let conn = null;
-const MONGODB_STRING = 'mongodb+srv://Milos:iPlBKLO7PQRRbvVQ@cluster0.g2lpj.mongodb.net/minus1?retryWrites=true&w=majority';
+const {
+  MONGODB_STRING
+} = process.env;
 
 exports.handler = function (event, context, callback) {
   const data = event.queryStringParameters;
