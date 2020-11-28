@@ -8,30 +8,63 @@ sgMail.setApiKey(SENDGRID_API_KEY)
 
 
 exports.handler = async function(event, context) {
-    const data = event.queryStringParameters
+    const {
+        email,
+        firstName,
+        lastName,
+        address,
+        phoneNumber,
+        country,
+        city,
+        zipCode,
+        message,
+        price,
+        products,
+        state
+    } = event.queryStringParameters
     
     const msgToSeller = {
         to: SENDGRID_TO_EMAIL,
-        from: data.email,
+        from: email,
         subject: 'Order',
         html:`
             <table style='margin-bottom:15px; border:1px dotted #959595;border-collapse: collapse'>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>First Name</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.firstName}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Last Name</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.lastName}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Email</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.email}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>Address</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.address}</td>
-                </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>First Name</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${firstName}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Last Name</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${lastName}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Email</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${email}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Phone Number</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${phoneNumber}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Country</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${country}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>State</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${state}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>City</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${city}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>Address</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${address}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>ZIP code</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${zipCode}</td>
+            </tr>
             </table>
             <table style='margin-bottom:15px; border:1px dotted #959595;border-collapse: collapse'>
                 <tr>
@@ -41,7 +74,7 @@ exports.handler = async function(event, context) {
                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Size</th>
                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>UID</th> 
                 </tr>
-                ${JSON.parse(data.products).map(product => {
+                ${JSON.parse(products).map(product => {
                     return `<tr>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.quantity}</td>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.title}</td>
@@ -51,34 +84,54 @@ exports.handler = async function(event, context) {
                     </tr>`
                 })}
                 <tr style='width:100%'><th colspan='5' style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Total</th></tr>                
-                <tr style='width:100%'><td colspan='5' style='padding:2.5px; border:1px dotted #959595; text-align:center;'>€${data.price}</td></tr>                
+                <tr style='width:100%'><td colspan='5' style='padding:2.5px; border:1px dotted #959595; text-align:center;'>€${price}</td></tr>                
             </table>
-            <p>Message: ${data.message}</p>
+            <p>Message: ${message}</p>
         `
       }
 
       const msgToBuyer = {
-        to: data.email,
+        to: email,
         from: SENDGRID_TO_EMAIL,
         subject: 'Order from Minus1 Shop',
         html:`
             <table style='margin-bottom:15px; border:1px dotted #959595;border-collapse: collapse'>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>First Name</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.firstName}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Last Name</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.lastName}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Email</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.email}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>Shipping Address</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${data.address}</td>
-                </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>First Name</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${firstName}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Last Name</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${lastName}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Email</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${email}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Phone Number</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${phoneNumber}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Country</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${country}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>State</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${state}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>City</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${city}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>Address</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${address}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>ZIP code</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${zipCode}</td>
+            </tr>
             </table>
             <table style='margin-bottom:15px; border:1px dotted #959595;border-collapse: collapse'>
                 <tr>
@@ -88,7 +141,7 @@ exports.handler = async function(event, context) {
                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Size</th>
                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>UID</th> 
                 </tr>
-                ${JSON.parse(data.products).map(product => {
+                ${JSON.parse(products).map(product => {
                     return `<tr>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.quantity}</td>
                         <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${product.title}</td>
@@ -98,7 +151,7 @@ exports.handler = async function(event, context) {
                     </tr>`
                 })}
                 <tr style='width:100%'><th colspan='5' style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Total</th></tr>                
-                <tr style='width:100%'><td colspan='5' style='padding:2.5px; border:1px dotted #959595; text-align:center;'>€${data.price}</td></tr>                
+                <tr style='width:100%'><td colspan='5' style='padding:2.5px; border:1px dotted #959595; text-align:center;'>€${price}</td></tr>                
             </table>
             <p>Please respond to this email if you have any questions regarding your order, thanks!</p>
         `
