@@ -10,28 +10,22 @@ module.exports = {
   /* Plugins */
   plugins: [
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: "G-9EPEW8BRTP",
-        // this option places the tracking script into the head of the DOM
-        head: true,
-        anonymize: true,
-        respectDNT: true,
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          `${process.env.GOOGLE_ANALYTICS_TRACKING_ID}`, // Google Analytics
+        ],
+        // This object gets passed directly to the gtag config command
+        // This config will be shared across all trackingIds
+        gtagConfig: {
+          anonymize_ip: true,
+          cookie_expires: 0,
+        },
       },
-    },
-    'gatsby-plugin-sass',
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-emotion',
-    'gatsby-plugin-layout',
-    {
-      resolve: 'gatsby-plugin-react-leaflet',
-      options: {
-        linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
-      }
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp', 
-    
     {
       resolve: 'gatsby-source-prismic',
       options: {
