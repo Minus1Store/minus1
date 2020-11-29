@@ -9,24 +9,36 @@ const wrapper = (promise) =>
     }
     return result
   })
-  
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const productTemplate = require.resolve('./src/templates/product/index.js')
-  const newsArticleTemplate = require.resolve('./src/templates/newsArticle/index.js')
-  const productCategoryTemplate = require.resolve('./src/templates/productCategory/index.js')
-  const productSubcategoryTemplate = require.resolve('./src/templates/productSubcategory/index.js')
+  const newsArticleTemplate = require.resolve(
+    './src/templates/newsArticle/index.js'
+  )
+  const productCategoryTemplate = require.resolve(
+    './src/templates/productCategory/index.js'
+  )
+  const productSubcategoryTemplate = require.resolve(
+    './src/templates/productSubcategory/index.js'
+  )
   const lookbookTemplate = require.resolve('./src/templates/lookbook/index.js')
   const previewTemplate = require.resolve('./src/templates/preview/index.js')
-  const previewAllTemplate = require.resolve('./src/templates/previewAll/index.js')
-  const previewCategoryTemplate = require.resolve('./src/templates/previewCategory/index.js')
-  const previewProductFamilyTemplate = require.resolve('./src/templates/previewProductFamily/index.js')
+  const previewAllTemplate = require.resolve(
+    './src/templates/previewAll/index.js'
+  )
+  const previewCategoryTemplate = require.resolve(
+    './src/templates/previewCategory/index.js'
+  )
+  const previewProductFamilyTemplate = require.resolve(
+    './src/templates/previewProductFamily/index.js'
+  )
 
   const result = await wrapper(
     graphql(`
       {
-        products:allPrismicProduct {
+        products: allPrismicProduct {
           edges {
             node {
               uid
@@ -51,44 +63,44 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
-        productCategories: allPrismicProductCategory{
-          edges{
-            node{
+        productCategories: allPrismicProductCategory {
+          edges {
+            node {
               uid
             }
           }
         }
-        productSubcategories: allPrismicProductSubcategory{
-          edges{
-            node{
+        productSubcategories: allPrismicProductSubcategory {
+          edges {
+            node {
               uid
-              data{
-                product_category{
+              data {
+                product_category {
                   uid
                 }
               }
             }
           }
         }
-        lookbooks: allPrismicLookbook{
-          edges{
-            node{
+        lookbooks: allPrismicLookbook {
+          edges {
+            node {
               uid
             }
           }
         }
-        previews: allPrismicPreview{
-          edges{
-            node{
+        previews: allPrismicPreview {
+          edges {
+            node {
               uid
             }
           }
         }
-        previewCategories: allPrismicPreviewProductCategory{
-          edges{
-            node{
+        previewCategories: allPrismicPreviewProductCategory {
+          edges {
+            node {
               uid
-              data{
+              data {
                 preview {
                   uid
                 }
@@ -96,15 +108,15 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
-        previewFamilies: allPrismicPreviewProductFamily{
-          edges{
-            node{
+        previewFamilies: allPrismicPreviewProductFamily {
+          edges {
+            node {
               uid
-              data{
-                preview{
+              data {
+                preview {
                   uid
                 }
-                product_category{
+                product_category {
                   uid
                 }
               }
@@ -125,129 +137,129 @@ exports.createPages = async ({ graphql, actions }) => {
   //       categorySet.add(cat.category.document[0].data.name)
   //     })
   //   }
-    productList.forEach((edge) => {
-
-      if(edge.node.data.product_category.uid){
-        const familyUID = edge.node.data.product_family.uid ? edge.node.data.product_family.uid : 'null'
-        createPage({
-          path: `/shop/${edge.node.data.product_category.uid}/${edge.node.uid}`,
-          component: productTemplate,
-          context: {
-            // Pass the unique ID (uid) through context so the template can filter by it
-            uid: edge.node.uid,
-            category_uid: edge.node.data.product_category.uid,
-            subcategory_uid: edge.node.data.product_subcategory.uid,
-            family_uid: familyUID
-          },
-        })
-      }
-    })
-
-    let newsArticlesList = result.data.newsArticles.edges
-
-    newsArticlesList.forEach((edge) => {
+  productList.forEach((edge) => {
+    if (edge.node.data.product_category.uid) {
+      const familyUID = edge.node.data.product_family.uid
+        ? edge.node.data.product_family.uid
+        : 'null'
       createPage({
-        path: `/news/${edge.node.uid}`,
-        component: newsArticleTemplate,
+        path: `/shop/${edge.node.data.product_category.uid}/${edge.node.uid}`,
+        component: productTemplate,
         context: {
           // Pass the unique ID (uid) through context so the template can filter by it
-          uid: edge.node.uid
+          uid: edge.node.uid,
+          category_uid: edge.node.data.product_category.uid,
+          subcategory_uid: edge.node.data.product_subcategory.uid,
+          family_uid: familyUID,
         },
       })
+    }
+  })
+
+  let newsArticlesList = result.data.newsArticles.edges
+
+  newsArticlesList.forEach((edge) => {
+    createPage({
+      path: `/news/${edge.node.uid}`,
+      component: newsArticleTemplate,
+      context: {
+        // Pass the unique ID (uid) through context so the template can filter by it
+        uid: edge.node.uid,
+      },
+    })
+  })
+
+  const productCategoriesList = result.data.productCategories.edges
+
+  productCategoriesList.forEach((edge) => {
+    createPage({
+      path: `/shop/${edge.node.uid}`,
+      component: productCategoryTemplate,
+      context: {
+        category_uid: edge.node.uid,
+      },
+    })
+  })
+
+  const productSubcategoriesList = result.data.productSubcategories.edges
+
+  productSubcategoriesList.forEach((edge) => {
+    createPage({
+      path: `/shop/${edge.node.data.product_category.uid}/${edge.node.uid}`,
+      component: productSubcategoryTemplate,
+      context: {
+        subcategory_uid: edge.node.uid,
+      },
+    })
+  })
+
+  const lookbookList = result.data.lookbooks.edges
+
+  lookbookList.forEach((edge) => {
+    createPage({
+      path: `/lookbooks/${edge.node.uid}`,
+      component: lookbookTemplate,
+      context: {
+        uid: edge.node.uid,
+      },
+    })
+  })
+
+  const previewList = result.data.previews.edges
+
+  previewList.forEach((edge) => {
+    createPage({
+      path: `/previews/${edge.node.uid}`,
+      component: previewTemplate,
+      context: {
+        uid: edge.node.uid,
+      },
     })
 
-    const productCategoriesList = result.data.productCategories.edges
-
-    productCategoriesList.forEach(edge => {
-      createPage({
-        path:`/shop/${edge.node.uid}`,
-        component: productCategoryTemplate,
-        context:{
-          category_uid: edge.node.uid
-        }
-      })
+    createPage({
+      path: `/previews/${edge.node.uid}/all`,
+      component: previewAllTemplate,
+      context: {
+        uid: edge.node.uid,
+      },
     })
+  })
 
-    const productSubcategoriesList = result.data.productSubcategories.edges
+  const previewCategoriesList = result.data.previewCategories.edges
 
-    productSubcategoriesList.forEach(edge => {
-      createPage({
-        path:`/shop/${edge.node.data.product_category.uid}/${edge.node.uid}`,
-        component: productSubcategoryTemplate,
-        context:{
-          subcategory_uid:edge.node.uid
-        }
-      })
+  previewCategoriesList.forEach((edge) => {
+    createPage({
+      path: `/previews/${edge.node.data.preview.uid}/${edge.node.uid}`,
+      component: previewCategoryTemplate,
+      context: {
+        uid: edge.node.uid,
+        preview_uid: edge.node.data.preview.uid,
+      },
     })
-    
-    const lookbookList = result.data.lookbooks.edges
-    
-    lookbookList.forEach(edge => {
-      createPage({
-        path:`/lookbooks/${edge.node.uid}`,
-        component: lookbookTemplate,
-        context:{
-          uid: edge.node.uid
-        }
-      })
+  })
+
+  const previewProductFamilyList = result.data.previewFamilies.edges
+
+  previewProductFamilyList.forEach((edge) => {
+    createPage({
+      path: `/previews/${edge.node.data.preview.uid}/${edge.node.data.product_category.uid}/${edge.node.uid}`,
+      component: previewProductFamilyTemplate,
+      context: {
+        uid: edge.node.uid,
+      },
     })
+  })
 
-    const previewList = result.data.previews.edges
-    
-    previewList.forEach(edge => {
-      createPage({
-        path:`/previews/${edge.node.uid}`,
-        component: previewTemplate,
-        context:{
-          uid: edge.node.uid
-        }
-      })
-      
-      createPage({
-        path:`/previews/${edge.node.uid}/all`,
-        component: previewAllTemplate,
-        context:{
-          uid:edge.node.uid
-        }
-      })
-    })
+  // The uid you assigned in Prismic is the slug!
+  // const categoryList = Array.from(categorySet)
 
-    const previewCategoriesList = result.data.previewCategories.edges
-
-    previewCategoriesList.forEach(edge => {
-      createPage({
-        path:`/previews/${edge.node.data.preview.uid}/${edge.node.uid}`,
-        component:previewCategoryTemplate,
-        context:{
-          uid:edge.node.uid,
-          preview_uid:edge.node.data.preview.uid
-        }
-      })
-    })
-
-    const previewProductFamilyList = result.data.previewFamilies.edges
-
-    previewProductFamilyList.forEach(edge => {
-      createPage({
-        path:`/previews/${edge.node.data.preview.uid}/${edge.node.data.product_category.uid}/${edge.node.uid}`,
-        component:previewProductFamilyTemplate,
-        context:{
-          uid:edge.node.uid
-        }
-      })
-    })
-
-    // The uid you assigned in Prismic is the slug!
-    // const categoryList = Array.from(categorySet)
-  
-    // categoryList.forEach((category) => {
-    //   createPage({
-    //     path: `/categories/${_.kebabCase(category)}`,
-    //     component: categoryTemplate,
-    //     context: {
-    //       category,
-    //     },
-    //   })
-    // })
-  }
-
+  // categoryList.forEach((category) => {
+  //   createPage({
+  //     path: `/categories/${_.kebabCase(category)}`,
+  //     component: categoryTemplate,
+  //     context: {
+  //       category,
+  //     },
+  //   })
+  // })
+}

@@ -17,7 +17,17 @@ const { Elements } = RichText
 // Labels with this name will be inline code
 const codeInline = ['text']
 // Labels with these names will become code blocks
-const codeBlock = ['javascript', 'css', 'scss', 'jsx', 'bash', 'json', 'diff', 'markdown', 'graphql']
+const codeBlock = [
+  'javascript',
+  'css',
+  'scss',
+  'jsx',
+  'bash',
+  'json',
+  'diff',
+  'markdown',
+  'graphql',
+]
 
 const htmlSerializer = (type, element, content) => {
   switch (type) {
@@ -34,15 +44,20 @@ const htmlSerializer = (type, element, content) => {
       // Use the code block for labels that are in the array of "codeBlock"
       // Choose the right PrismJS highlighting with the label name
       if (codeBlock.includes(element.data.label)) {
-        return `<pre class="language-${element.data.label}"><code class="language-${
+        return `<pre class="language-${
           element.data.label
-        }">${Prism.highlight(content, Prism.languages[element.label])}</code></pre>`
+        }"><code class="language-${element.data.label}">${Prism.highlight(
+          content,
+          Prism.languages[element.label]
+        )}</code></pre>`
       }
       return null
     }
     case Elements.preformatted: {
       if (codeBlock.includes(element.label)) {
-        return `<pre class="language-${element.label}"><code class="language-${element.label}">${Prism.highlight(
+        return `<pre class="language-${element.label}"><code class="language-${
+          element.label
+        }">${Prism.highlight(
           element.text,
           Prism.languages[element.label]
         )}</code></pre>`

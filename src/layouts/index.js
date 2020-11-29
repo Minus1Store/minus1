@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import {
-    TransitionGroup,
-    Transition as ReactTransition,
-  } from "react-transition-group"
+  TransitionGroup,
+  Transition as ReactTransition,
+} from 'react-transition-group'
 import styles from './layout.module.scss'
 
 const timeout = 450
@@ -21,30 +21,28 @@ const getTransitionStyles = {
   },
 }
 
-const Layout = ({location, children}) => {
-    return (
-        <TransitionGroup>
-        <ReactTransition
-          key={location.pathname}
-          timeout={{
-            enter: timeout,
-            exit: timeout,
-          }}
-        >
-          {status => (
-            <div
-              style={{
-                ...getTransitionStyles[status],
-              }}
-            >
-              <div className={styles.layout}>
-                  {children}
-              </div>
-            </div>
-          )}
-        </ReactTransition>
-      </TransitionGroup>
-    )
+const Layout = ({ location, children }) => {
+  return (
+    <TransitionGroup>
+      <ReactTransition
+        key={location.pathname}
+        timeout={{
+          enter: timeout,
+          exit: timeout,
+        }}
+      >
+        {(status) => (
+          <div
+            style={{
+              ...getTransitionStyles[status],
+            }}
+          >
+            <div className={styles.layout}>{children}</div>
+          </div>
+        )}
+      </ReactTransition>
+    </TransitionGroup>
+  )
 }
 
 export default Layout

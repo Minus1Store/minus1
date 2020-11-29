@@ -1,22 +1,23 @@
-export default function updateSoldProducts(productList, onSuccess){
+export default function updateSoldProducts(productList, onSuccess) {
   productList.forEach((node) => {
-      console.log(node)
-      fetch(`/.netlify/functions/update-sold-products?uid=${node.uid}&size=${node.size}&quantity=${node.quantity}`,
+    console.log(node)
+    fetch(
+      `/.netlify/functions/update-sold-products?uid=${node.uid}&size=${node.size}&quantity=${node.quantity}`,
       {
-          headers: {
+        headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          },
-          method: 'POST',
+        },
+        method: 'POST',
       }
-      )
-      .then(response => response.json())
-      .then(response => {
-          onSuccess()
-          console.log(response)
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        onSuccess()
+        console.log(response)
       })
       .catch((error) => {
-          console.log(error)
+        console.log(error)
       })
   })
 }
