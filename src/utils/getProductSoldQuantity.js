@@ -10,8 +10,13 @@ export default async function getProductSoldQuantity(uid, size){
         }
         )
     response = await response.json()
-    
-    let quantity = response.product[0].sold
+    let quantity;
+
+    if(response.product[0]){
+      quantity = response.product[0].sold
+    }else{
+      quantity = 0
+    }
     return quantity
   }
   catch(error){

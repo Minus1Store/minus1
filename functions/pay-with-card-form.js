@@ -33,7 +33,7 @@ exports.handler = async function (event, context) {
   } = event.queryStringParameters;
   const msgToSeller = {
     to: SENDGRID_TO_EMAIL,
-    from: email,
+    from: SENDGRID_TO_EMAIL,
     subject: 'Order',
     html: `
             <table style='margin-bottom:15px; border:1px dotted #959595;border-collapse: collapse'>

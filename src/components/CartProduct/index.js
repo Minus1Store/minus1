@@ -1,10 +1,22 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Image from 'gatsby-image'
 import {Link} from 'gatsby'
 
 import styles from './cart-product.module.scss'
+import getProductSoldQuantity from '../../utils/getProductSoldQuantity'
 
 const CartProduct = ({data, removeProduct, setQuantity, presentational}) => {
+
+    let [soldQuantity, setSoldQuantity] = useState()
+
+    useEffect(() => {
+        (
+            async () => {
+                let soldQuantityResult = await getProductSoldQuantity(data.uid, data.size)
+                setSoldQuantity(soldQuantityResult)
+            }
+        )()
+    }, [])
 
     useEffect(() => {
         if(data.quantity <= 0){
@@ -35,7 +47,7 @@ const CartProduct = ({data, removeProduct, setQuantity, presentational}) => {
                     <p>{data.quantity}</p>
                     {
                         !presentational &&
-                        <button onClick={() => {data.data.sizes.find(size => size.size.document.data.title == data.size).quantity > data.quantity && setQuantity({uid:data.uid,size:data.size}, data.quantity + 1)}}> 
+                        <button onClick={() => {data.data.sizes.find(size => size.size.document.data.title == data.size).quantity > data.quantity + soldQuantity && setQuantity({uid:data.uid,size:data.size}, data.quantity + 1)}}> 
                             +
                         </button>
                     }
