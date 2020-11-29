@@ -27,8 +27,12 @@ const LookbookPage = ({data, location}) => {
 
     return(
         <PageLayout showHeader={false}>
-            <SEO titleTemplate={`%s | ${data.currentLookBook.data.title} Lookbook`} url={location.href} description={`${data.currentLookBook.data.title} Lookbook. Lookbook items: ${data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => {
-                return node.data.description.text
+            <SEO titleTemplate={`%s | ${data.currentLookBook && data.currentLookBook.data.title} Lookbook`} url={location.href} description={`${data.currentLookBook && data.currentLookBook.data.title} Lookbook. Lookbook items: ${data.lookbookProducts && data.lookbookProducts.edges.length > 0 && data.lookbookProducts.edges.map(({node}) => {
+                if(node.data.description){
+                    return node.data.description.text
+                }else{
+                    return ''
+                }
             }).join(',')}`}/>
             <div className={styles.mobileLogo}>
                 <Header/>
@@ -39,26 +43,29 @@ const LookbookPage = ({data, location}) => {
                         data.lookbookProducts.edges.length > 0 ?
                         <>
                         <div className={styles.lookBookMainImage} onClick={() => setImageClicked(true)}>
-                            <FadeImageSlider images={data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} showNavigation={false} setSwiperInstance={setSwiperInstance} setClickedThumbnail={setClickedThumbnail}/>
+                            <FadeImageSlider images={data.lookbookProducts && data.lookbookProducts.edges.length > 0 && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} showNavigation={false} setSwiperInstance={setSwiperInstance} setClickedThumbnail={setClickedThumbnail}/>
                         </div>
                         <div>
                             <p className={styles.pagination}>
                                 {
                                     hoveredThumbnail !== undefined ?
                                     <React.Fragment>
-                                        <span>{hoveredThumbnail + 1}</span> / {data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
+                                        <span>{hoveredThumbnail + 1}</span> / {data.lookbookProducts && data.lookbookProducts.edges.length > 0 && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
                                     </React.Fragment>
                                     :
                                     <React.Fragment>
-                                        {clickedThumbnail + 1} / {data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
+                                        {clickedThumbnail + 1} / {data.lookbookProducts && data.lookbookProducts.edges.length > 0 && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image})).length}
                                     </React.Fragment>
                                 }
                             </p>
                             <ul className={styles.lookBookThumbnails}>
-                                {data.lookbookProducts && data.lookbookProducts.edges.map(({node}, index) => {
+                                {data.lookbookProducts && data.lookbookProducts.edges.length > 0 && data.lookbookProducts.edges.map(({node}, index) => {
                                     return <li onClick={() => {setClickedThumbnail(index)}} onPointerOver={() => setHoveredThumbnail(index)} onPointerOut={() => setHoveredThumbnail(undefined)} className={styles.thumbnail} key={index}>
                                         <button>
-                                            <Image fluid={node.data.image.localFile.childImageSharp.fluid} alt={node.data.image.alt}/>
+                                            {
+                                                node.data.image && node.data.image.localFile && node.data.image.localFile.childImageSharp && node.data.image.localFile.childImageSharp.fluid &&
+                                                <Image fluid={node.data.image.localFile.childImageSharp.fluid} alt={node.data.image.alt}/>
+                                            }
                                         </button>
                                     </li>
                                 })}
@@ -75,7 +82,7 @@ const LookbookPage = ({data, location}) => {
                             <Header/>
                         </div>
                         <div className={styles.lookBookItemInformation}>
-                            {data.lookbookProducts && data.lookbookProducts.edges.map(({node}, index) => {
+                            {data.lookbookProducts && data.lookbookProducts.edges.length > 0 && data.lookbookProducts.edges.map(({node}, index) => {
                                 if(index == clickedThumbnail){
                                     return <React.Fragment>
                                         <h2 className={styles.lookBookTitle}>
@@ -91,7 +98,7 @@ const LookbookPage = ({data, location}) => {
                         <ul className={styles.dropDownMenu}>
                             <li>archive
                                 <ul>
-                                    {data.lookBooks && data.lookBooks.edges.map(({node}) => {
+                                    {data.lookBooks && data.lookBooks.edges.length > 0 && data.lookBooks.edges.map(({node}) => {
                                         return <li>
                                             <Link to={`/lookbooks/${node.uid}`}>
                                                 {node.data.title}
@@ -111,7 +118,7 @@ const LookbookPage = ({data, location}) => {
             </div>
             {
                 imageClicked &&
-                <SliderPopUp images={data.lookbookProducts && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} clickedThumbnail={clickedThumbnail} setClickedThumbnail={setClickedThumbnail} setImageClicked={setImageClicked} />
+                <SliderPopUp images={data.lookbookProducts && data.lookbookProducts.edges.length > 0 && data.lookbookProducts.edges.map(({node}) => ({image:node.data.image}))} clickedThumbnail={clickedThumbnail} setClickedThumbnail={setClickedThumbnail} setImageClicked={setImageClicked} />
             }
             <NavFooterMobile2/>
         </PageLayout>

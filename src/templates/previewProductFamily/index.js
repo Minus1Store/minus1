@@ -78,8 +78,8 @@ const PreviewProductPage = ({data, location}) => {
 
     return(
         <PageLayout showHeader={false}>
-            <SEO titleTemplate={`%s | Preview ${productDescriptions()[0].data.title}`} url={location.href} description={`Preview for ${productDescriptions()[0].data.title}. Products: ${data.previewProducts && data.previewProducts.edges.map(({node}) => {
-                return `${node.data.title}: ${node.data.description.text}`
+            <SEO titleTemplate={`%s | Preview ${productDescriptions().length > 0 && productDescriptions()[0].data.title}`} url={location.href} description={`Preview for ${productDescriptions().length > 0 && productDescriptions()[0].data.title}. Products: ${data.previewProducts && data.previewProducts.edges.length > 0 && data.previewProducts.edges.map(({node}) => {
+                return `${node.data.title}: ${node.data.description && node.data.description.text}`
             }).join(',')}`}/>
             <div className={styles.mobileLogo}>
                 <Header/>
@@ -103,7 +103,7 @@ const PreviewProductPage = ({data, location}) => {
                                         <h2 className={styles.lookBookTitle}>
                                             {data.title}
                                         </h2>
-                                        <div className={styles.lookBookBody} dangerouslySetInnerHTML={{__html:data.description.html}}></div>
+                                        <div className={styles.lookBookBody} dangerouslySetInnerHTML={{__html:data.description && data.description.html}}></div>
                                     </React.Fragment>
                                 }
                             })}
@@ -138,7 +138,7 @@ const PreviewProductPage = ({data, location}) => {
                 <div className={styles.image} onClick={() => setImageClicked(true)}>
                     {
                         productImages() &&
-                        <Image fluid={productImages()[clickedThumbnail].image.localFile.childImageSharp.fluid} alt={productImages()[clickedThumbnail].image.localFile.childImageSharp.fluid}/>
+                        <Image fluid={productImages()[clickedThumbnail] && productImages()[clickedThumbnail].image && productImages()[clickedThumbnail].image.localFile && productImages()[clickedThumbnail].image.localFile.childImageSharp && productImages()[clickedThumbnail].image.localFile.childImageSharp.fluid} alt={productImages()[clickedThumbnail] && productImages()[clickedThumbnail].image && productImages()[clickedThumbnail].image.alt}/>
                     }
                 </div>
             </div>
@@ -167,6 +167,7 @@ export const pageQuery = graphql`
                         }
                         images{
                             image{
+                                alt
                                 localFile{
                                     childImageSharp{
                                         fluid(maxHeight:1080){

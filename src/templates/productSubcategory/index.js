@@ -16,7 +16,7 @@ import NavFooterMobile2 from '../../components/NavFooterMobile2'
 const ProductSubcategoryPage = ({location, data}) => {
     return (
         <PageLayout>
-          <SEO titleTemplate={`%s | Shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_category.document.data.product_category : ""}`} url={location.href} description={`All shop ${data.products.edges.length > 0 ? data.products.edges[0].node.data.product_category.uid : ""}. Products: ${data.products.edges.length > 0 && data.products.edges.map(({node}) => {
+          <SEO titleTemplate={`%s | Shop ${(data.products && data.products.edges.length > 0 && data.products.edges[0].node.data.product_category) ? data.products.edges[0].node.data.product_category.document.data.product_category : ""}`} url={location.href} description={`All shop ${(data.products && data.products.edges.length > 0) ? data.products.edges[0].node.data.product_category.uid : ""}. Products: ${data.products && data.products.edges.length > 0 &&  data.products.edges.map(({node}) => {
             return `${node.data.color_name} ${node.data.title}`
           }).join(',')}`}/>
             <div className={styles.pageWrapper}>
@@ -28,10 +28,10 @@ const ProductSubcategoryPage = ({location, data}) => {
                         }
                     </div>
                     <ProductsContainer>
-                        {data.products && data.products.edges.map(({node}) => {
+                        {data.products && data.products.edges.length > 0 && data.products.edges.map(({node}) => {
                             return <div className={styles.product}>
-                                <Link to={`/shop/${node.data.product_category.uid}/${node.uid}`}>
-                                    <ProductThumbnail thumbnailSize='medium' image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
+                                <Link to={`/shop/${node.data.product_category && node.data.product_category.uid}/${node.uid}`}>
+                                    <ProductThumbnail thumbnailSize='medium' image={node.data.images.length > 0 && node.data.images[0].image && node.data.images[0].image.localFile && node.data.images[0].image.localFile.childImageSharp && node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images.length > 0 && node.data.images[0].image && node.data.images[0].image.alt} sizes={node.data.sizes}/>
                                     <div className={styles.productInformation}>
                                         <p>
                                             {node.data.title}
@@ -45,10 +45,10 @@ const ProductSubcategoryPage = ({location, data}) => {
                                 </Link>
                             </div>
                         })}
-                        {data.secondaryProducts && data.secondaryProducts.edges.map(({node}) => {
+                        {data.secondaryProducts && data.secondaryProducts.edges.length > 0 && data.secondaryProducts.edges.map(({node}) => {
                             return <div className={styles.product}>
-                                <Link to={`/shop/${node.data.product_category.uid}/${node.uid}`}>
-                                    <ProductThumbnail thumbnailSize='medium' image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
+                                <Link to={`/shop/${node.data.product_category && node.data.product_category.uid}/${node.uid}`}>
+                                    <ProductThumbnail thumbnailSize='medium' image={node.data.images.length > 0 && node.data.images[0].image && node.data.images[0].image.localFile && node.data.images[0].image.localFile.childImageSharp && node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images.length > 0 && node.data.images[0].image && node.data.images[0].image.alt} sizes={node.data.sizes}/>
                                     <div className={styles.productInformation}>
                                         <p>
                                             {node.data.title}

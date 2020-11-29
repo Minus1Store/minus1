@@ -124,11 +124,11 @@ const ProductPage = ({data, location}) => {
 
     return(
         <PageLayout>
-            <SEO titleTemplate={`%s | Product ${data.product.data.title} ${data.product.data.color_name}`} url={location.href} description={`Product ${data.product.data.title}. Color ${data.product.data.color_name}. Price €${data.product.data.price}. About product: ${data.product.data.description && data.product.data.description.text}. Sizes: ${data.product.data.sizes && data.product.data.sizes.map(({size}) => size).join(',')}`}/>
+            <SEO titleTemplate={`%s | Product ${data.product && data.product.data.title} ${data.product && data.product.data.color_name}`} url={location.href} description={`Product ${data.product && data.product.data.title}. Color ${data.product && data.product.data.color_name}. Price €${data.product && data.product.data.price}. About product: ${data.product && data.product.data.description && data.product.data.description.text}. Sizes: ${data.product && data.product.data.sizes && data.product.data.sizes.length > 0 && data.product.data.sizes.map(({size}) => size).join(',')}`}/>
             <div className={styles.pageWrapper}>
               <div className={styles.mainImageContainer}>
                 {
-                  data.product.data.images && data.product.data.images[mainImageNum] &&
+                  data.product && data.product.data.images.length > 0 && data.product.data.images[mainImageNum] &&
                   <ReactImageMagnify
                     smallImage={
                       {
@@ -150,30 +150,30 @@ const ProductPage = ({data, location}) => {
               </div>
               <div className={styles.informationContainer}>
                 <div className={styles.title}>
-                  {data.product.data.title}
+                  {data.product && data.product.data.title}
                 </div>
                 <div className={styles.color}>
-                  {data.product.data.color_name}
+                  {data.product && data.product.data.color_name}
                 </div>
                 {
-                  data.product.data.description &&
+                  data.product && data.product.data.description &&
                   <div className={styles.description} dangerouslySetInnerHTML={{__html:data.product.data.description.html}}></div>
                 }
                 <div className={styles.productThumbnails}>
                   <ShopThumbnails data={data} location={location}/>
                 </div>
                 <div className={styles.price}>
-                  €{data.product.data.price}
+                  €{data.product && data.product.data.price}
                 </div>
                 <div className={styles.row}>
                   {checkIfThereAreSizes() &&
                     <div className={styles.sizes}>
                       {
-                        data.product.data.sizes.length > 0 &&
+                        data.product && data.product.data.sizes.length > 0 &&
                         <select name='size' onChange={(e) => setSelectedSize(e.target.value)}>
-                          {data.product.data.sizes.map(node => {
-                            return <option value={node.size.document.data.title}>
-                              {node.size.document.data.title}
+                          {data.product && data.product.data.sizes.length > 0 && data.product.data.sizes.map(node => {
+                            return <option value={node.size && node.size.document.data && node.size.document.data.title}>
+                              {node.size && node.size.document.data && node.size.document.data.title}
                             </option>
                           })}
                         </select>
@@ -183,20 +183,20 @@ const ProductPage = ({data, location}) => {
                   {
                     nextLink &&
                     <Link to={nextLink} className={styles.link}>
-                      next {(data.product.data.product_subcategory.document && data.product.data.product_subcategory.document.data.product_subcategory) || (data.product.data.product_category.document && data.product.data.product_category.document.data.product_category)} &gt;
+                      next {(data.product && data.product.data.product_subcategory && data.product.data.product_subcategory.document && data.product.data.product_subcategory.document.data.product_subcategory) || (data.product && data.product.data.product_category && data.product.data.product_category.document && data.product.data.product_category.document.data.product_category)} &gt;
                     </Link>
                   }
                 </div>
                 <div className={styles.actionButtons}>
                   {
                     checkIfThereAreSizes() && (
-                    (data.product.data.sizes &&
+                    (data.product && data.product.data.sizes &&
                     data.product.data.sizes.find(size => {
-                      if(size.size.document && size.size.document.data){
+                      if(size.size && size.size.document && size.size.document.data){
                         size.size.document.data.title == selectedSize
                       }
                     }) && data.product.data.sizes.find(size => {
-                      if(size.size.document && size.size.document.data){
+                      if(size.size && size.size.document && size.size.document.data){
                         size.size.document.data.title == selectedSize
                       }
                     }).quantity) <= 0 || productSold ?

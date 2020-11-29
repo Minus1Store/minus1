@@ -37,7 +37,7 @@ const TermsPage = ({location}) => {
 
     return(
         <PageLayout>
-            <SEO titleTemplate={'%s | Terms of Service'} url={location.href} description={data.terms.data.terms_body.text}/>
+            <SEO titleTemplate={'%s | Terms of Service'} url={location.href} description={data.terms && data.terms.data.terms_body && data.terms.data.terms_body.text}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.content}>
                     {cart.length > 0 &&
@@ -45,8 +45,11 @@ const TermsPage = ({location}) => {
                         <CartPopUp cart={cart}/>
                     </div>
                     }
+                    {
+                    data.terms && data.terms.data.terms_body &&
                     <div className={styles.termsContainer} dangerouslySetInnerHTML={{__html:data.terms.data.terms_body.html}}>
                     </div>
+                    }
                 </div>
             </div>
             <div className={styles.navFooterContainer}>

@@ -10,7 +10,7 @@ import SEO from '../../components/SEO'
 const Contact = ({location}) => {
     return(
         <PageLayout>
-            <SEO titleTemplate={'%s | Contact'} url={location.href} description={`Contact us by filling this short contact form. We are going to respond as soon as we can so you can continue shopping on our site.`}/>
+            <SEO titleTemplate={'%s | Contact'} url={location.href} description={`Contact us by filling this short contact form on Minus1 Store website. We are going to respond as soon as we can so you can continue shopping on our site.`}/>
             <div className={styles.pageWrapper}>
                 <p className={styles.credit}>
                     website & e-commerce by <a target='_blank' href='https://milosmladenovicwork.ml'>Milos</a>

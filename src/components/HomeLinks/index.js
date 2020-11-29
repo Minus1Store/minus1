@@ -41,12 +41,12 @@ const HomeLinks = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={`/previews/${data.previews && data.previews.edges[0].node.uid}`}>
+                    <Link to={`/previews/${data.previews && data.previews.edges[0] && data.previews.edges[0].node.uid}`}>
                         {data.previews.edges[0].node.data.title} preview
                     </Link>
                 </li>
                 <li>
-                    <Link to={`/lookbooks/${data.lookbooks && data.lookbooks.edges[0].node.uid}`}>
+                    <Link to={`/lookbooks/${data.lookbooks && data.lookbooks.edges[0] && data.lookbooks.edges[0].node.uid}`}>
                         {data.lookbooks.edges[0].node.data.title} lookbook
                     </Link>
                 </li>

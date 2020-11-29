@@ -5,7 +5,10 @@ import Image from 'gatsby-image'
 const Background = ({image}) => {
     return (
     <div className={styles.backgroundImage}>
-        <Image fluid={image} alt=''/>
+        {
+            image && image.src &&
+            <Image fluid={image} alt=''/>
+        }
     </div>
     )
 }

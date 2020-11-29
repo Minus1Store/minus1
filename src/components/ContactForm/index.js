@@ -60,32 +60,32 @@ const ContactForm = () => {
       }
 
     return(
-                <form className={styles.contactForm}>
-                    <div className={styles.inputsGroup}>
-                        <input type='text' name='firstName' placeholder='first name' onChange={(e) => setFirstName(e.target.value)}/>
-                        <input type='text' name='lastName' placeholder='last name' onChange={(e) => setLastName(e.target.value)}/>
-                        <input type='email' name='email' placeholder='your email' onChange={(e) => setEmail(e.target.value)}/>
-                        <input type='text' name='orderNumber' placeholder='order number' onChange={(e) => setOrderNumber(e.target.value)}/>
-                    </div>
-                    <select name='reasonOfContact' onChange={(e) => setReasonOfContact(e.target.value)}>
-                        <option value="" disabled selected>select reason of contact</option>
-                        <option value='online order status requests'>online order status requests</option>
-                        <option value='online return or exchange request'>online return or exchange request</option>
-                        <option value='online order lost package'>online order lost package</option>
-                        <option value='store inquiries'>store inquiries</option>
-                        <option value='general inquiries'>general inquiries</option>
-                        <option value='press'>press</option>
-                    </select>
-                    <label>message</label>
-                    <textarea name='message' onChange={(e) => setMessage(e.target.value)}></textarea>
-                    <div onClick={(e) => handleSubmit(e)}>
-                        <PrimaryButton text='send'/>
-                    </div>
-                    {
-                        successMessage || errorMessage &&
-                        <p className={styles.statusMessage}>{successMessage || errorMessage}</p>
-                    }
-                </form>
+          <form className={styles.contactForm}>
+              <div className={styles.inputsGroup}>
+                  <input type='text' name='firstName' placeholder='first name' onChange={(e) => setFirstName(e.target.value)}/>
+                  <input type='text' name='lastName' placeholder='last name' onChange={(e) => setLastName(e.target.value)}/>
+                  <input type='email' name='email' placeholder='your email' onChange={(e) => setEmail(e.target.value)}/>
+                  <input type='text' name='orderNumber' placeholder='order number' onChange={(e) => setOrderNumber(e.target.value)}/>
+              </div>
+              <select name='reasonOfContact' onChange={(e) => setReasonOfContact(e.target.value)}>
+                  <option value="" disabled selected>select reason of contact</option>
+                  <option value='online order status requests'>online order status requests</option>
+                  <option value='online return or exchange request'>online return or exchange request</option>
+                  <option value='online order lost package'>online order lost package</option>
+                  <option value='store inquiries'>store inquiries</option>
+                  <option value='general inquiries'>general inquiries</option>
+                  <option value='press'>press</option>
+              </select>
+              <label>message</label>
+              <textarea name='message' onChange={(e) => setMessage(e.target.value)}></textarea>
+              <div onClick={(e) => handleSubmit(e)}>
+                  <PrimaryButton text='send'/>
+              </div>
+              {
+                  successMessage || errorMessage &&
+                  <p className={styles.statusMessage}>{successMessage || errorMessage}</p>
+              }
+          </form>
     )
 }
 

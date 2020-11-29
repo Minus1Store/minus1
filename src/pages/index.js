@@ -62,7 +62,10 @@ function Index({location}){
             <TimeString className={styles.homeTimeString}/>
           </div>
           <HomeLinks/>
-          <Background image={data.background.edges[0].node.data.background_image.localFile.childImageSharp.fluid}/>
+          {
+            data.background && data.background.edges.length > 0 && data.background.edges[0].node.data.background_image && data.background.edges[0].node.data.background_image.localFile && data.background.edges[0].node.data.background_image.localFile.childImageSharp &&
+            <Background image={data.background.edges[0].node.data.background_image.localFile.childImageSharp.fluid}/>
+          }
           <Social/>  
         </animated.div>
       </React.Fragment>

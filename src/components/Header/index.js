@@ -35,7 +35,10 @@ const Header = ({className}) => {
         <header className={`${styles.header} ${className}`}>
             <Link to={'/'}>
                 <div className={styles.logo}>
+                  {
+                    data.logo && data.logo.edges[0] && data.logo.edges[0].node && data.logo.edges[0].node.data && data.logo.edges[0].node.data.logo && data.logo.edges[0].node.data.logo.localFile && data.logo.edges[0].node.data.logo.localFile.childImageSharp &&
                     <Image fluid={data.logo.edges[0].node.data.logo.localFile.childImageSharp.fluid} alt={data.logo.edges[0].node.data.logo.alt}/>
+                  }
                 </div>
             </Link>
         </header>

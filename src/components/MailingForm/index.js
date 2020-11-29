@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 
 import styles from './mailing-form.module.scss'
 import PrimaryButton from '../PrimaryButton'
-import SecondaryButton from '../SecondaryButton'
 
 const MailingForm = ({onSubmit}) => {
 
@@ -32,9 +31,6 @@ const MailingForm = ({onSubmit}) => {
                 <div>
                     <PrimaryButton text={'subscribe'}/>
                 </div>
-                {/* <div>
-                    <SecondaryButton text={'unsubscribe'}/>
-                </div> */}
             </div>
         </form>
     )

@@ -29,10 +29,13 @@ const AboutPage = ({location}) => {
 
     return(
         <PageLayout>
-          <SEO titleTemplate={'%s | About'} url={location.href} description={data.aboutPage.edges[0].node.data.body.text}/>
+          <SEO titleTemplate={'%s | About'} url={location.href} description={data.aboutPage.edges.length > 0 && data.aboutPage.edges[0].node.data.body && data.aboutPage.edges[0].node.data.body.text}/>
           <div className={styles.pageWrapper}>
+            {
+              data.aboutPage.edges.length > 0 && data.aboutPage.edges[0].node.data.body &&
               <div className={styles.aboutContainer} dangerouslySetInnerHTML={{__html:data.aboutPage.edges[0].node.data.body.html}}>
               </div>
+            }
           </div>            
           <NavFooterMobile/>
           <div className={styles.navFooterContainer}>

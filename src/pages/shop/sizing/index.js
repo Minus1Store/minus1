@@ -47,8 +47,12 @@ const ShippingPage = ({location}) => {
 
     return(
         <PageLayout>
-            <SEO titleTemplate={'%s | Sizing'} url={location.href} description={`Here you can find and see what size match your taste for these products: ${data.sizingItems.edges.map(({node}) => {
-                return node.data.body[0].items[0].column
+            <SEO titleTemplate={'%s | Sizing'} url={location.href} description={`Here you can find and see what size match your taste for these products: ${data.sizingItems.edges.length > 0 && data.sizingItems.edges.map(({node}) => {
+                if(node.data.body.length > 0 && node.data.body[0].items.length > 0){
+                    return node.data.body[0].items[0].column
+                }else{
+                    return ''
+                }
             }).join(',')}`}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.content}>
@@ -61,16 +65,16 @@ const ShippingPage = ({location}) => {
                         {
                             data.sizingItems.edges.length > 0 ? data.sizingItems.edges.map((table, index) => {
                                 return <table className={styles.sizingItem} key={index}>
-                                    {table.node.data.body.map((row, index) => {
+                                    {table.node.data.body.length > 0 && table.node.data.body.map((row, index) => {
                                         if(index == 0){
                                             return <tr>
-                                                {row.items.map((column, index) => {
+                                                {row.items.length > 0 && row.items.map((column, index) => {
                                                     return <th key={index}>{column.column}</th>
                                                 })}
                                             </tr>
                                         }else{
                                             return <tr>
-                                                {row.items.map((column, index) => {
+                                                {row.items.lenght > 0 && row.items.map((column, index) => {
                                                     return <td key={index}>{column.column}</td>
                                                 })}
                                             </tr>

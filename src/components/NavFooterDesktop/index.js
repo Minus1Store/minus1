@@ -58,29 +58,18 @@ const NavFooterDesktop = ({linksArray}) => {
             ]
         },
         {
-            link:data.previews && data.previews.edges.map(({node}) => {
+            link:data.previews && data.previews.edges.length > 0 && data.previews.edges.map(({node}) => {
                 return {
                     text:node.data.title + ' preview',
                     href:`/previews/${node.uid}`
                 }
             })
-            // [
-                
-            //     {
-            //         text:'fall/winter 2020 preview',
-            //         href:'/preview'
-            //     },
-            //     {
-            //         text:'spring/summer 2020 preview',
-            //         href:'/preview'
-            //     }
-            // ]
         },
         {
             link:[
                 {
                     text:'lookbook',
-                    href:`/lookbooks/${data.lookbooks && data.lookbooks.edges[0].node.uid}`
+                    href:`/lookbooks/${data.lookbooks && data.lookbooks.edges && data.lookbooks.edges[0] && data.lookbooks.edges[0].node.uid}`
                 }
             ]
         },

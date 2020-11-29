@@ -38,7 +38,7 @@ const FAQPage = ({location}) => {
 
     return(
         <PageLayout>
-            <SEO titleTemplate={'%s | F.A.Q.'} url={location.href} description={`${data.faq.data.faq_body.text}`}/>
+            <SEO titleTemplate={'%s | F.A.Q.'} url={location.href} description={`${data.faq && data.faq.data.faq_body && data.faq.data.faq_body.text}`}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.content}>
                     {cart.length > 0 &&
@@ -46,8 +46,11 @@ const FAQPage = ({location}) => {
                         <CartPopUp cart={cart}/>
                     </div>
                     }
-                    <div className={styles.termsContainer} dangerouslySetInnerHTML={{__html:data.faq.data.faq_body.html}}>
-                    </div>
+                    {
+                        data.faq && data.faq.data.faq_body &&
+                        <div className={styles.termsContainer} dangerouslySetInnerHTML={{__html:data.faq.data.faq_body.html}}>
+                        </div>
+                    }
                 </div>
             </div>
             <div className={styles.navFooterContainer}>

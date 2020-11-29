@@ -22,7 +22,10 @@ const StoreItem = ({data}) => {
     <div className={styles.store} onClick={() => {setStoreClicked(true)}}>
         <div className={styles.storeVisuals}>
             <div className={styles.storeImage}>
-                <Image fluid={data.store_cover.localFile.childImageSharp.fluid} alt={data.store_cover.alt} />
+                {
+                    data.store_cover && data.store_cover.localFile && data.store_cover.localFile.childImageSharp && data.store_cover.localFile.childImageSharp.fluid &&
+                    <Image fluid={data.store_cover.localFile.childImageSharp.fluid} alt={data.store_cover.alt} />
+                }
             </div>
             <div className={styles.overlay}></div>
         </div>
@@ -37,9 +40,15 @@ const StoreItem = ({data}) => {
             <p className={styles.storeTelNumber}>
                 {data.telephone_information}
             </p>
-            <div className={styles.workingHours} dangerouslySetInnerHTML={{__html:data.working_hours.html}}>
-            </div>
-            <a onClick={e => e.stopPropagation()} className={styles.storeMail} href={data.email_button[0].button_link}>{data.email_button[0].button_text}</a>
+            {
+                data.working_hours &&
+                <div className={styles.workingHours} dangerouslySetInnerHTML={{__html:data.working_hours.html}}>
+                </div>
+            }
+            {
+                data.email_button.length > 0 && 
+                <a onClick={e => e.stopPropagation()} className={styles.storeMail} href={data.email_button[0].button_link}>{data.email_button[0].button_text}</a>
+            }
         </div>
         {
             popupTransition.map(({item, key, props}) => 
@@ -50,17 +59,31 @@ const StoreItem = ({data}) => {
                     <div class={styles.informationBoxText}>
                         <h2>{data.title}</h2>
                         <p>{data.address}</p>
-                        <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={data.view_map_button[0].button_link.url}>{data.view_map_button[0].button_text}</a>
+                        {
+                        data.view_map_button.length > 0 && data.view_map_button[0].button_link.url &&
+                        <a onClick={e => e.stopPropagation()} target={'_blank'} className={styles.storeMail} href={data.view_map_button[0].button_link.url}>
+                            {data.view_map_button[0].button_text}
+                        </a>
+                        }
                         <p>{data.telephone_information}</p>
+                        {
+                        data.working_hours &&
                         <div dangerouslySetInnerHTML={{__html:data.working_hours.html}}>
                         </div>
+                        }
+                        {
+                        data.email_button.length > 0 && 
                         <a onClick={e => e.stopPropagation()} className={styles.storeMail} href={data.email_button[0].button_link}>{data.email_button[0].button_text}</a>
+                        }
                     </div>
                     <div className={styles.informationBoxImage}>
-                        <Image fluid={data.store_cover.localFile.childImageSharp.fluid} alt={data.store_cover.alt} />
+                        {
+                            data.store_cover && data.store_cover.localFile && data.store_cover.localFile.childImageSharp && data.store_cover.localFile.childImageSharp.fluid &&
+                            <Image fluid={data.store_cover.localFile.childImageSharp.fluid} alt={data.store_cover.alt} />
+                        }
                     </div>
                     <div className={styles.map}>
-                        {typeof window !== 'undefined' &&
+                        {typeof window !== 'undefined' && data.map_geolocation.latitude && data.map_geolocation.longitude &&
                             <Map animate={true} center={[data.map_geolocation.latitude,data.map_geolocation.longitude]} zoom={14}>
                                 <TileLayer
                                     url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"

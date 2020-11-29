@@ -37,7 +37,7 @@ const ShippingPage = ({location}) => {
 
     return(
         <PageLayout>
-            <SEO titleTemplate={'%s | Shipping'} url={location.href} description={data.shipping.data.shipping_body.text}/>
+            <SEO titleTemplate={'%s | Shipping'} url={location.href} description={data.shipping && data.shipping.data.shipping_body && data.shipping.data.shipping_body.text}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.content}>
                     {cart.length > 0 &&
@@ -45,7 +45,7 @@ const ShippingPage = ({location}) => {
                         <CartPopUp cart={cart}/>
                     </div>
                     }
-                    <div className={styles.termsContainer} dangerouslySetInnerHTML={{__html:data.shipping.data.shipping_body.html}}>
+                    <div className={styles.termsContainer} dangerouslySetInnerHTML={{__html:data.shipping && data.shipping.data.shipping_body && data.shipping.data.shipping_body.html}}>
                     </div>
                 </div>
             </div>

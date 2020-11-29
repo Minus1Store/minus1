@@ -65,7 +65,7 @@ const Shop = ({location}) => {
         <SEO 
           titleTemplate={'%s | Shop'} 
           url={location.href} 
-          description={`All shop products: ${data.products.edges.map(({node}, index) => {
+          description={`All shop products: ${data.products.edges.length > 0 && data.products.edges.map(({node}, index) => {
             if(index < 50){
               return node.data.title
             }
@@ -80,11 +80,11 @@ const Shop = ({location}) => {
                   }
                 </div>
                 <ProductsContainer>
-                    {data.products && data.products.edges.map(({node}) => {
+                    {data.products && data.products.edges.length > 0 && data.products.edges.map(({node}) => {
                         return <div className={styles.product}>
-                            <Link to={`/shop/${node.data.product_category.uid}/${node.uid}`}>
+                            <Link to={`/shop/${node.data.product_category && node.data.product_category.uid}/${node.uid}`}>
                               {
-                                node.data.images[0].image.localFile &&
+                                node.data.images.length > 0 && node.data.images[0].image && node.data.images[0].image.localFile &&
                                 <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt} sizes={node.data.sizes}/>
                               }
                             </Link>

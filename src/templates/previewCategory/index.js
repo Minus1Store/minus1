@@ -15,29 +15,29 @@ const PreviewCategoryPage = ({location, data}) => {
     return (
         <PageLayout>
             <SEO 
-                titleTemplate={`%s | Preview ${data.productCategories.edges[0].node.data.product_category}`} 
+                titleTemplate={`%s | Preview ${data.productCategories && data.productCategories.edges.length > 0 && data.productCategories.edges[0].node.data.product_category}`} 
                 url={location.href}
-                description={`${data.productCategories.edges[0].node.data.product_category} Preview. ${data.products.edges.reduce((accumulator, currentValue) => {
+                description={`${data.productCategories && data.productCategories.edges.length > 0 && data.productCategories.edges[0].node.data.product_category} Preview. ${data.products && data.products.edges.length > 0 && data.products.edges.reduce((accumulator, currentValue) => {
                     if(accumulator){
                         return accumulator.find(item => item.node.data.product_family.uid == currentValue.node.data.product_family.uid) ? [...accumulator] : [...accumulator, currentValue]
                     }else{
                         return [currentValue]
                     }
             }, []).map(({node}) => {
-                return `${node.data.title}: ${node.data.description.text}`
+                return `${node.data.title}: ${node.data && node.data.description && node.data.description.text}`
             }).join(',')}`}/>
             <div className={styles.pageWrapper}>
                 <div className={styles.productContainer}>
                     <div className={styles.filters}>
                         {
                             typeof location != 'undefined' &&
-                            <PreviewFilters data={data} location={location} currentPreview={`/previews/${data.currentPreview.uid}`}/>
+                            <PreviewFilters data={data} location={location} currentPreview={`/previews/${data.currentPreview && data.currentPreview.uid}`}/>
                         }
                     </div>
                     <ProductsContainer>
                         {data.products && data.products.edges.map(({node}) => {
                             return <div className={styles.product}>
-                                <Link to={`/previews/${data.currentPreview.uid}/${node.data.product_category.uid}/${node.data.product_family.uid}?product=${node.uid}`}>
+                                <Link to={`/previews/${data.currentPreview && data.currentPreview.uid}/${node.data.product_category && node.data.product_category.uid}/${node.data.product_family && node.data.product_family.uid}?product=${node.uid}`}>
                                     <ProductThumbnail image={node.data.images[0].image.localFile.childImageSharp.fluid} alt={node.data.images[0].image.alt}/>
                                     <div className={styles.productInformation}>
                                         <p>
@@ -59,7 +59,7 @@ const PreviewCategoryPage = ({location, data}) => {
                 <NavFooterDesktop/>
                 <ul className={styles.otherLinks}>
                     <li>
-                        <Link to={`/previews/${data.currentPreview.uid}/all`}>
+                        <Link to={`/previews/${data.currentPreview && data.currentPreview.uid}/all`}>
                             view all
                         </Link>
                     </li>

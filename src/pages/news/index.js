@@ -58,7 +58,7 @@ const News = ({location}) => {
  
     return (
         <React.Fragment>        
-            <SEO titleTemplate={'%s | News'} url={location.href} description={`Here you can explore many news articles about interesting topics, such as: ${data.newsArticles.edges.map(({node}) => {
+            <SEO titleTemplate={'%s | News'} url={location.href} description={`Here you can explore many news articles about interesting topics, such as: ${data.newsArticles.edges.length > 0 && data.newsArticles.edges.map(({node}) => {
                 return `${node.data.date}: ${node.data.title}`
             }).join(',')}`}/>
             <PageLayout>

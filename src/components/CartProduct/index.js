@@ -28,7 +28,10 @@ const CartProduct = ({data, removeProduct, setQuantity, presentational}) => {
         <tr className={styles.cartProduct}>
             <td className={styles.productImage}>
                 <Link to={`/shop/${data.data.product_category.uid}/${data.uid}`}>
-                    <Image fluid={data.data.images[0].image.localFile.childImageSharp.fluid} alt={data.data.images[0].image.alt}/>
+                    {
+                        data.data.images[0] && data.data.images[0].image && data.data.images[0].image.localFile && data.data.images[0].image.localFile.childImageSharp &&
+                        <Image fluid={data.data.images[0].image.localFile.childImageSharp.fluid} alt={data.data.images[0].image.alt}/>
+                    }
                 </Link>
             </td>
             <td className={styles.productDescription}>

@@ -56,13 +56,13 @@ const Stores = ({location}) => {
 
     return (
     <PageLayout>
-      <SEO titleTemplate={'%s | Stores'} url={location.href} description={`${data.stores.edges.map(({node}) => {
+      <SEO titleTemplate={'%s | Stores'} url={location.href} description={`${data.stores.edges.length > 0 && data.stores.edges.map(({node}) => {
         return `Store: ${node.data.title}. Location: ${node.data.address}. Phone Number: ${node.data.telephone_information}. Working hours: ${node.data.working_hours.text}`
       }).join(',')}`}/>
       <div className={styles.pageWrapper}>
           <div className={styles.storesContainer}>
               {
-                  data.stores && data.stores.edges.map(({node}, index) => {
+                  data.stores && data.stores.edges.length > 0 && data.stores.edges.map(({node}, index) => {
                       return <StoreItem data={node.data} key={index}/>
                   })
               }

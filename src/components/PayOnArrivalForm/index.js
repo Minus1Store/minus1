@@ -177,7 +177,10 @@ const PayOnArrivalForm = ({
             {fetching && (
               <div className={styles.loadingIndicatorContainer}>
                 <div className={styles.loadingIndicator}>
-                  <Image fluid={data.logo.edges[0].node.data.logo.localFile.childImageSharp.fluid} alt={data.logo.edges[0].node.data.logo.alt} />
+                  {
+                    data.logo && data.logo.edges > 0 && data.logo.edges[0] && data.logo.edges[0].node && data.logo.edges[0].node.data && data.logo.edges[0].node.data.logo && data.logo.edges[0].node.data.logo.localFile && data.logo.edges[0].node.data.logo.localFile.childImageSharp &&
+                    <Image fluid={data.logo.edges[0].node.data.logo.localFile.childImageSharp.fluid} alt={data.logo.edges[0].node.data.logo.alt} />
+                  }
                 </div>
               </div>
             )}

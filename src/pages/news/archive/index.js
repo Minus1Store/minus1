@@ -28,7 +28,7 @@ const Archive = ({location}) => {
 
     return(
         <PageLayout>
-            <SEO titleTemplate={'%s | News Archive'} url={location.href} description={`News titles: ${data.newsArticles.edges.map(
+            <SEO titleTemplate={'%s | News Archive'} url={location.href} description={`News titles: ${data.newsArticles.edges.length > 0 && data.newsArticles.edges.map(
                 ({node}) => {
                     return `${node.data.date}: ${node.data.title}`
                 }

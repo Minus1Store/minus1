@@ -11,9 +11,12 @@ import SEO from '../../components/SEO'
 const NewsArticlePage = ({data, location}) => {
     return(
         <PageLayout>
-            <SEO titleTemplate={`%s | News: ${data.article.data.title}`} url={location.href} description={`Read about ${data.article.data.title}. ${data.article.data.body.text}`}/>
+            <SEO titleTemplate={`%s | News: ${data.article && data.article.data.title}`} url={location.href} description={`Read about ${data.article && data.article.data.title}. ${data.article && data.article.data.body && data.article.data.body.text}`}/>
             <div className={styles.pageWrapper}>
-                <NewsArticle images={data.article.data.images} heading={data.article.data.title} date={data.article.data.date} body={data.article.data.body.html} showArchive={false}/>
+                {
+                data.article && 
+                <NewsArticle images={data.article.data.images} heading={data.article.data.title} date={data.article.data.date} body={data.article.data.body && data.article.data.body.html} showArchive={false}/>
+                }
             </div>
             <NavFooterMobile/>
             <div className={styles.navFooterContainer}>
