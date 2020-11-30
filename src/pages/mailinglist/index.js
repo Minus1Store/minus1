@@ -16,8 +16,10 @@ const MailinglistPage = ({ location }) => {
     try {
       setSubmitResult(undefined)
       const result = await addToMailchimp(email, listFields)
+      console.log(result)
       setSubmitResult(result)
     } catch (error) {
+      console.log(error)
       setSubmitResult({
         result: 'error',
         msg: 'There was some error, try again later!',
