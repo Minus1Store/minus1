@@ -8,12 +8,12 @@
     a{
         color:white;
         text-decoration: none;
-        font-size:0.65rem;
+        font-size:0.95rem;
         text-transform: lowercase;
         padding:1px;
         line-height: 0.85rem;
         color:black;
-        @include breakpoint(lg){
+        @include breakpoint(sm){
             font-size:0.85rem;
         }
     }
@@ -23,9 +23,9 @@
     }
     .subcategory-link{
         color:#777777;
-        font-size:0.6rem;
+        font-size:0.95rem;
         display: none;
-        @include breakpoint(lg){
+        @include breakpoint(sm){
             font-size:0.8rem;
         }
     }
