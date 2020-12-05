@@ -31,6 +31,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
     'gatsby-plugin-layout',
+    'gatsby-plugin-netlify-cache',
     {
       resolve: 'gatsby-plugin-react-leaflet',
       options: {
