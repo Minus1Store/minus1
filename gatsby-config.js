@@ -8,6 +8,9 @@ const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
 
 module.exports = {
   /* Plugins */
+  siteMetadata: {
+    siteUrl: 'https://minus1store.com'
+  },
   plugins: [
     {
       resolve: `gatsby-plugin-google-gtag`,
@@ -84,6 +87,52 @@ module.exports = {
         // PrismJS highlighting for labels and slices
         htmlSerializer: () => prismicHtmlSerializer,
       },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        // Exclude specific pages or groups of pages using glob parameters
+        // See: https://github.com/isaacs/minimatch
+        // The example below will exclude the single `path/to/page` and all routes beginning with `category`
+        exclude: [`/dev-404-page`, `/404`, `/offline-plugin-app-shell-fallback`],
+        query: `
+          {
+            prismicSiteInformation {
+              data {
+                url {
+                  url
+                }
+              }
+            }
+
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+        }`,
+        resolveSiteUrl: ({prismicSiteInformation, allSitePage}) => {
+          //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+          return prismicSiteInformation.data.url.url
+        },
+        serialize: ({ prismicSiteInformation, allSitePage }) =>
+          allSitePage.nodes.map(node => {
+            return {
+              url: `${prismicSiteInformation.data.url.url}${node.path}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            }
+          })
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.minus1store.com',
+        sitemap: 'https://www.minus1store.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
     },
     {
       resolve: 'gatsby-plugin-mailchimp',

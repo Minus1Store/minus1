@@ -37,42 +37,42 @@ exports.handler = async function (event, context) {
     subject: 'Order',
     html: `
             <table style='margin-bottom:15px; border:1px dotted #959595;border-collapse: collapse'>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>First Name</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${firstName}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Last Name</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${lastName}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Email</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${email}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Phone Number</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${phoneNumber}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Country</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${country}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>State</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${state}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>City</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${city}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>Address</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${address}</td>
-                </tr>
-                <tr>
-                    <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>ZIP code</th>
-                    <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${zipCode}</td>
-                </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>First Name</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${firstName}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Last Name</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${lastName}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Email</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${email}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Phone Number</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${phoneNumber}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>Country</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${country}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>State</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${state}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white'>City</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${city}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>Address</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${address}</td>
+            </tr>
+            <tr>
+                <th style='padding:2.5px; border:1px dotted #959595; text-align:center;background: #626262; color: white;'>ZIP code</th>
+                <td style='padding:2.5px; border:1px dotted #959595; text-align:center;'>${zipCode}</td>
+            </tr>
             </table>
             <table style='margin-bottom:15px; border:1px dotted #959595;border-collapse: collapse'>
                 <tr>
