@@ -91,7 +91,7 @@ const ShippingPage = ({ location }) => {
                         } else {
                           return (
                             <tr>
-                              {row.items.lenght > 0 &&
+                              {row.items.length > 0 &&
                                 row.items.map((column, index) => {
                                   return <td key={index}>{column.column}</td>
                                 })}
