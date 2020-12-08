@@ -10,10 +10,14 @@
     min-width:100vw;
     @include breakpoint(lg){
         height:auto;
+        min-height: 100vh;
         min-width:100vw;
     }
     > div{
         height:100%;
+        @include breakpoint(lg){
+            min-height: 100vh;
+        }
     }
     img{
         height:100%
