@@ -4,9 +4,8 @@
     display:flex;
     margin-left:30vw;
     margin-bottom:7.5vh;
-    @include breakpoint(lg){
+    @include breakpoint(sm){
         margin-left:calc(50vw - 78px);
-        margin-bottom:10vh;
     }
 }
 
