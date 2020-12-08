@@ -31,7 +31,7 @@ const StoreItem = ({ data }) => {
             data.store_cover.localFile.childImageSharp.fluid && (
               <Image
                 fluid={data.store_cover.localFile.childImageSharp.fluid}
-                alt={data.store_cover.alt}
+                alt={data.store_cover.alt ? data.store_cover.alt : 'store item image'}
               />
             )}
         </div>
@@ -120,7 +120,7 @@ const StoreItem = ({ data }) => {
                     data.store_cover.localFile.childImageSharp.fluid && (
                       <Image
                         fluid={data.store_cover.localFile.childImageSharp.fluid}
-                        alt={data.store_cover.alt}
+                        alt={data.store_cover.alt ? data.store_cover.alt : 'store building image'}
                       />
                     )}
                 </div>

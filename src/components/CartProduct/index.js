@@ -33,7 +33,7 @@ const CartProduct = ({ data, removeProduct, setQuantity, presentational }) => {
                 fluid={
                   data.data.images[0].image.localFile.childImageSharp.fluid
                 }
-                alt={data.data.images[0].image.alt}
+                alt={data.data.images[0].image.alt ? data.data.images[0].image.alt : 'product'}
               />
             )}
         </Link>

@@ -7,6 +7,7 @@ import NavFooterMobile from '../../components/NavFooterMobile'
 import NavFooterDesktop from '../../components/NavFooterDesktop'
 import styles from './news-article.module.scss'
 import SEO from '../../components/SEO'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const NewsArticlePage = ({ data, location }) => {
   return (
@@ -19,6 +20,9 @@ const NewsArticlePage = ({ data, location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+
+        </InvisibleH1>
         {data.article && (
           <NewsArticle
             images={data.article.data.images}
@@ -26,6 +30,7 @@ const NewsArticlePage = ({ data, location }) => {
             date={data.article.data.date}
             body={data.article.data.body && data.article.data.body.html}
             showArchive={false}
+            articlePage
           />
         )}
       </div>

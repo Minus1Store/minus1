@@ -11,6 +11,7 @@ import ProductsContainer from '../../components/ProductsContainer'
 import ProductThumbnail from '../../components/ProductThumbnail'
 import SEO from '../../components/SEO'
 import ComingSoon from '../../components/ComingSoon'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const PreviewAllPage = ({ data, location }) => {
   return (
@@ -46,6 +47,9 @@ const PreviewAllPage = ({ data, location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          {data.currentPreview && data.currentPreview.data.title}
+        </InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>
             {typeof location != 'undefined' && (

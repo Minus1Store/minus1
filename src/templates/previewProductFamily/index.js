@@ -9,6 +9,7 @@ import TooltipSlider from '../../components/TooltipSlider'
 import swiperArrow from '../../img/test/right-arrow.svg'
 import queryString from 'query-string'
 import SEO from '../../components/SEO'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const PreviewProductPage = ({ data, location }) => {
   const [clickedThumbnail, setClickedThumbnail] = useState(0)
@@ -101,6 +102,13 @@ const PreviewProductPage = ({ data, location }) => {
         <Header />
       </div>
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Preview
+          {
+          productDescriptions().length > 0 &&
+          productDescriptions()[0].data.title
+          }
+        </InvisibleH1>
         <div className={styles.slider}>
           {productImages() && (
             <TooltipSlider

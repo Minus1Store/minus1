@@ -7,6 +7,7 @@ import StoreItem from '../../components/StoreItem'
 import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 import SEO from '../../components/SEO'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const Stores = ({ location }) => {
   const data = useStaticQuery(graphql`
@@ -68,6 +69,9 @@ const Stores = ({ location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Minus1 Store Locations
+        </InvisibleH1>
         <div className={styles.storesContainer}>
           {data.stores &&
             data.stores.edges.length > 0 &&

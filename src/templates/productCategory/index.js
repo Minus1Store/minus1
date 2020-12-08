@@ -12,6 +12,7 @@ import ProductThumbnail from '../../components/ProductThumbnail'
 import SiteTree from '../../components/SiteTree'
 import SEO from '../../components/SEO'
 import NavFooterMobile2 from '../../components/NavFooterMobile2'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const ProductCategoryPage = ({ location, data }) => {
   return (
@@ -43,6 +44,15 @@ const ProductCategoryPage = ({ location, data }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Product Category 
+          {
+            data.products && data.products.edges.length > 0
+            ? data.products.edges[0].node.data.product_category.document.data
+                .product_category
+            : ''
+          }
+        </InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>
             {typeof location != 'undefined' && (

@@ -12,6 +12,7 @@ import CartProduct from '../../../components/CartProduct'
 import SEO from '../../../components/SEO'
 import NavFooterMobile2 from '../../../components/NavFooterMobile2'
 import getProductSoldQuantity from '../../../utils/getProductSoldQuantity'
+import InvisibleH1 from '../../../components/InvisibleH1'
 
 const CartPage = ({ location }) => {
   const [cart, setCart] = useState([])
@@ -158,6 +159,9 @@ const CartPage = ({ location }) => {
         description={`This is your own cart. Here will appear everything you want to buy from our site so feel free to find something you like.`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Minus1 Shop Cart
+        </InvisibleH1>
         <CartContainer>
           <CartHeader>
             <CartHeaderItem active={true}>View/edit basket</CartHeaderItem>

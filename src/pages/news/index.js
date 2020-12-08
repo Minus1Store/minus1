@@ -12,6 +12,7 @@ import NavFooterMobile from '../../components/NavFooterMobile/index'
 import NavFooterDesktop from '../../components/NavFooterDesktop/index'
 import SEO from '../../components/SEO'
 import ComingSoon from '../../components/ComingSoon'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 console.log(scrollbarStyle)
 
@@ -72,6 +73,9 @@ const News = ({ location }) => {
       />
       <PageLayout>
         <div className={styles.pageWrapper}>
+          <InvisibleH1>
+            Minus1 News Articles
+          </InvisibleH1>
           <div className={styles.overlay}></div>
           {data.newsArticles.edges.length > 0 ? (
             <Swiper

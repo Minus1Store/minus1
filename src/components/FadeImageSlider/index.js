@@ -56,7 +56,7 @@ const FadeImageSlider = ({
                     image.localFile.childImageSharp && (
                       <Image
                         fluid={image.localFile.childImageSharp.fluid}
-                        alt={image.alt}
+                        alt={image.alt ? image.alt : 'slider image'}
                       />
                     )}
                 </div>

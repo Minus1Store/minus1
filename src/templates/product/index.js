@@ -16,6 +16,7 @@ import CartPopUp from '../../components/CartPopUp'
 import SEO from '../../components/SEO'
 import NavFooterMobile2 from '../../components/NavFooterMobile2'
 import getProductAvailability from '../../utils/getProductAvailability'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const ProductPage = ({ data, location }) => {
   const [mainImageNum, setMainImageNum] = useState(0)
@@ -171,6 +172,15 @@ const ProductPage = ({ data, location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Product 
+          {
+            data.product ? data.product.data.title : ''
+          }  
+          {
+            data.product ? data.product.data.color_name : ''
+          }
+        </InvisibleH1>
         <div className={styles.mainImageContainer}>
           {data.product &&
             data.product.data.images.length > 0 &&

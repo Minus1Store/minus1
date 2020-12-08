@@ -10,6 +10,7 @@ import PreviewFilters from '../../components/PreviewFilters'
 import ProductsContainer from '../../components/ProductsContainer'
 import ProductThumbnail from '../../components/ProductThumbnail'
 import SEO from '../../components/SEO'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const PreviewCategoryPage = ({ location, data }) => {
   return (
@@ -51,6 +52,14 @@ const PreviewCategoryPage = ({ location, data }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Preview 
+          {
+            data.productCategories &&
+            data.productCategories.edges.length > 0 &&
+            data.productCategories.edges[0].node.data.product_category
+          }
+        </InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>
             {typeof location != 'undefined' && (

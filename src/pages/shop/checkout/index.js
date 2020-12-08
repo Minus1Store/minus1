@@ -14,6 +14,7 @@ import PayOnArrivalForm from '../../../components/PayOnArrivalForm'
 import PayWithCardForm from '../../../components/PayWithCardForm'
 import PrimaryButton from '../../../components/PrimaryButton'
 import NavFooterMobile2 from '../../../components/NavFooterMobile2'
+import InvisibleH1 from '../../../components/InvisibleH1'
 
 const CheckoutPage = ({ location }) => {
   const [payOnArrivalToggled, setPayOnArrivalToggled] = useState(false)
@@ -132,6 +133,9 @@ const CheckoutPage = ({ location }) => {
         description={`Select your pay and shipping preferences in Minus1 shop checkout.`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Minus1 Shop Checkout
+        </InvisibleH1>
         <CartContainer>
           <CartHeader>
             <CartHeaderItem active={false}>

@@ -10,6 +10,7 @@ import CartPopUp from '../../../components/CartPopUp'
 import SEO from '../../../components/SEO'
 import ComingSoon from '../../../components/ComingSoon'
 import NavFooterMobile2 from '../../../components/NavFooterMobile2'
+import InvisibleH1 from '../../../components/InvisibleH1'
 
 const ShippingPage = ({ location }) => {
   const data = useStaticQuery(graphql`
@@ -73,6 +74,9 @@ const ShippingPage = ({ location }) => {
             </div>
           )}
           <div className={styles.termsContainer}>
+            <InvisibleH1>
+              Minus1 Product Sizing Disclaimer
+            </InvisibleH1>
             {data.sizingItems.edges.length > 0 ? (
               data.sizingItems.edges.map((table, index) => {
                 return (

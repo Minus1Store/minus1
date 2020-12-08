@@ -11,6 +11,7 @@ import Header from '../components/Header/index'
 import TimeString from '../components/TimeString/index'
 import styles from './index.module.scss'
 import SEO from '../components/SEO'
+import InvisibleH1 from '../components/InvisibleH1'
 
 function Index({ location }) {
   const [startAnimation, setStartAnimation] = useState(false)
@@ -58,6 +59,9 @@ function Index({ location }) {
           <Header />
           <TimeString className={styles.homeTimeString} />
         </div>
+        <InvisibleH1>
+          Minus1 Home Page
+        </InvisibleH1>
         <HomeLinks />
         {data.background &&
           data.background.edges.length > 0 &&

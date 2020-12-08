@@ -8,6 +8,7 @@ import NavFooterMobile from '../../components/NavFooterMobile'
 import PrimaryButton from '../../components/PrimaryButton'
 import MailingForm from '../../components/MailingForm'
 import SEO from '../../components/SEO'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const MailinglistPage = ({ location }) => {
   const [submitResult, setSubmitResult] = useState(undefined)
@@ -37,6 +38,9 @@ const MailinglistPage = ({ location }) => {
         description={`Here you can subscribe to our newsletter to get interesting insights about our new, popular and products on SALE! So much more awaits.`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Minus1 Mailing List
+        </InvisibleH1>
         {submitResult == undefined ? (
           <MailingForm onSubmit={mailingFormSubmit} />
         ) : (

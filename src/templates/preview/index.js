@@ -8,6 +8,7 @@ import NavFooterMobile from '../../components/NavFooterMobile'
 import NavFooterDesktop from '../../components/NavFooterDesktop'
 import SEO from '../../components/SEO'
 import ComingSoon from '../../components/ComingSoon'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const PreviewPage = ({ data, location }) => {
   return (
@@ -28,6 +29,9 @@ const PreviewPage = ({ data, location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          {data.currentPreview && data.currentPreview.data.title}
+        </InvisibleH1>
         <ul className={styles.familyThumbnails}>
           {data.previewFamilies.edges > 0 ? (
             data.previewFamilies.edges.map(({ node }, index) => {

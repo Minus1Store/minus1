@@ -254,7 +254,7 @@ const PayOnArrivalForm = ({
                     data.logo.edges[0].node.data.logo.localFile.childImageSharp
                       .fluid
                   }
-                  alt={data.logo.edges[0].node.data.logo.alt}
+                  alt={'loading indicator'}
                 />
               )}
           </div>

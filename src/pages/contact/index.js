@@ -22,7 +22,7 @@ const Contact = ({ location }) => {
             Milos
           </a>
         </p>
-        <h2 className={styles.heading}>contact Minus1</h2>
+        <h1 className={styles.heading}>contact Minus1</h1>
         <ContactForm />
       </div>
       <NavFooterMobile />

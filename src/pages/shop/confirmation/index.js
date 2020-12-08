@@ -12,6 +12,7 @@ import CartHeader from '../../../components/CartHeader'
 import SEO from '../../../components/SEO'
 import CartProduct from '../../../components/CartProduct'
 import NavFooterMobile2 from '../../../components/NavFooterMobile2'
+import InvisibleH1 from '../../../components/InvisibleH1'
 
 const CheckoutPage = ({ location }) => {
   const [confirmationData, setConfirmationData] = useState({})
@@ -34,6 +35,9 @@ const CheckoutPage = ({ location }) => {
         description={`Select your pay and shipping preferences in Minus1 shop checkout.`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Minus1 Order Confirmation
+        </InvisibleH1>
         <CartContainer>
           <CartHeader>
             <CartHeaderItem active={false}>

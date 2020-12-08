@@ -11,6 +11,7 @@ import NavFooterMobile2 from '../../components/NavFooterMobile2'
 import NavFooterMobile from '../../components/NavFooterMobile'
 import SEO from '../../components/SEO'
 import ComingSoon from '../../components/ComingSoon'
+import InvisibleH1 from '../../components/InvisibleH1'
 
 const LookbookPage = ({ data, location }) => {
   const [swiperInstance, setSwiperInstance] = useState(null)
@@ -51,6 +52,9 @@ const LookbookPage = ({ data, location }) => {
         <Header />
       </div>
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          Minus1 Lookbook
+        </InvisibleH1>
         <div className={styles.lookBookImages}>
           {data.lookbookProducts.edges.length > 0 ? (
             <>

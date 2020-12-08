@@ -11,6 +11,7 @@ const NewsArticle = ({
   images,
   date,
   body,
+  articlePage
 }) => {
   return (
     <div className={styles.articleContainer}>
@@ -20,7 +21,11 @@ const NewsArticle = ({
       <div>
         <article className={styles.newsArticleContainer}>
           <time className={styles.date}>{date}</time>
+          {articlePage ? 
+          <h1 className={styles.heading}>{heading}</h1>
+          :
           <h2 className={styles.heading}>{heading}</h2>
+        }
           <div
             className={styles.body}
             dangerouslySetInnerHTML={{ __html: body }}

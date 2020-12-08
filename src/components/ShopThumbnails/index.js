@@ -35,7 +35,7 @@ const ShopThumbnails = ({ data, location }) => {
                             image.localFile.childImageSharp.fluid && (
                               <Image
                                 fluid={image.localFile.childImageSharp.fluid}
-                                alt={image.alt}
+                                alt={image.alt ? image.alt : 'shop product'}
                               />
                             )}
                         </Link>
@@ -63,7 +63,7 @@ const ShopThumbnails = ({ data, location }) => {
                             image.localFile.childImageSharp.fluid && (
                               <Image
                                 fluid={image.localFile.childImageSharp.fluid}
-                                alt={image.alt}
+                                alt={image.alt ? image.alt : 'shop product'}
                               />
                             )}
                         </Link>

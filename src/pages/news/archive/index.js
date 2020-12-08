@@ -42,7 +42,7 @@ const Archive = ({ location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
-        <h2 className={styles.sectionTitle}>news archive</h2>
+        <h1 className={styles.sectionTitle}>news archive</h1>
         <div className={styles.newsContainer}>
           {data.newsArticles.edges.length > 0 ? (
             data.newsArticles.edges.map(({ node }) => {

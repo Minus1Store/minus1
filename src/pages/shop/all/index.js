@@ -11,6 +11,7 @@ import ProductsContainer from '../../../components/ProductsContainer'
 import ProductThumbnail from '../../../components/ProductThumbnail'
 import SiteTree from '../../../components/SiteTree'
 import SEO from '../../../components/SEO'
+import InvisibleH1 from '../../../components/InvisibleH1'
 
 const Shop = ({ location }) => {
   const data = useStaticQuery(graphql`
@@ -76,6 +77,9 @@ const Shop = ({ location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
+        <InvisibleH1>
+          All Minus1 Shop Products
+        </InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>
             {typeof location != 'undefined' && (
