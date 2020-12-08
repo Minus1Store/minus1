@@ -77,7 +77,7 @@
 
 .subcategories-container{
     @include breakpoint(sm){
-        max-height:20vh;
+        max-height:7.5vh;
         overflow-y: auto;
     }
     @include breakpoint(lg){
