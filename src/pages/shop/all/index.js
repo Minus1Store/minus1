@@ -38,7 +38,7 @@ const Shop = ({ location }) => {
                   alt
                   localFile {
                     childImageSharp {
-                      fluid(maxWidth: 170, quality: 100) {
+                      fluid(maxWidth: 125, quality: 100) {
                         ...GatsbyImageSharpFluid_withWebp
                       }
                     }
