@@ -6,7 +6,7 @@ import styles from './pay-with-card-form.module.scss'
 import PrimaryButton from '../PrimaryButton'
 import { Helmet } from 'react-helmet'
 
-const PayWithCardForm = ({ products, price, totalPrice, setTotalPrice }) => {
+const PayWithCardForm = ({ products, price, totalPrice, setTotalPrice, onSuccess }) => {
   const data = useStaticQuery(graphql`
     query PayWithCardFormQuery {
       logo: allPrismicLogo {
@@ -125,6 +125,7 @@ const PayWithCardForm = ({ products, price, totalPrice, setTotalPrice }) => {
             .then((data) => {
               if (data.status == 'success') {
                 setFetching(false)
+                updateSoldProducts(products, onSuccess)
                 return setSuccessMessage(data.message)
               } else if (data.status == 'error') {
                 setFetching(false)
