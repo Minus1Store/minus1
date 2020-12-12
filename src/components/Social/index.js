@@ -30,9 +30,9 @@ const Social = () => {
         data.socialNetworks.edges.length > 0 &&
         data.socialNetworks.edges[0].node.data.social_networks.length > 0 &&
         data.socialNetworks.edges[0].node.data.social_networks.map(
-          (socialNetwork) => {
+          (socialNetwork, index) => {
             return (
-              <a href={socialNetwork.social_network_link.url}>
+              <a key={index} href={socialNetwork.social_network_link.url}>
                 {socialNetwork.social_network_icon &&
                   socialNetwork.social_network_icon.url && (
                     <img

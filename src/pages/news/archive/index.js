@@ -47,7 +47,7 @@ const Archive = ({ location }) => {
           {data.newsArticles.edges.length > 0 ? (
             data.newsArticles.edges.map(({ node }) => {
               return (
-                <p className={styles.article}>
+                <p className={styles.article} key={node.uid}>
                   <Link to={`/news/${node.uid}`}>
                     {node.data.date}: {node.data.title}
                   </Link>

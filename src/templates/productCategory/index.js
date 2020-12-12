@@ -64,7 +64,7 @@ const ProductCategoryPage = ({ location, data }) => {
               data.products.edges.length > 0 &&
               data.products.edges.map(({ node }) => {
                 return (
-                  <div className={styles.product}>
+                  <div className={styles.product} key={node.uid}>
                     <Link
                       to={`/shop/${
                         node.data.product_category &&
@@ -102,7 +102,7 @@ const ProductCategoryPage = ({ location, data }) => {
               data.secondaryProducts.edges.length > 0 &&
               data.secondaryProducts.edges.map(({ node }) => {
                 return (
-                  <div className={styles.product}>
+                  <div className={styles.product} key={node.uid}>
                     <Link
                       to={`/shop/${
                         node.data.product_category &&

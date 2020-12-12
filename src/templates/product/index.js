@@ -233,9 +233,10 @@ const ProductPage = ({ data, location }) => {
                   >
                     {data.product &&
                       data.product.data.sizes.length > 0 &&
-                      data.product.data.sizes.map((node) => {
+                      data.product.data.sizes.map((node, index) => {
                         return (
                           <option
+                            key={index}
                             value={
                               node.size &&
                               node.size.document.data &&

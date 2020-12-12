@@ -16,9 +16,10 @@ const PreviewFilters = ({ location, currentPreview, data }) => {
       </Link>
       {data.productCategories &&
         data.productCategories.edges.length > 0 &&
-        data.productCategories.edges.map(({ node }) => {
+        data.productCategories.edges.map(({ node }, index) => {
           return (
             <Link
+              key={index}
               to={`${currentPreview}/${node.uid}`}
               className={
                 location.pathname == `${currentPreview}/${node.uid}` &&

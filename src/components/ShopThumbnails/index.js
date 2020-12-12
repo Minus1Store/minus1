@@ -8,9 +8,9 @@ const ShopThumbnails = ({ data, location }) => {
   return (
     <div className={styles.shopThumbnailsContainer}>
       {data.allFamilyProducts &&
-        data.allFamilyProducts.edges.map(({ node }) => {
+        data.allFamilyProducts.edges.map(({ node }, index) => {
           return (
-            <div className={styles.allProductThumbnails}>
+            <div className={styles.allProductThumbnails} key={index}>
               {node.data.images.length > 0 &&
                 node.data.images.map(({ image }, index) => {
                   if (index == 0) {
@@ -23,6 +23,7 @@ const ShopThumbnails = ({ data, location }) => {
 
                     return (
                       <div
+                      key={index}
                         className={`${styles.productThumbnail} ${
                           to == location.pathname &&
                           location.search == '' &&
@@ -51,6 +52,7 @@ const ShopThumbnails = ({ data, location }) => {
 
                     return (
                       <div
+                        key={index}
                         className={`${styles.productThumbnail} ${
                           to == location.pathname &&
                           location.search == `?img=${index}` &&
@@ -88,6 +90,7 @@ const ShopThumbnails = ({ data, location }) => {
 
                   return (
                     <div
+                      key={index}
                       className={`${styles.productThumbnail} ${
                         to == location.pathname &&
                         location.search == '' &&
@@ -113,6 +116,7 @@ const ShopThumbnails = ({ data, location }) => {
 
                   return (
                     <div
+                      key={index}
                       className={`${styles.productThumbnail} ${
                         to == location.pathname &&
                         location.search == `?img=${index}` &&

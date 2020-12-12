@@ -108,11 +108,11 @@ const NavFooterDesktop = ({ linksArray }) => {
     <footer className={styles.navFooter}>
       <nav>
         <ul className={styles.navList}>
-          {links.map(({ link }) => {
+          {links.map(({ link }, index) => {
             return (
-              <li>
-                {link.map((link) => {
-                  return <Link to={link.href}>{link.text}</Link>
+              <li key={index}>
+                {link.map((link, index) => {
+                  return <Link key={index} to={link.href}>{link.text}</Link>
                 })}
               </li>
             )

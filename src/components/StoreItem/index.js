@@ -7,7 +7,7 @@ import styles from './store-item.module.scss'
 
 import 'leaflet/dist/leaflet.css'
 
-const StoreItem = ({ data }) => {
+const StoreItem = ({ data, key }) => {
   const [storeClicked, setStoreClicked] = useState(false)
 
   const popupTransition = useTransition(storeClicked, null, {
@@ -19,6 +19,7 @@ const StoreItem = ({ data }) => {
   return (
     <div
       className={styles.store}
+      key={key}
       onClick={() => {
         setStoreClicked(true)
       }}

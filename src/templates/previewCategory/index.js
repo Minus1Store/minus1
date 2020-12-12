@@ -76,7 +76,7 @@ const PreviewCategoryPage = ({ location, data }) => {
             {data.products &&
               data.products.edges.map(({ node }) => {
                 return (
-                  <div className={styles.product}>
+                  <div className={styles.product} key={node.uid}>
                     <Link
                       to={`/previews/${
                         data.currentPreview && data.currentPreview.uid

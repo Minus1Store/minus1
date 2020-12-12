@@ -129,7 +129,7 @@ const PreviewProductPage = ({ data, location }) => {
                 productDescriptions().map(({ data, uid }, index) => {
                   if (index == clickedThumbnail) {
                     return (
-                      <React.Fragment>
+                      <React.Fragment key={index}>
                         <h2 className={styles.lookBookTitle}>{data.title}</h2>
                         <div
                           className={styles.lookBookBody}

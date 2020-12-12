@@ -147,7 +147,7 @@ const LookbookPage = ({ data, location }) => {
                 data.lookbookProducts.edges.map(({ node }, index) => {
                   if (index == clickedThumbnail) {
                     return (
-                      <React.Fragment>
+                      <React.Fragment key={index}>
                         <h2 className={styles.lookBookTitle}>
                           {data.currentLookBook.data.title}
                         </h2>
@@ -172,7 +172,7 @@ const LookbookPage = ({ data, location }) => {
                     data.lookBooks.edges.length > 0 &&
                     data.lookBooks.edges.map(({ node }) => {
                       return (
-                        <li>
+                        <li key={node.uid}>
                           <Link to={`/lookbooks/${node.uid}`}>
                             {node.data.title}
                           </Link>
