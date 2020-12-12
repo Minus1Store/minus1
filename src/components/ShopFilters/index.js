@@ -25,6 +25,7 @@ const ShopFilters = ({ location, children }) => {
           node {
             uid
             data {
+              position
               product_subcategory
               product_category {
                 uid
@@ -118,6 +119,9 @@ const ShopFilters = ({ location, children }) => {
                               <Link
                                 key={subcategoryNode.uid}
                                 to={`/shop/${node.uid}/${subcategoryNode.uid}`}
+                                style={{
+                                  order: subcategoryNode.data.position ? subcategoryNode.data.position : '10000' 
+                                }}
                                 className={`${styles.subcategoryLink} ${
                                   location.pathname.match(
                                     new RegExp(

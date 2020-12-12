@@ -1,28 +1,36 @@
 {
-    "Main" : {
-      "product_subcategory" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Product Subcategory"
-        }
+  "Main": {
+    "product_subcategory": {
+      "type": "Text",
+      "config": {
+        "label": "Product Subcategory"
       }
     },
-    "Category" : {
-      "product_category" : {
-        "type" : "Link",
-        "config" : {
-          "select" : "document",
-          "customtypes" : [ "product_category" ],
-          "label" : "Product Category"
-        }
+    "position": {
+      "type": "Number",
+      "config": {
+        "label": "Position"
       }
-    },
-    "Other" : {
-      "uid" : {
-        "type" : "UID",
-        "config" : {
-          "label" : "UID"
-        }
+    }
+  },
+  "Category": {
+    "product_category": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": [
+          "product_category"
+        ],
+        "label": "Product Category"
+      }
+    }
+  },
+  "Other": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID"
       }
     }
   }
+}

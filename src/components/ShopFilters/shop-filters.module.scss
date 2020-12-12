@@ -76,6 +76,8 @@
 }
 
 .subcategories-container{
+    display:flex;
+    flex-direction: column;
     @include breakpoint(sm){
         max-height:7.5vh;
         overflow-y: auto;
