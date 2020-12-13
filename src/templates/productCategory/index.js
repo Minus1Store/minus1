@@ -15,28 +15,44 @@ import NavFooterMobile2 from '../../components/NavFooterMobile2'
 import InvisibleH1 from '../../components/InvisibleH1'
 
 const ProductCategoryPage = ({ location, data }) => {
+
+  function removedDuplicatesSecondaryProducts(){
+    let uidArray = []
+    return data.secondaryProducts.edges.map(({node:product}) => {
+      if(uidArray.find(uid => uid == product.uid)){
+        
+      }else{
+        uidArray.push(product.uid)
+        return product
+      }
+    }).filter(value => value != undefined)
+  }
+
+  console.log(removedDuplicatesSecondaryProducts())
+
   return (
     <PageLayout>
       <SEO
         titleTemplate={`%s | Shop ${
-          data.products && data.products.edges.length > 0
-            ? data.products.edges[0].node.data.product_category.document.data
-                .product_category
-            : ''
+          data.category ? data.category.data.product_category
+          : 
+          ''
         }`}
         url={location.href}
         description={`All shop ${
-          data.products && data.products.edges.length > 0
-            ? data.products.edges[0].node.data.product_category &&
-              data.products.edges[0].node.data.product_category.document &&
-              data.products.edges[0].node.data.product_category.document.data &&
-              data.products.edges[0].node.data.product_category.document.data
-                .product_category
+            data.category ? data.category.data.product_category
             : ''
         }. Products: ${
           data.products &&
           data.products.edges.length > 0 &&
           data.products.edges
+            .map(({ node }) => {
+              return `${node.data.color_name} ${node.data.title}`
+            })
+            .join(',') + 
+            data.secondaryProducts &&
+            data.secondaryProducts.edges.length > 0 &&
+            data.secondaryProducts.edges
             .map(({ node }) => {
               return `${node.data.color_name} ${node.data.title}`
             })
@@ -98,43 +114,42 @@ const ProductCategoryPage = ({ location, data }) => {
                   </div>
                 )
               })}
-            {data.secondaryProducts &&
+            {
+            data.secondaryProducts &&
               data.secondaryProducts.edges.length > 0 &&
-              data.secondaryProducts.edges.map(({ node }) => {
-                return (
-                  <div className={styles.product} key={node.uid}>
-                    <Link
-                      to={`/shop/${
-                        node.data.product_category &&
-                        node.data.product_category.uid
-                      }/${node.uid}`}
-                    >
-                      <ProductThumbnail
-                        thumbnailSize="medium"
-                        image={
-                          node.data.images.length > 0 &&
-                          node.data.images[0].image &&
-                          node.data.images[0].image.localFile &&
-                          node.data.images[0].image.localFile.childImageSharp &&
-                          node.data.images[0].image.localFile.childImageSharp
-                            .fluid
-                        }
-                        alt={
-                          node.data.images.length > 0 &&
-                          node.data.images[0].image &&
-                          node.data.images[0].image.alt
-                        }
-                        sizes={node.data.sizes}
-                      />
-                      <div className={styles.productInformation}>
-                        <p>{node.data.title}</p>
-                      </div>
-                      <div className={styles.productInformation}>
-                        <p>{node.data.color_name}</p>
-                      </div>
-                    </Link>
-                  </div>
-                )
+              removedDuplicatesSecondaryProducts().map(( node ) => {
+                return <div className={styles.product} key={node.uid}>
+                  <Link
+                    to={`/shop/${
+                      node.data.product_category &&
+                      node.data.product_category.uid
+                    }/${node.uid}`}
+                  >
+                    <ProductThumbnail
+                      thumbnailSize="medium"
+                      image={
+                        node.data.images.length > 0 &&
+                        node.data.images[0].image &&
+                        node.data.images[0].image.localFile &&
+                        node.data.images[0].image.localFile.childImageSharp &&
+                        node.data.images[0].image.localFile.childImageSharp
+                          .fluid
+                      }
+                      alt={
+                        node.data.images.length > 0 &&
+                        node.data.images[0].image &&
+                        node.data.images[0].image.alt
+                      }
+                      sizes={node.data.sizes}
+                    />
+                    <div className={styles.productInformation}>
+                      <p>{node.data.title}</p>
+                    </div>
+                    <div className={styles.productInformation}>
+                      <p>{node.data.color_name}</p>
+                    </div>
+                  </Link>
+                </div>
               })}
           </ProductsContainer>
         </div>
@@ -206,6 +221,12 @@ const ProductCategoryPage = ({ location, data }) => {
 
 export const pageQuery = graphql`
   query ProductsBySlug($category_uid: String!) {
+    category: prismicProductCategory(uid: {eq: $category_uid}) {
+      uid
+      data {
+        product_category
+      }
+    }
     products: allPrismicProduct(
       filter: { data: { product_category: { uid: { eq: $category_uid } } } }
     ) {
@@ -339,6 +360,28 @@ export const pageQuery = graphql`
                         }
                       }
                     }
+                  }
+                }
+              }
+            }
+            secondary_categories {
+              secondary_product_category {
+                document {
+                  ... on PrismicProductCategory {
+                    data {
+                      product_category
+                    }
+                    uid
+                  }
+                }
+              }
+              secondary_product_subcategory {
+                document {
+                  ... on PrismicProductSubcategory {
+                    data {
+                      product_subcategory
+                    }
+                    uid
                   }
                 }
               }
