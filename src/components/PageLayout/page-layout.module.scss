@@ -1,20 +1,24 @@
 @import '../../styles/breakpoints.scss';
 
 .wrapper{
-    padding:0 15px;
     width:100%;
     position:relative;
+    @include breakpoint(sm){
+        padding:0 15px;
+    }
 }
 
 .header-group{
-    margin-bottom:30px;
+    padding-bottom:30px;
     display:flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 20px;
+    padding-top: 20px;
+    background-color: #f4f4f4;
     @include breakpoint(sm){
-        margin-bottom:unset;
+        background-color: unset;
+        padding-bottom:unset;
     }
 }
 

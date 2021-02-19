@@ -4,9 +4,16 @@
     margin:auto;
     display:flex;
     flex-direction: column;
-    margin-top:50px;
     min-height:70vh;
     position:relative;
+    box-shadow: 0 0px 3px 1px #ccc;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    @include breakpoint(sm){
+        padding-top:50px;
+        box-shadow: unset;
+    }
     @include breakpoint(lg){
         flex-direction: row;
         min-height:unset;
