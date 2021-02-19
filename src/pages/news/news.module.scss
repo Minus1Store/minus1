@@ -122,7 +122,10 @@
     width:100%;
     position:relative;
     min-height: 440px;
+    padding:15px;
+    box-shadow: 0 0px 3px 1px #ccc;
     @include breakpoint(sm){
+        padding:unset;
         min-height:unset;
         max-height: 60vh;
         margin-top:30px;

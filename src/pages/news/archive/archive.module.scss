@@ -9,7 +9,9 @@
     margin-top:25px;
     align-items: flex-start;
     min-height: 70vh;
+    padding:15px;
     @include breakpoint(lg){
+        padding:unset;
         justify-content: space-between;
         min-height: unset;
         margin-top:105px;

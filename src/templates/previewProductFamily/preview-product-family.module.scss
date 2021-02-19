@@ -2,8 +2,12 @@
 
 .page-wrapper{
     margin-top:0;
+    padding:15px;
+    box-shadow: 0 0px 3px 1px #ccc;
     @include breakpoint(sm){
         margin-top:50px;
+        padding:unset;
+        box-shadow: unset;
     }
 }
 

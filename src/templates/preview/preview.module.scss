@@ -2,7 +2,11 @@
 
 .page-wrapper{
     min-height:61vh;
+    padding:15px;
+    box-shadow: 0 0px 3px 1px #ccc;
     @include breakpoint(lg){
+        padding:unset;
+        box-shadow: unset;
         min-height: unset;
     }
 }

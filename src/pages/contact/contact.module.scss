@@ -5,7 +5,11 @@
     align-items: flex-start;
     flex-direction:column;
     min-height:70vh;
+    padding:15px;
+    box-shadow: 0 0px 3px 1px #ccc;
     @include breakpoint(sm){
+        padding:unset;
+        box-shadow: unset;
         flex-direction: row;
         min-height: unset;
         width:556px;

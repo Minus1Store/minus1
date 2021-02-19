@@ -3,7 +3,11 @@
 .page-wrapper{
     width:100%;
     margin:auto;
+    padding:15px;
+    box-shadow: 0 0px 3px 1px #ccc;
     @include breakpoint(sm){
+        box-shadow: unset;
+        padding:unset;
         max-height: 61vh;
         margin-top:50px;
         width:800px;
@@ -192,7 +196,9 @@
 
 .mobile-logo{
     display:block;
+    background-color: #f4f4f4;
     @include breakpoint(sm){
+        background-color: unset;
         display:none;
     }
 }

@@ -37,7 +37,13 @@
 }
 
 .page-wrapper{
-    margin-top:30px;   
+    padding:15px;
+    box-shadow: 0 0px 3px 1px #ccc;
+    @include breakpoint(sm){
+        margin-top:30px;   
+        padding:unset;
+        box-shadow: unset;
+    }
 }
 
 .product-container{

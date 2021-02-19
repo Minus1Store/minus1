@@ -11,7 +11,11 @@
     width:100%;
     height:auto;
     margin:auto;
+    padding:15px;
+    box-shadow: 0 0px 3px 1px #ccc;
     @include breakpoint(sm){
+        padding:unset;
+        box-shadow: unset;
         margin-top:30px;
         margin-bottom:30px;
         height:375px;

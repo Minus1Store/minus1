@@ -6,7 +6,11 @@
      > p {
          font-size: 0.85rem;
      }
-    @include breakpoint(sm){
+     box-shadow: 0 0px 3px 1px #ccc;
+     padding:15px;
+     @include breakpoint(sm){
+        padding:unset;
+        box-shadow: unset;
         min-height: unset;
         width:385px;
         height:330px;
