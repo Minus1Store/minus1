@@ -8,7 +8,11 @@ const SiteTree = ({ links }) => {
     <div className={styles.siteTree}>
       {links.map((link, index) => {
         if (index == 0) {
-          return <Link to={link.link} key={index}>{link.text}</Link>
+          return (
+            <Link to={link.link} key={index}>
+              {link.text}
+            </Link>
+          )
         } else {
           return (
             <React.Fragment key={index}>

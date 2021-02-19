@@ -38,9 +38,7 @@ const MailinglistPage = ({ location }) => {
         description={`Here you can subscribe to our newsletter to get interesting insights about our new, popular and products on SALE! So much more awaits.`}
       />
       <div className={styles.pageWrapper}>
-        <InvisibleH1>
-          Minus1 Mailing List
-        </InvisibleH1>
+        <InvisibleH1>Minus1 Mailing List</InvisibleH1>
         {submitResult == undefined ? (
           <MailingForm onSubmit={mailingFormSubmit} />
         ) : (

@@ -73,9 +73,7 @@ const News = ({ location }) => {
       />
       <PageLayout>
         <div className={styles.pageWrapper}>
-          <InvisibleH1>
-            Minus1 News Articles
-          </InvisibleH1>
+          <InvisibleH1>Minus1 News Articles</InvisibleH1>
           <div className={styles.overlay}></div>
           {data.newsArticles.edges.length > 0 ? (
             <Swiper

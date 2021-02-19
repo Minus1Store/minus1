@@ -120,7 +120,9 @@ const ShopFilters = ({ location, children }) => {
                                 key={subcategoryNode.uid}
                                 to={`/shop/${node.uid}/${subcategoryNode.uid}`}
                                 style={{
-                                  order: subcategoryNode.data.position ? subcategoryNode.data.position : '10000' 
+                                  order: subcategoryNode.data.position
+                                    ? subcategoryNode.data.position
+                                    : '10000',
                                 }}
                                 className={`${styles.subcategoryLink} ${
                                   location.pathname.match(

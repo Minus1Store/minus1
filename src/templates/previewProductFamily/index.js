@@ -104,10 +104,8 @@ const PreviewProductPage = ({ data, location }) => {
       <div className={styles.pageWrapper}>
         <InvisibleH1>
           Preview
-          {
-          productDescriptions().length > 0 &&
-          productDescriptions()[0].data.title
-          }
+          {productDescriptions().length > 0 &&
+            productDescriptions()[0].data.title}
         </InvisibleH1>
         <div className={styles.slider}>
           {productImages() && (

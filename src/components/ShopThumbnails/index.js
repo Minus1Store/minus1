@@ -23,7 +23,7 @@ const ShopThumbnails = ({ data, location }) => {
 
                     return (
                       <div
-                      key={index}
+                        key={index}
                         className={`${styles.productThumbnail} ${
                           to == location.pathname &&
                           location.search == '' &&

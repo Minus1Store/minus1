@@ -12,7 +12,7 @@ const MailingForm = ({ onSubmit }) => {
       className={styles.mailingForm}
       onSubmit={(e) => {
         e.preventDefault()
-        onSubmit(email, { NOTIFY:notificationsPreference })
+        onSubmit(email, { NOTIFY: notificationsPreference })
       }}
     >
       <div className={styles.inputsSection}>

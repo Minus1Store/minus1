@@ -37,7 +37,11 @@ const Social = () => {
                   socialNetwork.social_network_icon.url && (
                     <img
                       src={socialNetwork.social_network_icon.url}
-                      alt={socialNetwork.social_network_icon.alt ? socialNetwork.social_network_icon.alt : 'social icon'}
+                      alt={
+                        socialNetwork.social_network_icon.alt
+                          ? socialNetwork.social_network_icon.alt
+                          : 'social icon'
+                      }
                     />
                   )}
               </a>

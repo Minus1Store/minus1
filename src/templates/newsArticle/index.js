@@ -20,9 +20,7 @@ const NewsArticlePage = ({ data, location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
-        <InvisibleH1>
-
-        </InvisibleH1>
+        <InvisibleH1></InvisibleH1>
         {data.article && (
           <NewsArticle
             images={data.article.data.images}

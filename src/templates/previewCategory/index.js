@@ -53,12 +53,10 @@ const PreviewCategoryPage = ({ location, data }) => {
       />
       <div className={styles.pageWrapper}>
         <InvisibleH1>
-          Preview 
-          {
-            data.productCategories &&
+          Preview
+          {data.productCategories &&
             data.productCategories.edges.length > 0 &&
-            data.productCategories.edges[0].node.data.product_category
-          }
+            data.productCategories.edges[0].node.data.product_category}
         </InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>

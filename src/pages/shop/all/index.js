@@ -77,9 +77,7 @@ const Shop = ({ location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
-        <InvisibleH1>
-          All Minus1 Shop Products
-        </InvisibleH1>
+        <InvisibleH1>All Minus1 Shop Products</InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>
             {typeof location != 'undefined' && (

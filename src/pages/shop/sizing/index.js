@@ -74,9 +74,7 @@ const ShippingPage = ({ location }) => {
             </div>
           )}
           <div className={styles.termsContainer}>
-            <InvisibleH1>
-              Minus1 Product Sizing Disclaimer
-            </InvisibleH1>
+            <InvisibleH1>Minus1 Product Sizing Disclaimer</InvisibleH1>
             {data.sizingItems.edges.length > 0 ? (
               data.sizingItems.edges.map((table, index) => {
                 return (

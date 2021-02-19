@@ -173,13 +173,9 @@ const ProductPage = ({ data, location }) => {
       />
       <div className={styles.pageWrapper}>
         <InvisibleH1>
-          Product 
-          {
-            data.product ? data.product.data.title : ''
-          }  
-          {
-            data.product ? data.product.data.color_name : ''
-          }
+          Product
+          {data.product ? data.product.data.title : ''}
+          {data.product ? data.product.data.color_name : ''}
         </InvisibleH1>
         <div className={styles.mainImageContainer}>
           {data.product &&

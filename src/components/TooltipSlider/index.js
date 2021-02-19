@@ -53,7 +53,11 @@ const TooltipSlider = ({
           className={styles.tooltip}
           style={{ left: tooltipX, top: tooltipY }}
         >
-          <img src={arrow} className={styles.prevSlideTooltip} alt={'previous slide button'} />
+          <img
+            src={arrow}
+            className={styles.prevSlideTooltip}
+            alt={'previous slide button'}
+          />
         </div>
       </div>
       <div className={styles.slider} onClick={() => setImageClicked(false)}>
@@ -76,7 +80,11 @@ const TooltipSlider = ({
           className={styles.tooltip}
           style={{ left: tooltipX, top: tooltipY }}
         >
-          <img src={arrow} className={styles.nextSlideTooltip} alt={'next slide button'}/>
+          <img
+            src={arrow}
+            className={styles.nextSlideTooltip}
+            alt={'next slide button'}
+          />
         </div>
       </div>
     </div>

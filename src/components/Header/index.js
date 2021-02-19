@@ -45,7 +45,11 @@ const Header = ({ className }) => {
                   data.logo.edges[0].node.data.logo.localFile.childImageSharp
                     .fluid
                 }
-                alt={data.logo.edges[0].node.data.logo.alt ? data.logo.edges[0].node.data.logo.alt : 'Minus1 logo image'}
+                alt={
+                  data.logo.edges[0].node.data.logo.alt
+                    ? data.logo.edges[0].node.data.logo.alt
+                    : 'Minus1 logo image'
+                }
               />
             )}
         </div>

@@ -59,9 +59,7 @@ function Index({ location }) {
           <Header />
           <TimeString className={styles.homeTimeString} />
         </div>
-        <InvisibleH1>
-          Minus1 Home Page
-        </InvisibleH1>
+        <InvisibleH1>Minus1 Home Page</InvisibleH1>
         <HomeLinks />
         {data.background &&
           data.background.edges.length > 0 &&

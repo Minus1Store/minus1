@@ -52,9 +52,7 @@ const LookbookPage = ({ data, location }) => {
         <Header />
       </div>
       <div className={styles.pageWrapper}>
-        <InvisibleH1>
-          Minus1 Lookbook
-        </InvisibleH1>
+        <InvisibleH1>Minus1 Lookbook</InvisibleH1>
         <div className={styles.lookBookImages}>
           {data.lookbookProducts.edges.length > 0 ? (
             <>

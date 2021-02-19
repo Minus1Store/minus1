@@ -159,9 +159,7 @@ const CartPage = ({ location }) => {
         description={`This is your own cart. Here will appear everything you want to buy from our site so feel free to find something you like.`}
       />
       <div className={styles.pageWrapper}>
-        <InvisibleH1>
-          Minus1 Shop Cart
-        </InvisibleH1>
+        <InvisibleH1>Minus1 Shop Cart</InvisibleH1>
         <CartContainer>
           <CartHeader>
             <CartHeaderItem active={true}>View/edit basket</CartHeaderItem>

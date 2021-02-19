@@ -43,15 +43,13 @@ const ProductSubcategoryPage = ({ location, data }) => {
       />
       <div className={styles.pageWrapper}>
         <InvisibleH1>
-          Product Subcategory 
-          {
-            data.products &&
-            data.products.edges.length > 0 &&
-            data.products.edges[0].node.data.product_category
-              ? data.products.edges[0].node.data.product_category.document.data
-                  .product_category
-              : ''
-          }
+          Product Subcategory
+          {data.products &&
+          data.products.edges.length > 0 &&
+          data.products.edges[0].node.data.product_category
+            ? data.products.edges[0].node.data.product_category.document.data
+                .product_category
+            : ''}
         </InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>

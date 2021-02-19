@@ -69,9 +69,7 @@ const Stores = ({ location }) => {
         }`}
       />
       <div className={styles.pageWrapper}>
-        <InvisibleH1>
-          Minus1 Store Locations
-        </InvisibleH1>
+        <InvisibleH1>Minus1 Store Locations</InvisibleH1>
         <div className={styles.storesContainer}>
           {data.stores &&
             data.stores.edges.length > 0 &&

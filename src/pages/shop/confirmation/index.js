@@ -35,9 +35,7 @@ const CheckoutPage = ({ location }) => {
         description={`Select your pay and shipping preferences in Minus1 shop checkout.`}
       />
       <div className={styles.pageWrapper}>
-        <InvisibleH1>
-          Minus1 Order Confirmation
-        </InvisibleH1>
+        <InvisibleH1>Minus1 Order Confirmation</InvisibleH1>
         <CartContainer>
           <CartHeader>
             <CartHeaderItem active={false}>
