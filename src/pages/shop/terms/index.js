@@ -35,7 +35,7 @@ const TermsPage = ({ location }) => {
   }, [])
 
   return (
-    <PageLayout>
+    <PageLayout minimizedHeader>
       <SEO
         titleTemplate={'%s | Terms of Service'}
         url={location.href}

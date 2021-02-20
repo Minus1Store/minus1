@@ -46,7 +46,7 @@ const ShippingPage = ({ location }) => {
   }, [])
 
   return (
-    <PageLayout>
+    <PageLayout minimizedHeader>
       <SEO
         titleTemplate={'%s | Sizing'}
         url={location.href}

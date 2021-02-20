@@ -61,7 +61,7 @@ const Shop = ({ location }) => {
   `)
 
   return (
-    <PageLayout>
+    <PageLayout minimizedHeader>
       <SEO
         titleTemplate={'%s | Shop'}
         url={location.href}

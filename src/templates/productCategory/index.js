@@ -31,7 +31,7 @@ const ProductCategoryPage = ({ location, data }) => {
   console.log(removedDuplicatesSecondaryProducts())
 
   return (
-    <PageLayout>
+    <PageLayout minimizedHeader>
       <SEO
         titleTemplate={`%s | Shop ${
           data.category ? data.category.data.product_category : ''

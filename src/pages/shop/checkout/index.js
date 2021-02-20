@@ -126,7 +126,7 @@ const CheckoutPage = ({ location }) => {
   }
 
   return (
-    <PageLayout>
+    <PageLayout minimizedHeader>
       <SEO
         titleTemplate={'%s | Cart'}
         url={location.href}

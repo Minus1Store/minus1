@@ -35,7 +35,7 @@ const PrivacyPage = ({ location }) => {
   }, [])
 
   return (
-    <PageLayout>
+    <PageLayout minimizedHeader>
       <SEO
         titleTemplate={'%s | Privacy Policy'}
         url={location.href}

@@ -6,6 +6,23 @@
     align-items: center;
 }
 
+.minimized{
+    .logo{
+        width:15vw;
+        min-width:unset;
+        margin-bottom: unset;
+        @include breakpoint(sm){
+            margin-bottom:15px;
+            min-width:100px;
+            width:50px;
+        }
+        @include breakpoint(lg){
+            width:100px;
+            min-width: unset;
+        }
+    }
+}
+
 .logo{
     width:30vw;
     min-width:100px;

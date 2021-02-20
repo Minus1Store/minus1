@@ -150,7 +150,7 @@ const ProductPage = ({ data, location }) => {
   }
 
   return (
-    <PageLayout>
+    <PageLayout minimizedHeader>
       <SEO
         titleTemplate={`%s | Product ${
           data.product && data.product.data.title

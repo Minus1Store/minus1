@@ -10,15 +10,28 @@
 
 .header-group{
     padding-bottom:30px;
+    padding-top: 20px;
     display:flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    padding-top: 20px;
     background-color: #f4f4f4;
     @include breakpoint(sm){
         background-color: unset;
         padding-bottom:unset;
+    }
+}
+
+.minimized{
+    align-items: flex-start;
+    padding-left:15px;
+    padding-top:10px;
+    padding-bottom:10px;
+    @include breakpoint(sm){
+        padding-left:unset;
+        align-items: center;
+        padding-bottom:30px;
+        padding-top: 20px;
     }
 }
 

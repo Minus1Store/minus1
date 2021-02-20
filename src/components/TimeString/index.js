@@ -3,7 +3,7 @@ import moment from 'moment'
 
 import styles from './time-string.module.scss'
 
-const TimeString = ({ className }) => {
+const TimeString = ({ className, minimized }) => {
   const [currentTime, setCurrentTime] = useState(undefined)
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const TimeString = ({ className }) => {
 
   return (
     <p
-      className={`${styles.time} ${currentTime && styles.appear} ${className}`}
+      className={`${styles.time} ${currentTime && styles.appear} ${className} ${minimized && styles.minimized}`}
     >
       {currentTime} <span className={styles.city}>BG</span>
     </p>

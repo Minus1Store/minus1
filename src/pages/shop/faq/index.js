@@ -35,7 +35,7 @@ const FAQPage = ({ location }) => {
   }, [])
 
   return (
-    <PageLayout>
+    <PageLayout minimizedHeader>
       <SEO
         titleTemplate={'%s | F.A.Q.'}
         url={location.href}

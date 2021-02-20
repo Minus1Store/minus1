@@ -18,3 +18,10 @@
 .appear{
     opacity:1;
 }
+
+.minimized{
+    display: none;
+    @include breakpoint(sm){
+        display: unset;
+    }
+}

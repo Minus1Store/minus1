@@ -16,7 +16,7 @@ import InvisibleH1 from '../../components/InvisibleH1'
 
 const ProductSubcategoryPage = ({ location, data }) => {
   return (
-    <PageLayout>
+    <PageLayout minimizedHeader>
       <SEO
         titleTemplate={`%s | Shop ${
           data.products &&
