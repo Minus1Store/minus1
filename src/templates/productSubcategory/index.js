@@ -15,17 +15,18 @@ import NavFooterMobile2 from '../../components/NavFooterMobile2'
 import InvisibleH1 from '../../components/InvisibleH1'
 
 const ProductSubcategoryPage = ({ location, data }) => {
+  
+  console.log(data)
   return (
     <PageLayout minimizedHeader>
       <SEO
-        titleTemplate={`%s | Shop ${
-          data.products &&
-          data.products.edges.length > 0 &&
-          data.products.edges[0].node.data.product_category
-            ? data.products.edges[0].node.data.product_category.document.data
-                .product_category
-            : ''
-        }`}
+        titleTemplate={`%s | Shop 
+        ${data && data.subcategory && data.subcategory.data && data.subcategory.data.product_category
+          && data.subcategory.data.product_category.document &&
+          data.subcategory.data.product_category.document.data &&
+          data.subcategory.data.product_category.document.data.product_category + ' '
+        }
+        ${data && data.subcategory && data.subcategory.data && data.subcategory.data.product_subcategory}`}
         url={location.href}
         description={`All shop ${
           data.products && data.products.edges.length > 0
@@ -44,12 +45,7 @@ const ProductSubcategoryPage = ({ location, data }) => {
       <div className={styles.pageWrapper}>
         <InvisibleH1>
           Product Subcategory
-          {data.products &&
-          data.products.edges.length > 0 &&
-          data.products.edges[0].node.data.product_category
-            ? data.products.edges[0].node.data.product_category.document.data
-                .product_category
-            : ''}
+          {data && data.subcategory && data.subcategory.data && data.subcategory.data.product_subcategory}
         </InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>
@@ -57,6 +53,14 @@ const ProductSubcategoryPage = ({ location, data }) => {
               <ShopFilters location={location} />
             )}
           </div>
+          <p className={styles.productsType}>
+            {data && data.subcategory && data.subcategory.data && data.subcategory.data.product_category
+              && data.subcategory.data.product_category.document &&
+              data.subcategory.data.product_category.document.data &&
+              data.subcategory.data.product_category.document.data.product_category + ' '
+            }
+            {data && data.subcategory && data.subcategory.data && data.subcategory.data.product_subcategory}
+          </p>
           <ProductsContainer>
             {data.products &&
               data.products.edges.length > 0 &&
@@ -357,6 +361,14 @@ export const pageQuery = graphql`
         product_subcategory
         product_category {
           uid
+          document {
+            ... on PrismicProductCategory {
+              id
+              data {
+                product_category
+              }
+            }
+          }
         }
       }
     }

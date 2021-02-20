@@ -27,6 +27,7 @@ module.exports = {
         },
       },
     },
+    "gatsby-plugin-use-query-params",
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',

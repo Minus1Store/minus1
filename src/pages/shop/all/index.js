@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import Image from 'gatsby-image'
+import { useQueryParam, StringParam } from "use-query-params";
 
 import styles from './shop.module.scss'
 import PageLayout from '../../../components/PageLayout'
@@ -12,8 +13,11 @@ import ProductThumbnail from '../../../components/ProductThumbnail'
 import SiteTree from '../../../components/SiteTree'
 import SEO from '../../../components/SEO'
 import InvisibleH1 from '../../../components/InvisibleH1'
+import MobileShopFilters from '../../../components/MobileShopFilters'
 
 const Shop = ({ location }) => {
+  const [all, setAll] = useQueryParam("mobile", StringParam);
+
   const data = useStaticQuery(graphql`
     query ShopQuery {
       products: allPrismicProduct {
@@ -76,7 +80,11 @@ const Shop = ({ location }) => {
             .join(',')
         }`}
       />
-      <div className={styles.pageWrapper}>
+      {
+        !all &&
+        <MobileShopFilters location={location}/>
+      }
+      <div className={`${styles.pageWrapper} ${!all && styles.contentInvisible}`}>
         <InvisibleH1>All Minus1 Shop Products</InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>
@@ -84,6 +92,7 @@ const Shop = ({ location }) => {
               <ShopFilters location={location} />
             )}
           </div>
+          <p className={styles.productsType}>all</p>
           <ProductsContainer>
             {data.products &&
               data.products.edges.length > 0 &&

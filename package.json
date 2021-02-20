@@ -57,6 +57,7 @@
     "gatsby-plugin-sitemap": "^2.8.0",
     "gatsby-plugin-transitions": "^2.1.7",
     "gatsby-plugin-typography": "^2.5.10",
+    "gatsby-plugin-use-query-params": "^1.0.1",
     "gatsby-source-filesystem": "^2.3.29",
     "gatsby-source-prismic": "^3.2.1",
     "gatsby-transformer-sharp": "^2.5.14",
@@ -84,7 +85,8 @@
     "swiper": "^6.2.0",
     "typeface-lora": "^0.0.72",
     "typeface-source-sans-pro": "^1.1.5",
-    "typography": "^0.16.19"
+    "typography": "^0.16.19",
+    "use-query-params": "^1.1.9"
   },
   "devDependencies": {
     "@testing-library/cypress": "^7.0.0",

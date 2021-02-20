@@ -7,6 +7,13 @@
     justify-content: space-between;
 }
 
+.products-type{
+    font-weight: bold;
+    @include breakpoint(sm){
+        display: none;
+    }
+}
+
 .site-tree{
     display:none;
     margin-top:62px;

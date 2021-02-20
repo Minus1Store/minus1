@@ -31,6 +31,13 @@
     }
 }
 
+.products-type{
+    font-weight: bold;
+    @include breakpoint(sm){
+        display: none;
+    }
+}
+
 .page-wrapper{
     min-height:70vh;
     padding:15px;

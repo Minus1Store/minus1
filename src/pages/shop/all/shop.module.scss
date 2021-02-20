@@ -7,6 +7,20 @@
     justify-content: space-between;
 }
 
+.content-invisible{
+    display: none;
+    @include breakpoint(sm){
+        display: unset;
+    }
+}
+
+.products-type{
+    font-weight: bold;
+    @include breakpoint(sm){
+        display: none;
+    }
+}
+
 .page-wrapper{
     min-height: 70vh;  
     padding:15px;
@@ -32,8 +46,8 @@
 
 .filters{
     width:100%;
-    margin-bottom:25px;
     @include breakpoint(sm){
+        margin-bottom:25px;
         position:absolute;
         width:100px;
         left:calc(50vw - 130px - 10px);

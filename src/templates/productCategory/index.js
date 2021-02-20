@@ -28,8 +28,6 @@ const ProductCategoryPage = ({ location, data }) => {
       .filter((value) => value != undefined)
   }
 
-  console.log(removedDuplicatesSecondaryProducts())
-
   return (
     <PageLayout minimizedHeader>
       <SEO
@@ -58,10 +56,7 @@ const ProductCategoryPage = ({ location, data }) => {
       <div className={styles.pageWrapper}>
         <InvisibleH1>
           Product Category
-          {data.products && data.products.edges.length > 0
-            ? data.products.edges[0].node.data.product_category.document.data
-                .product_category
-            : ''}
+          {data.category.data.product_category}
         </InvisibleH1>
         <div className={styles.productContainer}>
           <div className={styles.filters}>
@@ -69,6 +64,9 @@ const ProductCategoryPage = ({ location, data }) => {
               <ShopFilters location={location} />
             )}
           </div>
+          <p className={styles.productsType}>{
+            data.category.data.product_category
+          }</p>
           <ProductsContainer>
             {data.products &&
               data.products.edges.length > 0 &&

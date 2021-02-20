@@ -5,22 +5,27 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    display: none;
     a{
-        color:white;
-        text-decoration: none;
-        font-size:0.95rem;
-        text-transform: lowercase;
-        padding:1px;
-        line-height: 0.85rem;
-        color:black;
-        @include breakpoint(sm){
-            font-size:0.85rem;
-        }
+      color:white;
+      text-decoration: none;
+      font-size:0.95rem;
+      text-transform: lowercase;
+      padding:1px;
+      line-height: 0.85rem;
+      color:black;
+      text-align: left;
+      padding:20px 15px;
+      display: flex;
+      border-bottom:1px solid #E9E9E9;
+      @include breakpoint(sm){
+          font-size:0.85rem;
+      }
+      span{
+        margin-left:auto;
+      }
     }
     a:hover{
-        background:red;
-        color:white
+        font-weight: bold;
     }
     .subcategory-link{
         color:#777777;
@@ -31,9 +36,7 @@
         }
     }
     @include breakpoint(sm){
-        display: flex;
-        align-items: flex-end;
-        text-align: right;
+        display: none;
     }
 }
 
@@ -69,9 +72,8 @@
 }
 
 .filters{
-    max-height:0;
-    overflow: hidden;
     transition:0.5s;
+    width:100%;
     @include breakpoint(sm){
         max-height: 200vh;
     }
@@ -80,6 +82,9 @@
 .subcategories-container{
     display:flex;
     flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s;
     @include breakpoint(sm){
         max-height:7.5vh;
         overflow-y: auto;
@@ -88,6 +93,10 @@
         max-height:20vh;
         overflow-y: auto;
     }
+}
+
+.subcategory-opened{
+  max-height:1000vh;
 }
 
 .subcategories-container::-webkit-scrollbar{
