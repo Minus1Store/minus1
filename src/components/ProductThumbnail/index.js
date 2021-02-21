@@ -4,7 +4,7 @@ import VisibilitySensor from 'react-visibility-sensor'
 
 import styles from './product-thumbnail.module.scss'
 
-const ProductThumbnail = ({ image, alt, sizes, thumbnailSize }) => {
+const ProductThumbnail = ({ image, alt, sizes, thumbnailSize, className}) => {
   const [hovered, setHovered] = useState(false)
   const [imageVisible, setImageVisible] = useState(false)
 
@@ -25,7 +25,7 @@ const ProductThumbnail = ({ image, alt, sizes, thumbnailSize }) => {
     return (
       <VisibilitySensor onChange={onVisibilityChange} partialVisibility>
         <div
-          className={`${styles.productThumbnail} ${styles[thumbnailSize]}`}
+          className={`${styles.productThumbnail} ${styles[thumbnailSize]} ${className}`}
           onPointerEnter={() => setHovered(true)}
           onPointerLeave={() => setHovered(false)}
         >

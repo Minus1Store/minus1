@@ -29,7 +29,13 @@ const ProductCategoryPage = ({ location, data }) => {
   }
 
   return (
-    <PageLayout minimizedHeader>
+    <PageLayout minimizedHeader
+      headerChildren={
+        <p className={styles.productsType}>{
+          data.category.data.product_category
+        }</p>
+      }
+    >
       <SEO
         titleTemplate={`%s | Shop ${
           data.category ? data.category.data.product_category : ''
@@ -64,9 +70,6 @@ const ProductCategoryPage = ({ location, data }) => {
               <ShopFilters location={location} />
             )}
           </div>
-          <p className={styles.productsType}>{
-            data.category.data.product_category
-          }</p>
           <ProductsContainer>
             {data.products &&
               data.products.edges.length > 0 &&

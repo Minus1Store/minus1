@@ -62,10 +62,12 @@ const Shop = ({ location }) => {
         }
       }
     }
-  `)
-
-  return (
-    <PageLayout minimizedHeader>
+    `)
+    
+    return (
+      <PageLayout minimizedHeader headerChildren={
+        all && <p className={styles.productsType}>all</p>
+    }>
       <SEO
         titleTemplate={'%s | Shop'}
         url={location.href}
@@ -92,7 +94,6 @@ const Shop = ({ location }) => {
               <ShopFilters location={location} />
             )}
           </div>
-          <p className={styles.productsType}>all</p>
           <ProductsContainer>
             {data.products &&
               data.products.edges.length > 0 &&
@@ -115,8 +116,15 @@ const Shop = ({ location }) => {
                             }
                             alt={node.data.images[0].image.alt}
                             sizes={node.data.sizes}
+                            className={styles.productThumbnail}
                           />
                         )}
+                        {
+                          node &&
+                          node.data && 
+                          node.data.title &&
+                          <p className={styles.productTitle}>{node.data.title}</p>
+                        }
                     </Link>
                   </div>
                 )

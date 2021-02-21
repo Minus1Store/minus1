@@ -18,7 +18,18 @@ const ProductSubcategoryPage = ({ location, data }) => {
   
   console.log(data)
   return (
-    <PageLayout minimizedHeader>
+    <PageLayout minimizedHeader
+      headerChildren={
+        <p className={styles.productsType}>
+          {data && data.subcategory && data.subcategory.data && data.subcategory.data.product_category
+            && data.subcategory.data.product_category.document &&
+            data.subcategory.data.product_category.document.data &&
+            data.subcategory.data.product_category.document.data.product_category + ' '
+          }
+          {data && data.subcategory && data.subcategory.data && data.subcategory.data.product_subcategory}
+        </p>
+      }
+    >
       <SEO
         titleTemplate={`%s | Shop 
         ${data && data.subcategory && data.subcategory.data && data.subcategory.data.product_category
@@ -53,14 +64,6 @@ const ProductSubcategoryPage = ({ location, data }) => {
               <ShopFilters location={location} />
             )}
           </div>
-          <p className={styles.productsType}>
-            {data && data.subcategory && data.subcategory.data && data.subcategory.data.product_category
-              && data.subcategory.data.product_category.document &&
-              data.subcategory.data.product_category.document.data &&
-              data.subcategory.data.product_category.document.data.product_category + ' '
-            }
-            {data && data.subcategory && data.subcategory.data && data.subcategory.data.product_subcategory}
-          </p>
           <ProductsContainer>
             {data.products &&
               data.products.edges.length > 0 &&

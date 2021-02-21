@@ -23,7 +23,7 @@
 
 .page-wrapper{
     min-height: 70vh;  
-    padding:15px;
+    padding:15px 0px;
     box-shadow: 0 0px 3px 1px #ccc; 
     @include breakpoint(sm){
         padding:unset;
@@ -75,11 +75,39 @@
 }
 
 .product{
-    width:30vw;
     margin-bottom:5px;
-    height:30vw;
+    width:100%;
     > a > div{
         border:1px solid transparent;
+    }
+    .product-thumbnail{
+        width:30vw;
+        height:30vw;
+        margin-right: 5px;
+        @include breakpoint(sm){
+            height:unset;
+            width:unset;
+            margin-right: unset;
+        }
+    }
+    > a{
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        border-bottom: 1px solid #f4f4f4;
+        padding:0px 5px;
+        @include breakpoint(sm){
+            border-bottom:unset;
+            display: unset;
+            flex-direction: unset;
+        }
+    }
+    .product-title{
+        margin:0;
+        color:black;
+        @include breakpoint(sm){
+            display: none;
+        }
     }
     @include breakpoint(sm){
         height:87.5px;

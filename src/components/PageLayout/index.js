@@ -6,7 +6,7 @@ import TimeString from '../../components/TimeString/index'
 import styles from './page-layout.module.scss'
 import { useSpring, animated } from 'react-spring'
 
-const PageLayout = ({ children, showHeader, minimizedHeader }) => {
+const PageLayout = ({ children, showHeader, minimizedHeader, headerChildren }) => {
   const [startAnimation, setStartAnimation] = useState(false)
 
   const loadAnimation = useSpring({
@@ -26,7 +26,9 @@ const PageLayout = ({ children, showHeader, minimizedHeader }) => {
       <div className={styles.centeredItems}>
         {showHeader != false && (
           <div className={`${styles.headerGroup} ${minimizedHeader && styles.minimized}`}>
-            <Header minimized={minimizedHeader}/>
+            <Header minimized={minimizedHeader}>
+              {headerChildren}
+            </Header>
             <TimeString minimized={minimizedHeader}/>
           </div>
         )}

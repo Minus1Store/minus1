@@ -5,7 +5,7 @@ import Image from 'gatsby-image'
 import styles from './header.module.scss'
 import logo from '../../img/test/logo.png'
 
-const Header = ({ className, minimized }) => {
+const Header = ({ className, minimized, children }) => {
   const data = useStaticQuery(graphql`
     query LogoQuery {
       logo: allPrismicLogo {
@@ -54,6 +54,9 @@ const Header = ({ className, minimized }) => {
             )}
         </div>
       </Link>
+      {
+        children
+      }
     </header>
   )
 }
