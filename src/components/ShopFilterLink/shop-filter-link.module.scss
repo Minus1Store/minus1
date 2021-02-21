@@ -85,6 +85,10 @@
     max-height: 0;
     overflow: hidden;
     transition: 0.3s;
+    a{
+        padding-left:30px;
+        background:#f4f4f4;
+    }
     @include breakpoint(sm){
         max-height:7.5vh;
         overflow-y: auto;
