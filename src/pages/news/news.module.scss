@@ -125,6 +125,7 @@
     padding:15px;
     box-shadow: 0 0px 3px 1px #ccc;
     @include breakpoint(sm){
+        box-shadow: none;
         padding:unset;
         min-height:unset;
         max-height: 60vh;
